@@ -9,12 +9,13 @@ import {
 // import { Root } from 'postcss';
 import Home from './Pages/Home/Home';
 import Root from '../src/Root/Root';
+import ErrorPage from './Pages/ErrorPage/ErrorPage';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
-
+    errorElement: <ErrorPage></ErrorPage>,
     children:[
       {
         path: "/",
