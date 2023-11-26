@@ -67,7 +67,7 @@ const Login = () => {
             <h1 className="text-5xl font-bold text-center mb-9">Login now!</h1>
             <img src={img} alt="" />
           </div>
-          <div className="max-w-sm flex-1  p-10 shadow-2xl bg-base-300 mx-auto">
+          <div className="max-w-md flex-1  p-10 shadow-2xl bg-base-300 mx-auto">
             {/* <form onSubmit={handleLogin} className="card-body">
               <div className="form-control">
                 <label className="label">
@@ -151,17 +151,16 @@ const Login = () => {
                 </div>
                 {/* <!-- End Checkbox --> */}
 
-                <button type="submit" className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Sign in</button>
+                <button type="submit" className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Log in</button>
               </div>
             </form>
             {/* <!-- End Form --> */}
-            <p className="text-center">
+            <p className="text-center mt-7">
               New hare ?{" "}
-              <a className="text-red-600 underline" href="signup">
+              <a className="text-white underline" href="signup">
                 Please signup
               </a>{" "}
             </p>
-            <div className="divider"></div> 
             <ExtraLogin></ExtraLogin>
           </div>
         </div>
