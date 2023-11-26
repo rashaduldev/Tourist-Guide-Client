@@ -37,7 +37,7 @@ const ExtraLogin = () => {
         })
     }
   return (
-    <div className="px-4 flex gap-3 mb-3 mx-auto text-center mt-10">
+    <div className="px-4 flex gap-3 mb-3 mx-auto text-center mt-10 justify-center">
       <div 
       onClick={handleGoogleSignin}
       className="btn btn-primary flex items-center gap-2 text-xl">
