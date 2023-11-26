@@ -1,24 +1,24 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import img from "../../assets/authentication2.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
-import { AuthContext } from "../../Provider/AuthProvider";
-import useAxiosPublick from "../../Hooks/useAxiosPublick";
+// import useAxiosPublick from "../../Hooks/useAxiosPublick";
 import ExtraLogin from "../../Components/ExtraLogin";
+import useAuth from "../../Hooks/useAuth";
 
 const Signup = () => {
-  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const { createUser, updateUserProfile } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-  const axiosPublic = useAxiosPublick();
+//   const axiosPublic = useAxiosPublick();
   const {
     register,
     handleSubmit,
     // watch,
-    reset,
+    // reset,
     formState: { errors },
   } = useForm();
 
@@ -35,25 +35,27 @@ const Signup = () => {
         updateUserProfile(name, photo);
 
         // create user and send to database
-        const userInfo = {
-          name,
-          email,
-        };
-        axiosPublic.post("/users", userInfo).then((res) => {
-          console.log("User profile updated");
-          if (res.data) {
-            console.log("user added to the database");
-            reset();
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "User Created Successfully",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-            navigate("/");
-          }
-        });
+        // const userInfo = {
+        //   name,
+        //   email,
+        // };
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "User Created Successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/");
+
+        // axiosPublic.post("/users", userInfo).then((res) => {
+        //   console.log("User profile updated");
+        //   if (res.data) {
+        //     console.log("user added to the database");
+        //     reset();
+           
+        //   }
+        // });
       })
       .catch((error) => {
         console.log(error.message);
