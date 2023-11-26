@@ -1,8 +1,60 @@
 import { Helmet } from "react-helmet";
-
+import Swal from "sweetalert2";
+import {useLocation, useNavigate } from 'react-router-dom';
+import img from "../../assets/authentication2.png"
+import ExtraLogin from "../../Components/ExtraLogin";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Login = () => {
+  const { signIn } = useContext(AuthContext);
+//   const [disabled, setDisabled] = useState(true);
+  const Navigate=useNavigate();
+  const Location=useLocation();
 
+  const from=Location.state?.from?.pathname || "/";
+  console.log("pathname: ", Location.state);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    const captcha = form.captcha.value;
+    console.log(captcha, password, email);
+    signIn(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        let timerInterval;
+        Swal.fire({
+          title: "Login Successfully!",
+          html: "I will close in <b></b> milliseconds.",
+          timer: 2000,
+          timerProgressBar: true,
+          didOpen: () => {
+            Swal.showLoading();
+            const timer = Swal.getPopup().querySelector("b");
+            timerInterval = setInterval(() => {
+              timer.textContent = `${Swal.getTimerLeft()}`;
+            }, 100);
+          },
+          willClose: () => {
+            clearInterval(timerInterval);
+          },
+        }).then((result) => {
+          /* Read more about handling dismissals below */
+          if (result.dismiss === Swal.DismissReason.timer) {
+            console.log("I was closed by the timer");
+          }
+        });
+        Navigate(from,{replace:true});
+      })
+      .catch((err) => {
+        console.log('email or password not match');
+        console.log(err.message);
+      });
+  };
   return (
     <div>
       <Helmet>
@@ -53,7 +105,7 @@ const Login = () => {
               </div>
             </form> */}
              {/* <!-- Form --> */}
-            <form>
+            <form onSubmit={handleLogin}>
               <div className="grid gap-y-4">
                 {/* <!-- Form Group --> */}
                 <div>
