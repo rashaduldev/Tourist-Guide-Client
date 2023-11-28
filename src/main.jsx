@@ -19,6 +19,7 @@ import List from "./Pages/DashBoard/User/List/List";
 import AllPackages from "./Pages/AllPackages/AllPackages";
 import GuideDetails from "./Pages/DashBoard/TourGuide/GuideDetails";
 import Blogs from "./Pages/Blogs/Blogs";
+import ContactUs from "./Pages/ContactUs/ContactUs";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -58,6 +59,14 @@ const router = createBrowserRouter([
       {
         path: 'blogs',
         element: <Blogs></Blogs>,
+      },
+      {
+        path: 'about',
+        element: <Blogs></Blogs>,
+      },
+      {
+        path: 'contact',
+        element: <ContactUs></ContactUs>,
       },
     ],
   },

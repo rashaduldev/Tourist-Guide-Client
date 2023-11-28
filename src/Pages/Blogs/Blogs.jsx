@@ -17,7 +17,7 @@ const Blogs = () => {
   }, []);
   return (
     <div>
-      <Cover img={coverImg} title="Blogs"></Cover>
+      <Cover img={coverImg} title="Blogs" subtitle=" We share stories and give advice"></Cover>
       <div>
         <div className="grid grid-cols-1 md:grid-cols-4 mx-10">
           <div className="col-span-3">

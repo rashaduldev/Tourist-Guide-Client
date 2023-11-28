@@ -70,7 +70,7 @@ const Navber = () => {
         className="font-medium text-gray-500 hover:text-gray-400 md:py-6 dark:text-gray-400 dark:hover:text-gray-500"
         href="#"
       >
-        <Link to={"/contuctus"}>Contact Us</Link>
+        <Link to={"/contact"}>Contact Us</Link>
       </a>
       <a
         className="font-medium text-gray-500 hover:text-gray-400 md:py-6 dark:text-gray-400 dark:hover:text-gray-500"

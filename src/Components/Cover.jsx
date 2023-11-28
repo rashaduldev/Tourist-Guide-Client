@@ -1,7 +1,7 @@
 import { Parallax } from 'react-parallax';
 
 // eslint-disable-next-line react/prop-types
-const Cover = ({img,title}) => {
+const Cover = ({img,title,subtitle}) => {
   return (
     <div className='mx-10 rounded my-10'>
            <Parallax
@@ -18,7 +18,7 @@ const Cover = ({img,title}) => {
           <div className="lg:max-w-2xl bg-slate-300 bg-opacity-30 lg:px-36 py-6 shadow-2xl mt-48 mx-auto rounded">
             <h1 className="mb-5 text-5xl font-bold uppercase text-white">{title}</h1>
             <p className="mb-5 w-full mx-auto text-2xl text-white">
-            We share stories and give advice
+           {subtitle}
             </p>
           </div>
         </div>
