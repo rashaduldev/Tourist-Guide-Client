@@ -18,6 +18,7 @@ import Dash from "./Pages/DashBoard/Dash";
 import List from "./Pages/DashBoard/User/List/List";
 import AllPackages from "./Pages/AllPackages/AllPackages";
 import GuideDetails from "./Pages/DashBoard/TourGuide/GuideDetails";
+import Blogs from "./Pages/Blogs/Blogs";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: 'guidedetails/:id',
         element: <GuideDetails></GuideDetails>,
+      },
+      {
+        path: 'blogs',
+        element: <Blogs></Blogs>,
       },
     ],
   },
