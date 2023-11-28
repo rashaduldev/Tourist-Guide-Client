@@ -77,7 +77,7 @@ const Navber = () => {
           type="button"
           className="flex items-center w-full text-gray-500 hover:text-gray-400 font-medium dark:text-gray-400 dark:hover:text-gray-500 "
         >
-          DashBoard
+          <Link to={'/dashboard'}>DashBoard</Link>
           <svg
             className="ms-2 w-4 h-4"
             xmlns="http://www.w3.org/2000/svg"

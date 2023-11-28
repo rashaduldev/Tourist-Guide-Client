@@ -19,22 +19,22 @@ const AuthProvider = ({children}) => {
        const unsubscribe= onAuthStateChanged(auth,curretnUser=>{
             setUser(curretnUser)
             console.log(curretnUser);
-            // if (curretnUser) {
-            //     console.log('get token');
-            //     const userInfo={
-            //         email: curretnUser.email
-            //     }
-            //     axiosPublic.post('/jwt', userInfo)
-            //     .then(res=>{
-            //         if (res.data.token) {
-            //            localStorage.setItem('access-token', res.data.token); 
-            //         }
-            //     })
-            // }
-            // else{
-            // console.log('remove token');
-            // localStorage.removeItem('access-token');
-            // }
+            if (curretnUser) {
+                console.log('get token');
+                const userInfo={
+                    email: curretnUser.email
+                }
+                axiosPublic.post('/jwt', userInfo)
+                .then(res=>{
+                    if (res.data.token) {
+                       localStorage.setItem('access-token', res.data.token); 
+                    }
+                })
+            }
+            else{
+            console.log('remove token');
+            localStorage.removeItem('access-token');
+            }
             setLoading(false)
         })
         return()=>{

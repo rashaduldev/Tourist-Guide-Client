@@ -12,6 +12,11 @@ import ErrorPage from "./Pages/ErrorPage/ErrorPage";
 import Login from "./Pages/Login/Login";
 import Signup from "./Pages/Signup/Signup";
 import AuthProvider from "./Provider/AuthProvider";
+import Dashboard from "./LayOut/DashBoard";
+import WishListPage from "./Pages/MyWishList/WishListPage";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Dash from "./Pages/DashBoard/Dash";
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -41,16 +46,28 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/dashboard",
+    element:<Dashboard></Dashboard>,
+    children:[
+      {
+        path: "/dashboard",
+        element:<Dash></Dash>
+      }
+    ]
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
-      <HelmetProvider>
+     <QueryClientProvider client={queryClient}>
+     <HelmetProvider>
         <div className="">
           <RouterProvider router={router} />
         </div>
       </HelmetProvider>
+     </QueryClientProvider>
     </AuthProvider>
   </React.StrictMode>
 );
