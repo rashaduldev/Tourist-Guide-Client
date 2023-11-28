@@ -4,8 +4,28 @@ import "swiper/css/pagination";
 import backgroundImg from "../../assets/tourbgimg.jpg";
 import { FaBagShopping, FaCat, FaPersonWalking, FaShapes, FaWheelchair, FaWind } from "react-icons/fa6";
 import Swipslider from "./Swipslider";
+import { useEffect, useState } from "react";
+
 
 const TourType = () => {
+  const [packages,setPackages]=useState([]);
+  useEffect(()=>{
+    fetch('http://localhost:8000/packages')
+    .then(response => response.json())
+    .then(data=>{
+      console.log(data);
+      setPackages(data);
+    })
+  },[])
+  const cruises = packages.filter((item) => item.tour_type === "cruises");
+  const wildlife = packages.filter((item) => item.tour_type === "wildlife");
+  const walking = packages.filter((item) => item.tour_type === "walking");
+  const sports = packages.filter((item) => item.tour_type === "sports");
+  const hiking = packages.filter((item) => item.tour_type === "hiking");
+  const airrides = packages.filter((item) => item.tour_type === "airrides");
+  console.log(sports.length,walking.length,wildlife.length,cruises.length,hiking.length,airrides.length);
+  
+
 
   return (
     <div className="relative lg:h-96">
@@ -33,32 +53,32 @@ const TourType = () => {
             className="mySwiper"
           >
             <SwiperSlide>
-        <Swipslider heading={'Sports'} icon={<FaWheelchair></FaWheelchair>}>
+        <Swipslider itemsss={sports} heading={'Sports'} icon={<FaWheelchair></FaWheelchair>}>
         </Swipslider>
             </SwiperSlide>
 
             <SwiperSlide>
-            <Swipslider heading={'Walking'} icon={<FaPersonWalking></FaPersonWalking>}>
+            <Swipslider itemsss={walking} heading={'Walking'} icon={<FaPersonWalking></FaPersonWalking>}>
           </Swipslider>   
             </SwiperSlide>
             <SwiperSlide>
               {" "}
-              <Swipslider heading={'WildLife'} icon={<FaCat></FaCat>}>
+              <Swipslider itemsss={wildlife} heading={'WildLife'} icon={<FaCat></FaCat>}>
         </Swipslider>
             </SwiperSlide>
             <SwiperSlide>
               {" "}
-              <Swipslider heading={'Air Rides'} icon={<FaWind></FaWind>}>
+              <Swipslider itemsss={airrides} heading={'Air Rides'} icon={<FaWind></FaWind>}>
         </Swipslider>
             </SwiperSlide>
             <SwiperSlide>
               {" "}
-              <Swipslider heading={'Cruises'} icon={<FaShapes></FaShapes>}>
+              <Swipslider itemsss={cruises} heading={'Cruises'} icon={<FaShapes></FaShapes>}>
         </Swipslider>
             </SwiperSlide>
             <SwiperSlide>
               {" "}
-              <Swipslider heading={'Hiking'} icon={<FaBagShopping></FaBagShopping>}>
+              <Swipslider itemsss={hiking} heading={'Hiking'} icon={<FaBagShopping></FaBagShopping>}>
         </Swipslider>
             </SwiperSlide>
           </Swiper>

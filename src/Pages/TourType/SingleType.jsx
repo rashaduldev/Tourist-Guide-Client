@@ -1,38 +1,14 @@
-import usePackages from "../../Hooks/usePackages";
 
 
-const AllPackages = () => {
-    const [packages] = usePackages();
+const SingleType = ({item}) => {
+    console.log(item);
     return (
         <div>
-           <h1 className="text-5xl font-bold text-center my-5">All Packages  {packages.length}</h1>
-
-           <div>
-           {/* <!-- Card Blog --> */}
+            {/* <!-- Card Blog --> */}
 <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
   {/* <!-- Grid --> */}
-  <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+  <div className="">
     {/* <!-- Card --> */}
-    {
-      packages.map(pac=><div key={pac._id}>
-            <div className="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7]">
-      <img className="h-48" src={pac.image} alt="" />
-      <div className="p-4 md:p-6">
-        <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-300 dark:hover:text-white">
-        {pac.trip_title}
-        </h3>
-        <p className="mt-3 text-gray-500">
-         {pac.tour_type}
-        </p>
-      </div>
-      <div className="mt-auto flex border-t border-gray-200 divide-x divide-gray-200 dark:border-gray-700 dark:divide-gray-700">
-        <a className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-es-xl bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">
-          View sample
-        </a>
-      </div>
-    </div>
-      </div>)  
-    }
     <div className="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7]">
       <div className="h-52 flex flex-col justify-center items-center bg-blue-600 rounded-t-xl">
         <svg className="w-28 h-28" width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -72,9 +48,8 @@ const AllPackages = () => {
   {/* <!-- End Grid --> */}
 </div>
 {/* <!-- End Card Blog --> */}
-           </div>
         </div>
     );
 };
 
-export default AllPackages;
+export default SingleType;

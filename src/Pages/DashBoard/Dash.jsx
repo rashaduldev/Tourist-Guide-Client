@@ -8,7 +8,7 @@ const Dash = () => {
     console.log(user);
     return (
         <div>
-            <h1 className="text-4xl ml-10 mt-10">Welcome to Mr, <p className="font-bold">{user.displayName}</p></h1>
+            <h1 className="text-4xl ml-10 mt-10">Welcome to Mr, <p className="font-bold">{user?.displayName}</p></h1>
         </div>
     );
 };

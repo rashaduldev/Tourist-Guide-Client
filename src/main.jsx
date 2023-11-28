@@ -20,6 +20,7 @@ import AllPackages from "./Pages/AllPackages/AllPackages";
 import GuideDetails from "./Pages/DashBoard/TourGuide/GuideDetails";
 import Blogs from "./Pages/Blogs/Blogs";
 import ContactUs from "./Pages/ContactUs/ContactUs";
+import AboutUs from "./Pages/AboutUs/AboutUs";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -62,7 +63,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'about',
-        element: <Blogs></Blogs>,
+        element: <AboutUs></AboutUs>,
       },
       {
         path: 'contact',

@@ -1,5 +1,5 @@
 import { FaLocationArrow, FaMessage, FaPhone, FaSeedling, FaSkype } from "react-icons/fa6";
-import coverImg from "../../assets/bgimg.jpg";
+import coverImg from "../../assets/contact.jpg";
 import Cover from "../../Components/Cover";
 
 const ContactUs = () => {
