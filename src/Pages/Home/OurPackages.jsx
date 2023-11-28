@@ -1,14 +1,12 @@
 import { FaHeart } from "react-icons/fa6";
 import usePackages from "../../Hooks/usePackages";
 import MyWishList from "../MyWishList/MyWishList";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const OurPackages = () => {
   const [packages] = usePackages();
   console.log(packages);
-  const navigate=useNavigate();
   const handleClick=()=>{
-    navigate('/login');
   }
 
   const popular = packages.filter((item) => item.category === "popular");
@@ -24,7 +22,7 @@ const OurPackages = () => {
     onClick={handleClick}
         type="button"
         className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-yellow-500 text-white hover:bg-yellow-600 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-      >All Packages
+      ><Link to={'/allpackage'}>All Packages</Link>
       </button>
    </div>
   );

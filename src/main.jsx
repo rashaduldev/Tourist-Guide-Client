@@ -13,9 +13,10 @@ import Login from "./Pages/Login/Login";
 import Signup from "./Pages/Signup/Signup";
 import AuthProvider from "./Provider/AuthProvider";
 import Dashboard from "./LayOut/DashBoard";
-import WishListPage from "./Pages/MyWishList/WishListPage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Dash from "./Pages/DashBoard/Dash";
+import List from "./Pages/DashBoard/User/List/List";
+import AllPackages from "./Pages/AllPackages/AllPackages";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
         path: "signup",
         element: <Signup></Signup>,
       },
+      {
+        path: "allpackage",
+        element: <AllPackages></AllPackages>,
+      },
     ],
   },
   {
@@ -53,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element:<Dash></Dash>
+      },
+      {
+        path: "/dashboard/list",
+        element:<List></List>
       }
     ]
   }

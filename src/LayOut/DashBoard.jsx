@@ -69,10 +69,10 @@ import { useState } from "react";
                   </NavLink>
                 </li>
                 <li className="mb-2">
-                  <NavLink to={"/dashboard/cart"}>
+                  <NavLink to={"/dashboard/list"}>
                     <div className="flex items-center gap-3">
                     <FaCartShopping></FaCartShopping>
-                    <p>My wishList {list.length}</p>
+                    <p>My wishList ({list.length})</p>
                     </div>
                   </NavLink>
                 </li>
