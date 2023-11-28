@@ -17,6 +17,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Dash from "./Pages/DashBoard/Dash";
 import List from "./Pages/DashBoard/User/List/List";
 import AllPackages from "./Pages/AllPackages/AllPackages";
+import GuideDetails from "./Pages/DashBoard/TourGuide/GuideDetails";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: "allpackage",
         element: <AllPackages></AllPackages>,
+      },
+      {
+        path: 'guidedetails/:id',
+        element: <GuideDetails></GuideDetails>,
       },
     ],
   },
