@@ -49,7 +49,7 @@ const Slider = () => {
             whileInView={"show"}
             viewport={{ once:false,amount:0.7 }}
           
-          className="text-5xl font-bold text-white">
+          className="lg:text-5xl font-bold text-white">
           Get Where You Need to Go, <br />Safely and  {text} <Cursor cursorColor='red' />
           </motion.h3>
           <motion.p 
