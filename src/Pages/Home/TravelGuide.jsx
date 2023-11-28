@@ -3,6 +3,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import Overview from './Overview';
 import OurPackages from './OurPackages';
+import TourGuide from '../DashBoard/TourGuide/TourGuide';
 const TravelGuide = () => {
     return (
         <div>
@@ -23,7 +24,7 @@ const TravelGuide = () => {
     <OurPackages></OurPackages>
     </TabPanel>
     <TabPanel>
-      <h2>Any content 2</h2>
+      <TourGuide></TourGuide>
     </TabPanel>
 </div>
   </Tabs>
