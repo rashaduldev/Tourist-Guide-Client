@@ -1,11 +1,26 @@
 /* eslint-disable react/prop-types */
 
+import img1 from "../assets/contact.jpg"
+import img2 from "../assets/about.jpg"
+import img3 from "../assets/bgimg.jpg"
+import img4 from "../assets/tourbgimg.jpg"
+
 
 const SingleCard = ({data}) => {
     const {image,price,tour_type,trip_title} = data;
     return (
         <div>
+          <h1 className="text-5xl font-bold my-7 text-center">Photo Gellary Here</h1>
+          <div className="grid grid-cols-4 gap-4">
+          <img className="h-72 w-full" src={img1} alt="" />
+          <img className="h-72 w-full col-span-2" src={img2} alt="" />
+          <img className="h-72 w-full" src={img3} alt="" />
+          </div>
+        
+          <img className="h-72 w-full mt-4" src={img4} alt="" />
+
              <div className="w-1/2 px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+              <h1 className="text-5xl font-bold my-7 text-center">Trip Details Here</h1>
               {/* <!-- Grid --> */}
               <div className="">
                 {/* <!-- Card --> */}

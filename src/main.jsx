@@ -16,7 +16,6 @@ import Dashboard from "./LayOut/DashBoard";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Dash from "./Pages/DashBoard/Dash";
 import List from "./Pages/DashBoard/User/List/List";
-import AllPackages from "./Pages/AllPackages/AllPackages";
 import GuideDetails from "./Pages/DashBoard/TourGuide/GuideDetails";
 import Blogs from "./Pages/Blogs/Blogs";
 import ContactUs from "./Pages/ContactUs/ContactUs";
@@ -24,6 +23,7 @@ import AboutUs from "./Pages/AboutUs/AboutUs";
 import SingleType from './Pages/TourType/SingleType';
 import DetailsCard from "./Components/DetailsCard";
 import Packages from "./Pages/AllPackages/Packages";
+import PrivetRoute from "./Route/PrivetRoute";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -85,7 +85,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element:<Dashboard></Dashboard>,
+    element:<PrivetRoute><Dashboard></Dashboard></PrivetRoute>,
     children:[
       {
         path: "/dashboard",

@@ -32,7 +32,7 @@ const AllPackages = ({pack}) => {
           console.log(res.data);
           Swal.fire({
             icon:'success',
-            title: ` Added to wishlist`,
+            title: `${trip_title} Added to wishlist`,
             showConfirmButton: false,
             timer: 1500
           });
