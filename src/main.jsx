@@ -24,6 +24,7 @@ import SingleType from './Pages/TourType/SingleType';
 import DetailsCard from "./Components/DetailsCard";
 import Packages from "./Pages/AllPackages/Packages";
 import PrivetRoute from "./Route/PrivetRoute";
+import TourGuideuser from "./Components/TourGuideuser";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -80,6 +81,12 @@ const router = createBrowserRouter([
         path: 'details/:id',
         element: <DetailsCard></DetailsCard>,
         loader:()=>fetch('http://localhost:8000/packages')
+      },
+      {
+        path: 'detailsuser/:id',
+        element: <TourGuideuser></TourGuideuser>,
+        loader:()=>fetch('http://localhost:8000/guides')
+
       },
     ],
   },
