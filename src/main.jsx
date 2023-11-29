@@ -25,6 +25,7 @@ import DetailsCard from "./Components/DetailsCard";
 import Packages from "./Pages/AllPackages/Packages";
 import PrivetRoute from "./Route/PrivetRoute";
 import TourGuideuser from "./Components/TourGuideuser";
+import Booking from "./Pages/DashBoard/User/Booking/Booking";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -101,6 +102,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/list",
         element:<List></List>
+      },
+      {
+        path: "/dashboard/booking",
+        element:<Booking></Booking>
       }
     ]
   }

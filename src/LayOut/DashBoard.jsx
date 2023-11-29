@@ -61,7 +61,7 @@ import { useState } from "react";
               <>
                <h2 className="text-center font-bold">User Part</h2>
                 <li className="mb-2">
-                  <NavLink to={"/dashboard/userHome"}>
+                  <NavLink to={"/dashboard"}>
                     <div className="flex items-center gap-3">
                     <FaHouseMedical></FaHouseMedical>
                     <p>User Home</p>
@@ -77,10 +77,10 @@ import { useState } from "react";
                   </NavLink>
                 </li>
                 <li className="mb-2">
-                  <NavLink to={"/dashboard/reservation"}>
+                  <NavLink to={"/dashboard/booking"}>
                     <div className="flex items-center gap-3">
                     <FaCalendar></FaCalendar>
-                    <p>  Reservation</p>
+                    <p>My Booking</p>
                     </div>
                   </NavLink>
                 </li>

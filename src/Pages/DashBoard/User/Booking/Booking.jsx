@@ -1,13 +1,14 @@
+import { Link } from "react-router-dom";
 import { FaNutritionix, FaTrash} from "react-icons/fa6";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
-import useList from "../../../../Hooks/useList";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import useBooking from "../../../../Hooks/useBooking";
 
-const List = () => {
-    const [list,refetch]=useList(); 
-    console.log(list);
-    const totatPrice=list.reduce((total,item)=>total+item.price,0)
+
+const Booking = () => {
+    const [booking,refetch]=useBooking(); 
+    console.log(booking);
+    const totatPrice=booking.reduce((total,item)=>total+item.price,0)
     const axiosSecure=useAxiosSecure();
 
     const handleDeleteCart=(id)=>{
@@ -42,14 +43,13 @@ const List = () => {
           });
        
     }
-
-  return (
-    <div className="mt-10">
-      <div className="">
-        <div className="flex gap-3 justify-evenly bg-orange-200 py-2 mx-2 rounded mb-6">
-        <h2 className="uppercase lg:text-3xl text-center">Total Order: {list.length}</h2>
+    return (
+        <div>
+            Booking..............
+            <div className="flex gap-3 justify-evenly bg-orange-200 py-2 mx-2 rounded mb-6">
+        <h2 className="uppercase lg:text-3xl text-center">Total Booking: {booking.length}</h2>
         <h2 className="uppercase lg:text-3xl text-center">Total Price: {totatPrice}</h2>
-       {list.length? <Link to={'/dashboard/payment'}>
+       {booking.length? <Link to={'/dashboard/payment'}>
         <button className="btn btn-primary">Pay</button>
         </Link>:
          <button disabled className="btn btn-primary">Pay</button>
@@ -73,7 +73,7 @@ const List = () => {
           </thead>
           <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
           {
-                list.map((item,index)=> <tr
+                booking.map((item,index)=> <tr
                 key={item._id}
                 >
                     <th>
@@ -92,7 +92,7 @@ const List = () => {
                       </div>
                     </td>
                     <td>
-                     {item.tour_type}
+                     {item.nameOfPackage}
                     </td>
                     <td>{item.price}</td>
                     <th>
@@ -110,9 +110,8 @@ const List = () => {
     </div>
   </div>
         </div>
-      </div>
-    </div>
-  );
+        </div>
+    );
 };
 
-export default List;
+export default Booking;
