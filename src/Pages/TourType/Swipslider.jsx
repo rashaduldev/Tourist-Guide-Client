@@ -3,13 +3,14 @@
 
 
 import { useNavigate } from "react-router-dom";
-import SingleType from "./SingleType";
+// import SingleType from "./SingleType";
+// import SingleType from "./SingleType";
 
 const Swipslider = ({heading,icon,itemsss}) => {
   const navigate=useNavigate();
   const handleClick=(itemsss) => {
-    console.log(itemsss?.length);
-    navigate('/login')
+    console.log(itemsss);
+    navigate(`/single/${heading}`)
   };
 
     return (
@@ -21,9 +22,6 @@ const Swipslider = ({heading,icon,itemsss}) => {
           {icon}
         </p>
         <p className="lg:pt-4">{heading}</p>
-     {
-      itemsss.map(item=><SingleType item={item} key={item._id}></SingleType>)
-     }
       </div>
     );
 };

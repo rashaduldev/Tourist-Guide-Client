@@ -25,7 +25,9 @@ const TourType = () => {
   const airrides = packages.filter((item) => item.tour_type === "airrides");
   console.log(sports.length,walking.length,wildlife.length,cruises.length,hiking.length,airrides.length);
   
-
+const handleClick=()=>{
+  console.log('good');
+}
 
   return (
     <div className="relative lg:h-96">
@@ -53,12 +55,13 @@ const TourType = () => {
             className="mySwiper"
           >
             <SwiperSlide>
-        <Swipslider itemsss={sports} heading={'Sports'} icon={<FaWheelchair></FaWheelchair>}>
+        <div onClick={handleClick}>
+        <Swipslider itemsss={sports} heading={'sports'} icon={<FaWheelchair></FaWheelchair>}>
         </Swipslider>
+        </div>
             </SwiperSlide>
-
             <SwiperSlide>
-            <Swipslider itemsss={walking} heading={'Walking'} icon={<FaPersonWalking></FaPersonWalking>}>
+            <Swipslider itemsss={walking} heading={'walking'} icon={<FaPersonWalking></FaPersonWalking>}>
           </Swipslider>   
             </SwiperSlide>
             <SwiperSlide>

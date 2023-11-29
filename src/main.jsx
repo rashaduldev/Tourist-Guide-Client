@@ -21,6 +21,8 @@ import GuideDetails from "./Pages/DashBoard/TourGuide/GuideDetails";
 import Blogs from "./Pages/Blogs/Blogs";
 import ContactUs from "./Pages/ContactUs/ContactUs";
 import AboutUs from "./Pages/AboutUs/AboutUs";
+import SingleType from './Pages/TourType/SingleType';
+import DetailsCard from "./Components/DetailsCard";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -68,6 +70,15 @@ const router = createBrowserRouter([
       {
         path: 'contact',
         element: <ContactUs></ContactUs>,
+      },
+      {
+        path: 'single/:name',
+        element: <SingleType></SingleType>,
+      },
+      {
+        path: 'details/:id',
+        element: <DetailsCard></DetailsCard>,
+        loader:()=>fetch('http://localhost:8000/packages')
       },
     ],
   },
