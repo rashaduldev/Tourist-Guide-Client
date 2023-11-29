@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 
 const SinglePageTourGuide = ({pack}) => {
-    const {id,name,image,description}=pack;
+    const {id,name,email,image,description}=pack;
 
     return (
         <div>
@@ -29,6 +29,9 @@ const SinglePageTourGuide = ({pack}) => {
           </h3>
           <p className="mt-1 text-xs uppercase text-white my-2">
             {description}
+          </p>
+          <p className="mt-1 text-lg text-white my-2 font-bold">
+           Email: {email}
           </p>
         </div>
 

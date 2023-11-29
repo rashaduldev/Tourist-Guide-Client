@@ -14,14 +14,14 @@ const TourGuideuser = () => {
           {/* <!-- Grid --> */}
           <div className="">
             {/* <!-- Card --> */}
-            <div className="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7]">
+            <div className="group flex flex-col h-full  border border-gray-200 shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7]">
               <img className="h-60" src={findedData.image} alt="" />
               <div className="p-4 md:p-6">
-                <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-300 dark:hover:text-white">
+                <h3 className="text-xl font-semibold text-white dark:text-gray-300 dark:hover:text-white">
                   {findedData.name}
                 </h3>
-                <p className="mt-3 text-gray-500">{findedData.email}</p>
-                <p className="mt-3 text-gray-500">
+                <p className="mt-3 text-white">{findedData.email}</p>
+                <p className="mt-3 text-white">
                   <p>Education : MSC Graguate Complete</p>
                 </p>
               </div>
@@ -31,7 +31,7 @@ const TourGuideuser = () => {
           {/* <!-- End Grid --> */}
         </div>
         <div className="flex-1 my-10 mx-10">
-          <p className="text-2xl lg:text-4xl text-center font-bold">
+          <p className="text-2xl lg:text-4xl text-center font-bold text-white">
             Please Send Your Feedback
           </p>
           <form className="text-center flex flex-col">
