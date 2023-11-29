@@ -1,4 +1,4 @@
-import { FaHeart } from "react-icons/fa6";
+
 import usePackages from "../../Hooks/usePackages";
 import MyWishList from "../MyWishList/MyWishList";
 import { Link } from "react-router-dom";
@@ -9,7 +9,7 @@ const OurPackages = () => {
   const handleClick=()=>{
   }
 
-  const popular = packages.filter((item) => item.category === "popular");
+  const popular = packages.filter((item) => item.tour_type === "sports".toLowerCase());
   return (
    <div>
      <div className="grid sm:grid-cols-2 lg:grid-cols-4">

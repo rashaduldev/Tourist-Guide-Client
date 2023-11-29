@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 
 const MyWishList = ({item}) => {
     // eslint-disable-next-line no-unused-vars
-    const {name,image,recipe,price,_id}=item;
+    const {tour_type,image,trip_title,price,_id}=item;
 
     const {user}=useAuth();
     console.log(user);
@@ -23,9 +23,9 @@ const MyWishList = ({item}) => {
           const cartItem={
             menuId:_id,
             email: user.email,
-            name,
+            tour_type,
             image,
-            recipe,
+            trip_title,
             price
           }
           console.log(cartItem);
@@ -34,7 +34,7 @@ const MyWishList = ({item}) => {
             console.log(res.data);
             Swal.fire({
               icon:'success',
-              title: `${name} Added to cart`,
+              title: `${tour_type} Added to wishlist`,
               showConfirmButton: false,
               timer: 1500
             });
@@ -60,7 +60,7 @@ const MyWishList = ({item}) => {
       }
     return (
         <div>
-              <div key={item._id}>
+              <div>
           {/* <!-- Card Blog --> */}
           <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
             {/* <!-- Grid --> */}
@@ -73,11 +73,10 @@ const MyWishList = ({item}) => {
                 </div>
                 <div className="p-4 md:p-6">
                   <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-300 dark:hover:text-white">
-                    {item.name}
+                    {item.tour_type}
                   </h3>
                   <p className="mt-3 text-gray-500">
-                    A software that develops products for software developers
-                    and developments.
+                    {item.trip_title}
                   </p>
                 </div>
                 <div className="mt-auto flex border-t border-gray-200 divide-x divide-gray-200 dark:border-gray-700 dark:divide-gray-700">
@@ -88,7 +87,7 @@ const MyWishList = ({item}) => {
                   </a>
                   <a
                     className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-ee-xl bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                    href="#"
+                  
                   >
                     View Package
                   </a>

@@ -23,6 +23,7 @@ import ContactUs from "./Pages/ContactUs/ContactUs";
 import AboutUs from "./Pages/AboutUs/AboutUs";
 import SingleType from './Pages/TourType/SingleType';
 import DetailsCard from "./Components/DetailsCard";
+import Packages from "./Pages/AllPackages/Packages";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -53,7 +54,7 @@ const router = createBrowserRouter([
       },
       {
         path: "allpackage",
-        element: <AllPackages></AllPackages>,
+        element: <Packages></Packages>,
       },
       {
         path: 'guidedetails/:id',
