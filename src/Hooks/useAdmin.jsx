@@ -4,6 +4,7 @@ import useAxiosSecure from "./useAxiosSecure";
 
 
 
+
 const useAdmin = () => {
     const {user}=useAuth();
     const axiosSecure=useAxiosSecure();

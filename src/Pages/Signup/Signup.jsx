@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
@@ -8,12 +8,14 @@ import { FaEye, FaEyeSlash } from "react-icons/fa6";
 // import useAxiosPublick from "../../Hooks/useAxiosPublick";
 import ExtraLogin from "../../Components/ExtraLogin";
 import useAuth from "../../Hooks/useAuth";
+// import useAxiosPublick from "../../Hooks/useAxiosPublick";
+import useAxiosPublick from "../../Hooks/useAxiosPublick";
 
 const Signup = () => {
   const { createUser, updateUserProfile } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-//   const axiosPublic = useAxiosPublick();
+  const axiosPublic = useAxiosPublick();
   const {
     register,
     handleSubmit,
@@ -35,27 +37,26 @@ const Signup = () => {
         updateUserProfile(name, photo);
 
         // create user and send to database
-        // const userInfo = {
-        //   name,
-        //   email,
-        // };
-        Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "User Created Successfully",
-            showConfirmButton: false,
-            timer: 1500,
+        const userInfo = {
+          name,
+          email,
+        };
+        axiosPublic.post('/users',userInfo)
+          .then((res) =>{
+            console.log('User profile updated');
+            if (res.data) {
+              console.log('user added to the database');
+              // reset();
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "User Created Successfully",
+                showConfirmButton: false,
+                timer: 1500
+              });
+              navigate('/');
+            }
           });
-          navigate("/");
-
-        // axiosPublic.post("/users", userInfo).then((res) => {
-        //   console.log("User profile updated");
-        //   if (res.data) {
-        //     console.log("user added to the database");
-        //     reset();
-           
-        //   }
-        // });
       })
       .catch((error) => {
         console.log(error.message);

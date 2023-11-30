@@ -1,24 +1,20 @@
 import {
     FaArtstation,
-    FaBook,
     FaCalendar,
     FaCartShopping,
     FaHouseMedical,
-    FaList,
-    FaMarsAndVenus,
     FaMoneyBill,
     FaSearchengin,
-    FaUsers,
-    FaUtensils,
   } from "react-icons/fa6";
   import { NavLink, Outlet } from "react-router-dom";
 import useList from "../Hooks/useList";
 // import useAdmin from "../Hooks/useAdmin";
 import { useState } from "react";
+import useAdmin from "../Hooks/useAdmin";
   
   const DashBoard = () => {
     const [list] = useList();
-    const [isAdmin] = useState(false);
+    const [isAdmin] = useAdmin();
     const [isGuide] = useState(false);
     const [isUser] = useState(true);
     return (
@@ -37,34 +33,18 @@ import { useState } from "react";
                   </NavLink>
                 </li>
                 <li className="mb-2">
-                  <NavLink to={"/dashboard/list"}>
+                  <NavLink to={"/dashboard/addpackage"}>
                     <div className="flex items-center gap-3">
                     <FaCartShopping></FaCartShopping>
-                    <p>My wishList ({list.length})</p>
+                    <p>Add Packages</p>
                     </div>
                   </NavLink>
                 </li>
                 <li className="mb-2">
-                  <NavLink to={"/dashboard/booking"}>
+                  <NavLink to={"/dashboard/manageusers"}>
                     <div className="flex items-center gap-3">
                     <FaCalendar></FaCalendar>
-                    <p>My Booking</p>
-                    </div>
-                  </NavLink>
-                </li>
-                <li className="mb-2">
-                  <NavLink to={"/dashboard/payment"}>
-                    <div className="flex items-center gap-3">
-                    <FaMoneyBill></FaMoneyBill>
-                    <p>Payment History</p>
-                    </div>
-                  </NavLink>
-                </li>
-                <li className="mb-2">
-                  <NavLink to={"/dashboard/review"}>
-                    <div className="flex items-center gap-3">
-                    <FaArtstation></FaArtstation>
-                    <p> Add Review</p>
+                    <p>Manage User</p>
                     </div>
                   </NavLink>
                 </li>
