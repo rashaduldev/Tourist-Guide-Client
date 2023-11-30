@@ -22,8 +22,7 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    const captcha = form.captcha.value;
-    console.log(captcha, password, email);
+    console.log(password, email);
     signIn(email, password)
       .then((result) => {
         const user = result.user;
