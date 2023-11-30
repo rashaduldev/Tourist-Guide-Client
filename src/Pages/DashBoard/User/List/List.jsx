@@ -13,7 +13,7 @@ const List = () => {
   useEffect(() => {
     // When the 'list' changes, update 'ok' based on 'list' values
     if (list && Array.isArray(list)) {
-      const newList = list.map(li => li?.id);
+      const newList = list.map(li => li?._id);
       setOk(newList[0]);
     }
   }, [list]);

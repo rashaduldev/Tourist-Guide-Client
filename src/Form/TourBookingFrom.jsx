@@ -37,7 +37,7 @@ const BookingForm = ({price ,packages}) => {
         tourGuide,
       };
       console.log('Form data:', formData);
-      axiosSecure.post('/carts',formData)
+      axiosSecure.post('/bookings',formData)
       .then(res=>{
         console.log(res.data);
         Swal.fire({
