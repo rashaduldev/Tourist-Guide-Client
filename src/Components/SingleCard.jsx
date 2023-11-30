@@ -229,7 +229,7 @@ const SingleCard = ({ data }) => {
             ></SinglePageTourGuide>
           ))}
         </div>
-        <BookingForm></BookingForm>
+        <BookingForm price={price} packages={packages}></BookingForm>
       </div>
     </div>
   );

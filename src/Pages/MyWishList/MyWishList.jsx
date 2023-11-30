@@ -10,6 +10,7 @@ import Swal from "sweetalert2";
 const MyWishList = ({item}) => {
     // eslint-disable-next-line no-unused-vars
     const {tour_type,image,trip_title,price,_id,id}=item;
+    console.log(item);
 
     const {user}=useAuth();
     console.log(user);
@@ -22,6 +23,7 @@ const MyWishList = ({item}) => {
           console.log("good");
           const cartItem={
             menuId:_id,
+            id,
             email: user.email,
             tour_type,
             image,

@@ -1,28 +1,78 @@
-import React, { useState } from 'react';
+import{ useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import useAuth from '../Hooks/useAuth';
+import useAxiosSecure from '../Hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
+import useList from '../Hooks/useList';
+import { useNavigate } from 'react-router-dom';
 
-const BookingForm = () => {
-  const [touristName, setTouristName] = useState('');
-  const [touristEmail, setTouristEmail] = useState('');
+const BookingForm = ({price ,packages}) => {
+  const {user}=useAuth();
+  // const [touristName, setTouristName] = useState('');
+  // const [touristEmail, setTouristEmail] = useState('');
   const [touristImage, setTouristImage] = useState('');
-  const [price, setPrice] = useState('');
+  // const [prices, setPrices] = useState('');
   const [tourDate, setTourDate] = useState(null);
   const [tourGuide, setTourGuide] = useState('');
+  const axiosSecure=useAxiosSecure();
+  const [refetch]=useList();
+  const navigate=useNavigate();
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    const form=e.target;
+    const prices=form.price.value;
+    const email=form.email.value;
+    const name=form.name.value;
+    // start
+    if (user && user.email) {
+      console.log("good");
+      const formData = {
+        name,
+        email,
+        touristImage,
+        prices,
+        tourDate,
+        tourGuide,
+      };
+      console.log('Form data:', formData);
+      axiosSecure.post('/carts',formData)
+      .then(res=>{
+        console.log(res.data);
+        Swal.fire({
+          icon:'success',
+          title: `${name} Added to cart`,
+          showConfirmButton: false,
+          timer: 1500
+        });
+        // refetch the data
+        refetch();
+      })
+    }
+    else{
+      Swal.fire({
+        title: "You are not Login!",
+        text: "Please Login First then try again.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Login Here..."
+      }).then((result) => {
+        // navigate('/login')
+        if (result.isConfirmed) {
+         navigate('/login',{state:{from:location}});
+        }
+      });
+    }
 
-    const formData = {
-      touristName,
-      touristEmail,
-      touristImage,
-      price,
-      tourDate,
-      tourGuide,
-    };
 
-    console.log('Form data:', formData);
+    // end
+
+ 
+
+   
   };
 
   return (
@@ -46,8 +96,10 @@ const BookingForm = () => {
             id="package"
             type="text"
             placeholder="Package Name"
-            value={touristName}
-            onChange={(e) => setTouristName(e.target.value)}
+            value={user?.displayName}
+            name='name'
+            disabled
+            // onChange={(e) => setTouristName(e.target.value)}
           />
         </div>
 
@@ -60,8 +112,10 @@ const BookingForm = () => {
             id="email"
             type="email"
             placeholder="example@example.com"
-            value={touristEmail}
-            onChange={(e) => setTouristEmail(e.target.value)}
+            value={user?.email}
+            name='email'
+            disabled
+            // onChange={(e) => setTouristEmail(e.target.value)}
           />
         </div>
 
@@ -87,9 +141,11 @@ const BookingForm = () => {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="price"
             type="text"
-            placeholder="Price"
+            placeholder="Prices"
             value={price}
-            onChange={(e) => setPrice(e.target.value)}
+            name='price'
+            disabled
+            // onChange={(e) => setPrices(e.target.value)}
           />
         </div>
 
@@ -117,8 +173,7 @@ const BookingForm = () => {
             id="guide"
           >
             <option value="">Select Guide</option>
-            <option value="guide1">Guide 1</option>
-            <option value="guide2">Guide 2</option>
+           {packages.map(packag=> <option key={packag.id}>{packag.name}</option>) }
             {/* Add more options for guides */}
           </select>
         </div>

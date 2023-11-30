@@ -64,7 +64,7 @@ import { useState } from "react";
                   <NavLink to={"/dashboard"}>
                     <div className="flex items-center gap-3">
                     <FaHouseMedical></FaHouseMedical>
-                    <p>User Home</p>
+                    <p>MY Profile</p>
                     </div>
                   </NavLink>
                 </li>
@@ -100,14 +100,6 @@ import { useState } from "react";
                     </div>
                   </NavLink>
                 </li>
-                <li className="mb-2">
-                  <NavLink to={"/dashboard/paymentHistory"}>
-                   <div className="flex items-center gap-3">
-                   <FaMarsAndVenus></FaMarsAndVenus>
-                    <p>Payment History</p>
-                    </div>
-                  </NavLink>
-                </li>
               </>
             )}
   
@@ -122,10 +114,10 @@ import { useState } from "react";
               </NavLink>
             </li>
             <li className="mb-2">
-              <NavLink to={"/order/salad"}>
+              <NavLink to={"/allpackage"}>
                 <div className="flex items-center gap-3">
                 <FaSearchengin></FaSearchengin>
-                    <p>Menu</p>
+                    <p>Packages</p>
                 </div>
               </NavLink>
             </li>
