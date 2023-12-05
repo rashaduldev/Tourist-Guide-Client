@@ -8,6 +8,7 @@ const usePackages = () => {
         fetch('http://localhost:8000/packages')
         .then(res=>res.json())
         .then(data=>{
+            console.log(data);
             setPackages(data);
            setLoading(false);
         })
