@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosPublic=axios.create({
-    baseURL:'http://localhost:8000'
+    baseURL:'https://tourist-guide-server-jhy7d3hy9-rashaduldev.vercel.app'
 })
 const useAxiosPublick = () => {
     return axiosPublic;

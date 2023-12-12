@@ -3,11 +3,10 @@ import Navber from "../Pages/Navber/Navber";
 import Footer from "../Pages/Footer/Footer";
 import AnimatedCursor from "react-animated-cursor";
 
-
 const Root = () => {
-    return (
-        <div className="bg-blue-400">
-             <AnimatedCursor
+  return (
+    <div className="bg-blue-400">
+      <AnimatedCursor
         innerSize={8}
         outerSize={8}
         color="193, 11, 111"
@@ -39,11 +38,11 @@ const Root = () => {
           },
         ]}
       />
-            <Navber></Navber>
-            <Outlet></Outlet>
-            <Footer></Footer>
-        </div>
-    );
+      <Navber></Navber>
+      <Outlet></Outlet>
+      <Footer></Footer>
+    </div>
+  );
 };
 
 export default Root;

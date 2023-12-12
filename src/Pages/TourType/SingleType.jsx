@@ -10,7 +10,7 @@ const SingleType = () => {
   const params=useParams();
   console.log(params.name);
   useEffect(()=>{
-    fetch('http://localhost:8000/packages')
+    fetch('https://tourist-guide-server-jhy7d3hy9-rashaduldev.vercel.app/packages')
     .then(response => response.json())
     .then(data=>{
       console.log(data);
