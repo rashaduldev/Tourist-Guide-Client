@@ -1,6 +1,11 @@
-
+import { useTypewriter } from 'react-simple-typewriter';
 
 const Hero = () => {
+  const [text] = useTypewriter({
+    words: ["ourisom & Travels"],
+    loop: 9,
+    onLoopDone: () => console.log(`loop completed after 9 runs.`),
+  });
     return (
         <div className="my-10">
             {/* <!-- Hero --> */}
@@ -8,7 +13,7 @@ const Hero = () => {
   {/* <!-- Grid --> */}
   <div className="grid md:grid-cols-2 gap-4 md:gap-8 xl:gap-20 md:items-center">
     <div>
-      <h1 className="block text-3xl font-bold text-gray-800 sm:text-4xl lg:text-5xl lg:leading-tight dark:text-white">Start your journey with <span className="text-blue-600">Tourisom & Travels</span></h1>
+      <h1 className="block text-3xl font-bold text-gray-800 sm:text-4xl lg:text-5xl lg:leading-tight dark:text-white">Start your journey with <br /> <span className="text-blue-600">T{text}</span></h1>
       <p className="mt-3 text-lg text-gray-800 dark:text-gray-400">Hand-picked professionals and expertly crafted components, designed for any kind of entrepreneur.</p>
 
       {/* <!-- Buttons --> */}
