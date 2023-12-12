@@ -8,7 +8,7 @@ const TripDetails = () => {
     console.log(params);
 
     useEffect(()=>{
-        fetch('https://tourist-guide-server-jhy7d3hy9-rashaduldev.vercel.app/packages')
+        fetch('https://tourist-guide-server-blush.vercel.app/packages')
         .then(response => response.json())
         .then(data=>{
           console.log(data);

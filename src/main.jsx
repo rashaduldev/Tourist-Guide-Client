@@ -12,7 +12,7 @@ import ErrorPage from "./Pages/ErrorPage/ErrorPage";
 import Login from "./Pages/Login/Login";
 import Signup from "./Pages/Signup/Signup";
 import AuthProvider from "./Provider/AuthProvider";
-import Dashboard from "./LayOut/DashBoard";
+// import Dashboard from "./LayOut/DashBoard";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Dash from "./Pages/DashBoard/Dash";
 import List from "./Pages/DashBoard/User/List/List";
@@ -82,12 +82,12 @@ const router = createBrowserRouter([
       {
         path: 'details/:id',
         element: <DetailsCard></DetailsCard>,
-        loader:()=>fetch('https://tourist-guide-server-jhy7d3hy9-rashaduldev.vercel.app/packages')
+        loader:()=>fetch('https://tourist-guide-server-blush.vercel.app/packages')
       },
       {
         path: 'detailsuser/:id',
         element: <TourGuideuser></TourGuideuser>,
-        loader:()=>fetch('https://tourist-guide-server-jhy7d3hy9-rashaduldev.vercel.app/guides')
+        loader:()=>fetch('https://tourist-guide-server-blush.vercel.app/guides')
 
       },
     ],
