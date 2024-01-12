@@ -1,9 +1,11 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import './Navber.css'
 
 const Navber = () => {
+  const location = useLocation();
   const { user, logOut } = useContext(AuthContext);
 
   const handleLogout = () => {
@@ -40,12 +42,26 @@ const Navber = () => {
 
   const navLinks = (
     <>
+          <NavLink
+        exact
+        to={"/"}
+        className={`font-medium text-blue-600 md:py-6 dark:text-blue-500 ${location.pathname === '/' ? 'active' : ''}`}
+      >
+        Home
+      </NavLink>
+      <NavLink
+        to={"/login"}
+        className={`font-medium text-gray-500 hover:text-gray-400 md:py-6 dark:text-gray-400 dark:hover:text-gray-500 ${location.pathname === '/login' ? 'active' : ''}`}
+      >
+        Login
+      </NavLink>
       <a
         className="font-medium text-blue-600 md:py-6 dark:text-blue-500"
         href="#"
         aria-current="page"
+        
       >
-        <Link to={"/"}>Home</Link>
+        <Link to={"/blogs"}>Blogs</Link>
       </a>
       <a
         className="font-medium text-gray-500 hover:text-gray-400 md:py-6 dark:text-gray-400 dark:hover:text-gray-500"
@@ -235,3 +251,46 @@ const Navber = () => {
 };
 
 export default Navber;
+
+
+// import { NavLink } from "react-router-dom";
+
+// const Navber = () => {
+//   return (
+//     <div className="mx-10 z-10 bg-red-600">
+//       <header className="flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full text-sm">
+//         <nav
+//           id="navbar-collapse-with-animation"
+//           className="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow md:block text-white"
+//         >
+//           <div className="flex flex-col gap-y-4 gap-x-0 mt-5 md:flex-row md:items-center md:justify-end md:gap-y-0 md:gap-x-7 md:mt-0 md:ps-7">
+//             <NavLink
+//               exact
+//               to="/"
+//               className="font-medium text-gray-500 hover:text-gray-400 md:py-6 dark:text-gray-400 dark:hover:text-gray-500"
+//               activeStyle={{
+//                 backgroundColor: 'red',
+//                 color: 'white',
+//               }}
+//             >
+//               Home
+//             </NavLink>
+//             <NavLink
+//               to="/blogs"
+//               className="font-medium text-gray-500 hover:text-gray-400 md:py-6 dark:text-gray-400 dark:hover:text-gray-500"
+//               activeStyle={{
+//                 backgroundColor: 'red',
+//                 color: 'white',
+//               }}
+//             >
+//               Blogs
+//             </NavLink>
+//             {/* Add other NavLink elements for different routes */}
+//           </div>
+//         </nav>
+//       </header>
+//     </div>
+//   );
+// };
+
+// export default Navber;

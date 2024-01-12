@@ -5,7 +5,7 @@ const usePackages = () => {
     const [packages,setPackages]=useState([]);
     const [loading,setLoading]=useState(true);
     useEffect(()=>{
-        fetch('https://tourist-guide-server-blush.vercel.app/packages')
+        fetch('http://localhost:8000/packages')
         .then(res=>res.json())
         .then(data=>{
             console.log(data);
