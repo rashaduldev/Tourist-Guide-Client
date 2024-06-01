@@ -5,7 +5,7 @@ import AnimatedCursor from "react-animated-cursor";
 
 const Root = () => {
   return (
-    <div className="bg-blue-400">
+    <div className="">
       <AnimatedCursor
         innerSize={8}
         outerSize={8}

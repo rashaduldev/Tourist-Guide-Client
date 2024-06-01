@@ -1,5 +1,5 @@
 import Cover from "../../Components/Cover";
-import coverImg from "../../assets/about.jpg";
+import coverImg from "/about.jpg";
 
 
 const AboutUs = () => {

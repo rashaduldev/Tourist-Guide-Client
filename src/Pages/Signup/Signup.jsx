@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
