@@ -70,15 +70,15 @@ const Signup = () => {
       <div className="mt-10 my-8">
         <div className="flex flex-col lg:flex-row-reverse gap-10">
           <div className="text-center lg:text-center">
-            <h1 className="text-5xl font-bold mb-9">Signup Here</h1>
+            <h1 className="text-2xl lg:text-5xl font-bold mb-9">Signup Here</h1>
             <img src={img} alt="" />
           </div>
-          <div className=" w-full max-w-lg shadow-2xl bg-base-300 rounded pt-8 p-4">
+          <div className=" w-full max-w-lg border bg-base-300 rounded pt-8 p-4">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               <div className="grid grid-cols-2 gap-4">
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text">Name</span>
+                    <span className="label-text font-bold text-black/60">Name</span>
                   </label>
                   <input
                     type="text"
@@ -97,12 +97,12 @@ const Signup = () => {
                 </div>
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text">Photo Url</span>
+                    <span className="label-text font-bold text-black/60">Photo</span>
                   </label>
                   <input
-                    type="text"
+                    type="file"
                     placeholder="Photo Url"
-                    className="flex h-[48px] w-full rounded-md border border-neutral-400 focus:border-accent font-light bg-primary px-4 py-5 text-base placeholder:text-black/60 outline-none"
+                    className="flex h-[48px] w-full rounded-md border border-neutral-400 focus:border-accent font-light bg-primary px-4 py-2 text-base placeholder:text-black/60 outline-none"
                     name="name"
                     {...register("photourl", { required: true })}
                   />
@@ -114,7 +114,7 @@ const Signup = () => {
                 </div>
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text">Email</span>
+                    <span className="label-text font-bold text-black/60">Email</span>
                   </label>
                   <input
                     type="email"
@@ -131,7 +131,7 @@ const Signup = () => {
                 </div>
                 <div className="form-control relative">
                   <label className="label">
-                    <span className="label-text">Password</span>
+                    <span className="label-text font-bold text-black/60">Password</span>
                   </label>
                   <input
                     type={!showPassword ? "password" : "text"}

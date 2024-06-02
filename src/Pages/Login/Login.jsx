@@ -66,7 +66,7 @@ const Login = () => {
             <h1 className="text-5xl text-black font-bold text-center mb-9">Login now!</h1>
             <img src={img} alt="" />
           </div>
-          <div className="max-w-md flex-1  p-10 shadow-2xl bg-base-300 mx-auto">
+          <div className="max-w-md flex-1  p-10 border bg-base-300 mx-auto">
             {/* <form onSubmit={handleLogin} className="card-body">
               <div className="form-control">
                 <label className="label">
@@ -110,9 +110,9 @@ const Login = () => {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-sm mb-2 dark:text-white"
+                    className="block text-sm mb-2 dark:text-white font-bold text-black/60"
                   >
-                    Email address
+                    Email
                   </label>
                   <div className="relative">
                     <input
@@ -152,7 +152,7 @@ const Login = () => {
                   <div className="flex justify-between items-center">
                     <label
                       htmlFor="password"
-                      className="block text-sm mb-2 dark:text-white"
+                      className="block text-sm mb-2 dark:text-white font-bold text-black/60"
                     >
                       Password
                     </label>

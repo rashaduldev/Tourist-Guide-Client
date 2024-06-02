@@ -1,12 +1,22 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 const Navber = () => {
+  const [isOptionsVisible, setOptionsVisible] = useState();
+  const [ismessageOptionsVisible, setIsmessageOptionsVisible] = useState();
   const { user, logOut } = useContext(AuthContext);
   const location = useLocation();
 
+  const toggleOptions = () => {
+    setOptionsVisible(!isOptionsVisible);
+  };
+  const toggleOptionsMessage = () => {
+    setIsmessageOptionsVisible(!ismessageOptionsVisible);
+  };
+
    const handleLogout = () => {
+
      logOut()
        .then(() => {
          console.log("Logout Successfully");
@@ -141,7 +151,95 @@ const Navber = () => {
                      >
                        <Link to={"/login"}>Logout</Link>
                      </a> */}
+                      <div className="relative">
+      <div
+        className="cursor-pointer flex items-center gap-2"
+        onClick={toggleOptions}
+      >
+        <img
+          src="https://i.ibb.co/HP28p9X/Cover-photo.png"
+          alt="Profile Image"
+          className="rounded-full h-10 w-10"
+        />
+        <div>
+          <p className="font-bold">Johan Smith</p>
+          <p>Investor</p>
+        </div>
+      </div>
 
+      {ismessageOptionsVisible && (
+        <div className="absolute top-full right-0 z-10 w-80 bg-white shadow-md rounded-md mt-2">
+          <div className="flex items-center justify-between p-3">
+            <p>Message</p>
+            <p className="text-2xl">...</p>
+          </div>
+          {links.map((message) => (
+      <div
+        key={message.id}
+        className="flex items-center gap-2 m-3 p-2 hover:bg-gray-100 rounded-lg"
+      >
+        <img
+          src={message?.img}
+          alt="Profile Image"
+          className="rounded-full h-10 w-10"
+        />
+        <div>
+          <div className="flex items-center w-56 justify-between">
+            <p className="font-bold">{message?.name}</p>
+            <p className="text-end">{message?.time}</p>
+          </div>
+          <p>{message.short_description}</p>
+        </div>
+      </div>
+    ))}
+     <Link href={'/users/message'}>
+    <div className="flex text-center ">
+    <button onClick={toggleOptionsMessage} className="bg-[#2A85FF] py-3 px-12 rounded-lg text-white mx-auto mb-4">View in message center</button>
+    </div>
+    </Link>
+        </div>
+      )}
+      {isOptionsVisible && (
+        <div className="absolute top-full right-0 z-10 w-56 bg-white shadow-md rounded-md mt-2">
+          <Link href={'userprofile'}>
+          <button
+           onClick={toggleOptions}
+            className="w-full px-4 py-2 text-left hover:bg-gray-100"
+          >
+            Profile
+          </button>
+          </Link>
+          <Link href={'editprofile'}>
+          <button
+           onClick={toggleOptions}
+            className="w-full px-4 py-2 text-left hover:bg-gray-100"
+          >
+           Edit Profile
+          </button>
+          </Link>
+          <button
+           onClick={toggleOptions}
+            className="w-full px-4 py-2 text-left hover:bg-gray-100"
+          >
+            Updrate To Pro
+          </button>
+          <button
+            className="w-full px-4 py-2 text-left hover:bg-gray-100"
+            onClick={toggleOptions}
+          >
+            Account settings
+          </button>
+          <Link href={'sign-in'}>
+          <button
+            className="w-full px-4 py-2 text-left hover:bg-gray-100"
+            onClick={toggleOptions}
+          >
+            Logout
+          </button>
+          </Link>
+        </div>
+      )}
+                       </div>
                      <div
                        className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-[15rem] bg-white shadow-md rounded-lg p-2 mt-2 dark:bg-gray-800 dark:border dark:border-gray-700"
                        aria-labelledby="hs-dropdown-custom-trigger"
@@ -171,12 +269,15 @@ const Navber = () => {
                    </div>
                  </div>
                ) : (
-                 <div   className={`${
-                  location.pathname === "/login" && "text-blue-300 border-b-2 border-accent"
-                } capitalize font-medium hover:text-accent transition-all`}>
-                   {" "}
-                  <Link to={"/login"}>Login</Link>
-                 </div>
+                <div
+                className={`${
+                  (location.pathname === "/login" || location.pathname === "/signup") 
+                    ? "text-blue-300 border-b-2 border-accent" 
+                    : ""
+                } capitalize font-medium hover:text-accent transition-all`}
+              >
+                <Link to={"/login"}>Login</Link>
+              </div>
                )}
         </div>
       </div>
