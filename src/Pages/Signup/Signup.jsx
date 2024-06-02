@@ -67,7 +67,7 @@ const Signup = () => {
       <Helmet>
         <title>Tourist | Signup</title>
       </Helmet>
-      <div className="mt-10">
+      <div className="mt-10 my-8">
         <div className="flex flex-col lg:flex-row-reverse gap-10">
           <div className="text-center lg:text-center">
             <h1 className="text-5xl font-bold mb-9">Signup Here</h1>
@@ -86,7 +86,7 @@ const Signup = () => {
                     id="email"
                     name="name"
                     {...register("name", { required: true })}
-                    className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                    className="flex h-[48px] w-full rounded-md border border-neutral-400 focus:border-accent font-light bg-primary px-4 py-5 text-base placeholder:text-black/60 outline-none"
                     aria-describedby="email-error"
                   />
                   {errors.name && (
@@ -102,7 +102,7 @@ const Signup = () => {
                   <input
                     type="text"
                     placeholder="Photo Url"
-                    className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                    className="flex h-[48px] w-full rounded-md border border-neutral-400 focus:border-accent font-light bg-primary px-4 py-5 text-base placeholder:text-black/60 outline-none"
                     name="name"
                     {...register("photourl", { required: true })}
                   />
@@ -119,7 +119,7 @@ const Signup = () => {
                   <input
                     type="email"
                     placeholder="email"
-                    className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                    className="flex h-[48px] w-full rounded-md border border-neutral-400 focus:border-accent font-light bg-primary px-4 py-5 text-base placeholder:text-black/60 outline-none"
                     name="email"
                     {...register("email", { required: true })}
                   />
@@ -142,10 +142,11 @@ const Signup = () => {
                       maxLength: 99,
                       // eslint-disable-next-line no-useless-escape
                       pattern:
+                        // eslint-disable-next-line no-useless-escape
                         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/,
                     })}
                     placeholder="password"
-                    className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                    className="flex h-[48px] w-full rounded-md border border-neutral-400 focus:border-accent font-light bg-primary px-4 py-5 text-base placeholder:text-black/60 outline-none"
                   />
                   {errors.password?.type === "required" && (
                     <p className="text-red-600 mt-2">Password is required</p>
@@ -193,13 +194,12 @@ const Signup = () => {
                 </button>
               </div>
             </form>
-            <p className="text-center">
+            <p className="text-center italic">
               Already Have an Account ?{" "}
-              <a className="text-red-600 underline" href="login">
+              <a className="text-blue-400 underline" href="login">
                 Please Login
               </a>{" "}
             </p>
-            <div className="divider"></div>
             <ExtraLogin></ExtraLogin>
           </div>
         </div>

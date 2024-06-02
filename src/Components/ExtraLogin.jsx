@@ -42,7 +42,7 @@ const ExtraLogin = () => {
       onClick={handleGoogleSignin}
       className="btn btn-primary flex items-center gap-2 text-xl">
         
-        <button type="button" className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-blue-600 text-white hover:border-blue-500 hover:text-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+        <button type="button" className="py-3 px-4 inline-flex items-center gap-x-2 rounded-lg border text-black hover:border-blue-500 hover:text-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 border-neutral-400 focus:border-accent font-light bg-primary text-base">
         <FaGoogle></FaGoogle>
         Google
       </button>
@@ -51,7 +51,7 @@ const ExtraLogin = () => {
       onClick={handleGoogleSignin}
       className="btn btn-primary flex items-center gap-2 text-xl">
         
-        <button type="button" className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-blue-600 text-white hover:border-blue-500 hover:text-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+        <button type="button" className="py-3 px-4 inline-flex items-center gap-x-2 rounded-lg border text-black hover:border-blue-500 hover:text-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 border-neutral-400 focus:border-accent font-light bg-primary text-base">
         <FaFacebook></FaFacebook>
         Facebook
       </button>
@@ -60,7 +60,7 @@ const ExtraLogin = () => {
       onClick={handleGoogleSignin}
       className="btn btn-primary flex items-center gap-2 text-xl">
         
-        <button type="button" className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-blue-600 text-white hover:border-blue-500 hover:text-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+        <button type="button" className="py-3 px-4 inline-flex items-center gap-x-2 rounded-lg border text-black hover:border-blue-500 hover:text-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 border-neutral-400 focus:border-accent font-light bg-primary text-base">
         <FaGithub></FaGithub>
         Github
       </button>

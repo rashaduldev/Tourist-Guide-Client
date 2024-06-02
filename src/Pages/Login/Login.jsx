@@ -9,13 +9,11 @@ import { FaEye, FaEyeSlash } from "react-icons/fa6";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
-  //   const [disabled, setDisabled] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const Navigate = useNavigate();
   const Location = useLocation();
 
   const from = Location.state?.from?.pathname || "/";
-  console.log("pathname: ", Location.state);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -59,13 +57,13 @@ const Login = () => {
   return (
     <div>
       <Helmet>
-        <title>Tourist | Login</title>
+        <title>Tourist </title>
       </Helmet>
 
-      <div className="min-h-screen bg-base-100 w-full my-10">
+      <div className="min-h-screen w-full my-10">
         <div className="flex flex-col lg:flex-row justify-center ">
           <div className="text-center flex-1  max-w-lg lg:text-left mx-auto">
-            <h1 className="text-5xl text-white font-bold text-center mb-9">Login now!</h1>
+            <h1 className="text-5xl text-black font-bold text-center mb-9">Login now!</h1>
             <img src={img} alt="" />
           </div>
           <div className="max-w-md flex-1  p-10 shadow-2xl bg-base-300 mx-auto">
@@ -122,7 +120,7 @@ const Login = () => {
                       id="email"
                       name="email"
                       placeholder="email"
-                      className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                      className="flex h-[48px] w-full rounded-md border border-neutral-400 focus:border-accent font-light bg-primary px-4 py-5 text-base placeholder:text-black/60 outline-none"
                       required
                       aria-describedby="email-error"
                     />
@@ -171,7 +169,7 @@ const Login = () => {
                       id="password"
                       name="password"
                       placeholder="password"
-                      className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                      className="flex h-[48px] w-full rounded-md border border-neutral-400 focus:border-accent font-light bg-primary px-4 py-5 text-base placeholder:text-black/60 outline-none"
                       required
                       aria-describedby="password-error"
                     />
@@ -221,9 +219,9 @@ const Login = () => {
               </div>
             </form>
             {/* <!-- End Form --> */}
-            <p className="text-center mt-7">
+            <p className="text-center italic mt-7">
               New hare ?{" "}
-              <a className="text-white underline" href="signup">
+              <a className="text-blue-400 underline" href="signup">
                 Please signup
               </a>{" "}
             </p>
