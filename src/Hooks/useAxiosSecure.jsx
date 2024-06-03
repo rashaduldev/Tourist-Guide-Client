@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const axiosSecure=axios.create({
-    baseURL:'http://localhost:8000/'
+    baseURL:'https://tourist-guide-server-blush.vercel.app/'
 })
 const useAxiosSecure = () => {
     // const {logOut}=useAuth();

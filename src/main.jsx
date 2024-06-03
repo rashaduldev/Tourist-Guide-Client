@@ -82,12 +82,12 @@ const router = createBrowserRouter([
       {
         path: 'details/:id',
         element: <DetailsCard></DetailsCard>,
-        loader:()=>fetch('http://localhost:8000/packages')
+        loader:()=>fetch('https://tourist-guide-server-blush.vercel.app/packages')
       },
       {
         path: 'detailsuser/:id',
         element: <TourGuideuser></TourGuideuser>,
-        loader:()=>fetch('http://localhost:8000/guides')
+        loader:()=>fetch('https://tourist-guide-server-blush.vercel.app/guides')
 
       },
     ],

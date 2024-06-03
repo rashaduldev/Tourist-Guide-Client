@@ -14,7 +14,7 @@ const SingleCard = ({ data }) => {
   const [packages, setPackages] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch("http://localhost:8000/guides")
+    fetch("https://tourist-guide-server-blush.vercel.app/guides")
       .then((res) => res.json())
       .then((data) => {
         setPackages(data);

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const Stories = () => {
     const [stories,setStories]=useState([]);
     useEffect(()=>{
-        fetch('http://localhost:8000/stories')
+        fetch('https://tourist-guide-server-blush.vercel.app/stories')
         .then(res=>res.json())
         .then(data=>{
             console.log(data);

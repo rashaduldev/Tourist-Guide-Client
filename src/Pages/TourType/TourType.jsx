@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 const TourType = () => {
   const [packages,setPackages]=useState([]);
   useEffect(()=>{
-    fetch('http://localhost:8000/packages')
+    fetch('https://tourist-guide-server-blush.vercel.app/packages')
     .then(response => response.json())
     .then(data=>{
       console.log(data);
