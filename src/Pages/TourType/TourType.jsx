@@ -30,19 +30,19 @@ const handleClick=()=>{
 }
 
   return (
-    <div className="relative lg:h-96">
+    <div className="relative lg:h-[450px] mx-36 py-10">
       <div
         className="absolute inset-0"
         style={{
           backgroundImage: `url(${backgroundImg})`,
           backgroundSize: "cover",
-          opacity: 0.5, // Adjust the opacity as needed
+          opacity: 0.4, // Adjust the opacity as needed
           backgroundColor: "rgba(0, 0, 0, 0.966)", // Overlay color
         }}
       ></div>
       <div className="relative text-center z-20">
-        <h2 className="text-white pt-7">Find a tour</h2>
-        <h2 className="text-5xl my-5 text-white font-bold">Tour Type</h2>
+        <h2 className="text-black pt-7 text-xl italic">Here Find a tour</h2>
+        <h2 className="text-5xl my-5 text-black font-bold">Tour Type</h2>
       </div>
       <hr className="border-white dark:border-white mx-10"></hr>
       <>

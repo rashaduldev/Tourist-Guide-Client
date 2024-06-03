@@ -9,6 +9,7 @@ export default {
     extend: {},
   },
   plugins: [
+    // eslint-disable-next-line no-undef
     require('preline/plugin'),
   ],
 }

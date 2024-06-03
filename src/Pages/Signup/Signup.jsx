@@ -68,7 +68,7 @@ const Signup = () => {
         <title>Tourist | Signup</title>
       </Helmet>
       <div className="mt-10 my-8">
-        <div className="flex flex-col lg:flex-row-reverse gap-10">
+        <div className="flex flex-col lg:flex-row-reverse lg:gap-20 justify-center lg:mx-36">
           <div className="text-center lg:text-center">
             <h1 className="text-2xl lg:text-5xl font-bold mb-9">Signup Here</h1>
             <img src={img} alt="" />

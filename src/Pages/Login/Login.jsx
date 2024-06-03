@@ -60,49 +60,13 @@ const Login = () => {
         <title>Tourist </title>
       </Helmet>
 
-      <div className="min-h-screen w-full my-10">
-        <div className="flex flex-col lg:flex-row justify-center ">
+      <div className="w-full my-20">
+        <div className="flex flex-col lg:flex-row justify-center lg:mx-36">
           <div className="text-center flex-1  max-w-lg lg:text-left mx-auto">
             <h1 className="text-5xl text-black font-bold text-center mb-9">Login now!</h1>
             <img src={img} alt="" />
           </div>
           <div className="max-w-md flex-1  p-10 border bg-base-300 mx-auto">
-            {/* <form onSubmit={handleLogin} className="card-body">
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Email</span>
-                </label>
-                <input
-                  type="email"
-                  placeholder="email"
-                  className="input input-bordered"
-                  name="email"
-                  required
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Password</span>
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="password"
-                  className="input input-bordered"
-                  required
-                />
-                <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
-                </label>
-              </div>
-              <div className="form-control">
-                <button  className="btn btn-primary">
-                  Login
-                </button>
-              </div>
-            </form> */}
             {/* <!-- Form --> */}
             <form onSubmit={handleLogin}>
               <div className="grid gap-y-4">

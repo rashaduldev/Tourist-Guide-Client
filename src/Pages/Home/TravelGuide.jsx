@@ -6,7 +6,7 @@ import OurPackages from './OurPackages';
 import TourGuide from '../DashBoard/TourGuide/TourGuide';
 const TravelGuide = () => {
     return (
-        <div>
+        <div className='mx-36'>
              <Tabs>
     <TabList>
      <div className='text-center'>

@@ -16,8 +16,7 @@ const TourGuide = () => {
     },[])
     return (
         <div>
-            <h2>Tour Guide</h2>
-           <div className="grid grid-cols-1 lg:grid-cols-3">
+           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
            {
                 packages.map(pack=>
                     <div key={pack._id} className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">

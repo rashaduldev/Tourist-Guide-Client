@@ -12,8 +12,8 @@ const Stories = () => {
         })
     },[])
     return (
-        <div className="text-center">
-            <h1 className="text-5xl font-bold text-center my-9">Tour Stories</h1>
+        <div className="text-center lg:mx-36">
+            <h1 className="text-5xl font-bold text-center my-9 text-black/90">Tour Stories</h1>
           <div className="grid grid-cols-3">
           {
                 stories.map(story =>

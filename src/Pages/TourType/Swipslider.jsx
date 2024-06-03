@@ -16,8 +16,8 @@ const Swipslider = ({heading,icon,itemsss}) => {
     return (
         <div
        onClick={()=>handleClick(itemsss)}
-        style={{ border: "2px solid white" }}
-        className="border-spacing-3 border-white  lg:h-40 rounded-full lg:w-40 text-center items-center lg:text-4xl mx-auto text-white cursor-pointer hover:text-black hover:bg-white my-10">
+        style={{ border: "1px solid white" }}
+        className="border-spacing-3 border-white  lg:h-40 rounded-full lg:w-40 text-center items-center lg:text-4xl mx-auto text-black cursor-pointer hover:text-black hover:bg-white my-10">
         <p className="text-center mx-auto flex justify-center pt-4">
           {icon}
         </p>

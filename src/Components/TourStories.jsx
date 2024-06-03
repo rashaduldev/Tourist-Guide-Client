@@ -1,13 +1,13 @@
 const TourStories = () => {
   return (
-    <div>
-       <h2 className="text-5xl text-center my-5">Tour Reviews</h2>
+    <div className="mx-36 my-20">
+       <h2 className="text-5xl text-center my-5 font-bold pb-8">Tour Reviews</h2>
        <div className="flex flex-col lg:flex-row-reverse mx-10 my-10">
       <div className="flex-1">
       <div className="flex justify-evenly text-center gap-16 mx-8">
        <div >
           <img
-            className="h-20 w-20 rounded-full"
+            className="h-10 w-10 rounded-full"
             src="https://i.ibb.co/VN9y5n7/t2.jpg"
             alt=""
           />
@@ -102,7 +102,7 @@ const TourStories = () => {
        <div className="flex justify-evenly text-center gap-16 mx-8">
        <div >
           <img
-            className="h-20 w-20 rounded-full"
+            className="h-10 w-10 rounded-full"
             src="https://i.ibb.co/VN9y5n7/t2.jpg"
             alt=""
           />
@@ -202,7 +202,7 @@ const TourStories = () => {
        <div className="flex justify-evenly text-center gap-16 mx-8">
        <div >
           <img
-            className="h-20 w-20 rounded-full"
+            className="h-10 w-10 rounded-full"
             src="https://i.ibb.co/VN9y5n7/t2.jpg"
             alt=""
           />
@@ -297,7 +297,7 @@ const TourStories = () => {
        <div className="flex justify-evenly text-center gap-16 mx-8 mt-5">
        <div >
           <img
-            className="h-20 w-20 rounded-full"
+            className="h-10 w-10 rounded-full"
             src="https://i.ibb.co/VN9y5n7/t2.jpg"
             alt=""
           />
