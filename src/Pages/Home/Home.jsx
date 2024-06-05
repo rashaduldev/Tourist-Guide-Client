@@ -12,13 +12,13 @@ import TravelGuide from "./TravelGuide";
 const Home = () => {
     return (
         <div>
-              <Hero></Hero>
+              <Hero/>
             {/* <Slider></Slider> */}
-            <TravelGuide></TravelGuide>
-            <TourType></TourType>
+            <TravelGuide/>
+            <TourType/>
             <Tastemonials/>
-            <TourStories></TourStories>
-            <Stories></Stories>
+            <TourStories/>
+            <Stories/>
             <Faq/>
             <Needhelp/>
           <hr />

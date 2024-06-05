@@ -38,9 +38,9 @@ const Root = () => {
           },
         ]}
       />
-      <Navber></Navber>
-      <Outlet></Outlet>
-      <Footer></Footer>
+      <Navber/>
+      <Outlet/>
+      <Footer/>
     </div>
   );
 };
