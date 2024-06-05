@@ -8,7 +8,7 @@ const Blogs = () => {
   //   const [date, content_head, image, description, content] = blogs;
 
   useEffect(() => {
-    fetch("https://tourist-guide-server-blush.vercel.app/blogs")
+    fetch("http://localhost:8000/blogs")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
