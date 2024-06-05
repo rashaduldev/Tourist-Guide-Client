@@ -12,6 +12,7 @@ const SingleCard = ({ data }) => {
   const { image, price, tour_type, trip_title } = data;
 
   const [packages, setPackages] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     fetch("https://tourist-guide-server-tawny.vercel.app/guides")

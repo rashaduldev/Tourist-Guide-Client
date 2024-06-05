@@ -1,5 +1,6 @@
 import Faq from "../../Components/Faq";
 import Hero from "../../Components/Hero";
+import Needhelp from "../../Components/Needhelp";
 // import Slider from "../../Components/Slider";
 import Stories from "../../Components/Stories";
 import Tastemonials from "../../Components/Tastemonials";
@@ -19,7 +20,8 @@ const Home = () => {
             <TourStories></TourStories>
             <Stories></Stories>
             <Faq/>
-          
+            <Needhelp/>
+          <hr />
         </div>
     );
 };
