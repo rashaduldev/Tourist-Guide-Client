@@ -4,7 +4,7 @@ const useGuide = () => {
     const [guide,setGuide]=useState([]);
     const [loading,setLoading]=useState(true);
     useEffect(()=>{
-        fetch('https://tourist-guide-server-blush.vercel.app/guides')
+        fetch('https://tourist-guide-server-tawny.vercel.app/guides')
         .then(res=>res.json())
         .then(data=>{
             setGuide(data);

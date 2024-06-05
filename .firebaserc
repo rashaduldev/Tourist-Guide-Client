@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "travel-and-adventure"
-  }
+    "default": "travel-and-adventure",
+    "prod": "travel-and-adventure"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
 }
