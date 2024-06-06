@@ -122,7 +122,7 @@ const Navber = () => {
                           />
                           <div>
                             <p className="font-bold">{user?.displayName}</p>
-                            <p>Investor</p>
+                            <p>New User</p>
                           </div>
                         </div>
 

@@ -27,31 +27,48 @@ import useList from "../Hooks/useList";
           <ul className="menu">
             {isAdmin ? (
               <>
-               <h2 className="text-center font-bold">Admin Part</h2>
+               <h2 className="text-center font-bold">Admin</h2>
                 <li className="mb-2">
                   <NavLink to={"/dashboard"}>
                     <div className="flex items-center gap-3">
-                    <FaHouseMedical></FaHouseMedical>
-                    <p>MY Profile</p>
-                    </div>
-                  </NavLink>
-                </li>
-                <li className="mb-2">
-                  <NavLink to={"/dashboard/addpackage"}>
-                    <div className="flex items-center gap-3">
-                    <FaCartShopping></FaCartShopping>
-                    <p>Add Packages</p>
+                    <FaCalendar/>
+                    <p>Dashboard</p>
                     </div>
                   </NavLink>
                 </li>
                 <li className="mb-2">
                   <NavLink to={"/dashboard/manageusers"}>
                     <div className="flex items-center gap-3">
-                    <FaCalendar></FaCalendar>
+                    <FaCalendar/>
                     <p>Manage User</p>
                     </div>
                   </NavLink>
                 </li>
+                <li className="mb-2">
+                  <NavLink to={"/profile"}>
+                    <div className="flex items-center gap-3">
+                    <FaHouseMedical/>
+                    <p>Profile</p>
+                    </div>
+                  </NavLink>
+                </li>
+                <li className="mb-2">
+                  <NavLink to={"/dashboard/edituser"}>
+                    <div className="flex items-center gap-3">
+                    <FaCalendar/>
+                    <p>Edit Profile</p>
+                    </div>
+                  </NavLink>
+                </li>
+                <li className="mb-2">
+                  <NavLink to={"/dashboard/addpackage"}>
+                    <div className="flex items-center gap-3">
+                    <FaCartShopping/>
+                    <p>Add Packages</p>
+                    </div>
+                  </NavLink>
+                </li>
+               
               </>
             ):
             (
@@ -60,7 +77,7 @@ import useList from "../Hooks/useList";
                 <li className="mb-2">
                   <NavLink to={"/dashboard"}>
                     <div className="flex items-center gap-3">
-                    <FaHouseMedical></FaHouseMedical>
+                    <FaHouseMedical/>
                     <p>MY Profile</p>
                     </div>
                   </NavLink>
@@ -68,7 +85,7 @@ import useList from "../Hooks/useList";
                 <li className="mb-2">
                   <NavLink to={"/dashboard/list"}>
                     <div className="flex items-center gap-3">
-                    <FaCartShopping></FaCartShopping>
+                    <FaCartShopping/>
                     <p>My wishList ({list.length})</p>
                     </div>
                   </NavLink>
@@ -76,7 +93,7 @@ import useList from "../Hooks/useList";
                 <li className="mb-2">
                   <NavLink to={"/dashboard/booking"}>
                     <div className="flex items-center gap-3">
-                    <FaCalendar></FaCalendar>
+                    <FaCalendar/>
                     <p>My Booking</p>
                     </div>
                   </NavLink>
@@ -84,7 +101,7 @@ import useList from "../Hooks/useList";
                 <li className="mb-2">
                   <NavLink to={"/dashboard/payment"}>
                     <div className="flex items-center gap-3">
-                    <FaMoneyBill></FaMoneyBill>
+                    <FaMoneyBill/>
                     <p>Payment History</p>
                     </div>
                   </NavLink>
@@ -92,7 +109,7 @@ import useList from "../Hooks/useList";
                 <li className="mb-2">
                   <NavLink to={"/dashboard/review"}>
                     <div className="flex items-center gap-3">
-                    <FaArtstation></FaArtstation>
+                    <FaArtstation/>
                     <p> Add Review</p>
                     </div>
                   </NavLink>
@@ -105,7 +122,7 @@ import useList from "../Hooks/useList";
                 <li className="mb-2">
                   <NavLink to={"/dashboard"}>
                     <div className="flex items-center gap-3">
-                    <FaHouseMedical></FaHouseMedical>
+                    <FaHouseMedical/>
                     <p>MY Profile</p>
                     </div>
                   </NavLink>
@@ -113,7 +130,7 @@ import useList from "../Hooks/useList";
                 <li className="mb-2">
                   <NavLink to={"/dashboard/list"}>
                     <div className="flex items-center gap-3">
-                    <FaCartShopping></FaCartShopping>
+                    <FaCartShopping/>
                     <p>My wishList ({list?.length})</p>
                     </div>
                   </NavLink>
@@ -121,7 +138,7 @@ import useList from "../Hooks/useList";
                 <li className="mb-2">
                   <NavLink to={"/dashboard/booking"}>
                     <div className="flex items-center gap-3">
-                    <FaCalendar></FaCalendar>
+                    <FaCalendar/>
                     <p>My Booking</p>
                     </div>
                   </NavLink>
@@ -129,7 +146,7 @@ import useList from "../Hooks/useList";
                 <li className="mb-2">
                   <NavLink to={"/dashboard/payment"}>
                     <div className="flex items-center gap-3">
-                    <FaMoneyBill></FaMoneyBill>
+                    <FaMoneyBill/>
                     <p>Payment History</p>
                     </div>
                   </NavLink>
@@ -137,7 +154,7 @@ import useList from "../Hooks/useList";
                 <li className="mb-2">
                   <NavLink to={"/dashboard/review"}>
                     <div className="flex items-center gap-3">
-                    <FaArtstation></FaArtstation>
+                    <FaArtstation/>
                     <p> Add Review</p>
                     </div>
                   </NavLink>
@@ -146,12 +163,13 @@ import useList from "../Hooks/useList";
             )}
           
   
-  <hr className="border-gray-800 dark:border-white mx-10 my-5"/>
+        <hr className="border-gray-800 dark:border-white mx-10 my-5"/>
+
             {/* Shared navlinks */}
             <li className="mb-2">
               <NavLink to={"/"}>
                 <div className="flex items-center gap-3">
-                <FaHouseMedical></FaHouseMedical>
+                <FaHouseMedical/>
                     <p>Home</p>
                 </div>
               </NavLink>
@@ -159,7 +177,7 @@ import useList from "../Hooks/useList";
             <li className="mb-2">
               <NavLink to={"/allpackage"}>
                 <div className="flex items-center gap-3">
-                <FaSearchengin></FaSearchengin>
+                <FaSearchengin/>
                     <p>Packages</p>
                 </div>
               </NavLink>
@@ -167,7 +185,7 @@ import useList from "../Hooks/useList";
           </ul>
         </div>
         <div className="flex-1 ">
-          <Outlet></Outlet>
+          <Outlet/>
         </div>
       </div>
     );

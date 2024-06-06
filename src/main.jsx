@@ -27,6 +27,7 @@ import PrivetRoute from "./Route/PrivetRoute";
 import TourGuideuser from "./Components/TourGuideuser";
 import Booking from "./Pages/DashBoard/User/Booking/Booking";
 import DashBoard from "./LayOut/DashBoard";
+import Editprofile from "./Pages/DashBoard/Editprofile/Editprofile";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -107,6 +108,11 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/booking",
         element:<Booking/>
+      },
+      {
+        path:"/dashboard/edituser",
+        element:<Editprofile/>
+        
       }
     ]
   }
