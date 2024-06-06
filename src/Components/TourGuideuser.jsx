@@ -7,7 +7,7 @@ const TourGuideuser = () => {
   const findedData = loadedData.find((data) => data.id == id);
   console.log(findedData);
   return (
-    <div>
+    <div className="lg:mx-36">
       {/* <!-- Card Blog --> */}
       <div className="flex flex-col lg:flex-row">
         <div className="w-full flex-1 px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
@@ -17,11 +17,11 @@ const TourGuideuser = () => {
             <div className="group flex flex-col h-full  border border-gray-200 shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7]">
               <img className="h-60" src={findedData.image} alt="" />
               <div className="p-4 md:p-6">
-                <h3 className="text-xl font-semibold text-white dark:text-gray-300 dark:hover:text-white">
+                <h3 className="text-xl font-semibold text-black dark:text-gray-300 dark:hover:text-white">
                   {findedData.name}
                 </h3>
-                <p className="mt-3 text-white">{findedData.email}</p>
-                <p className="mt-3 text-white">
+                <p className="mt-3 text-black">{findedData.email}</p>
+                <p className="mt-3 text-black">
                   <p>Education : MSC Graguate Complete</p>
                 </p>
               </div>
@@ -31,7 +31,7 @@ const TourGuideuser = () => {
           {/* <!-- End Grid --> */}
         </div>
         <div className="flex-1 my-10 mx-10">
-          <p className="text-2xl lg:text-4xl text-center font-bold text-white">
+          <p className="text-2xl lg:text-4xl text-center font-bold text-black">
             Please Send Your Feedback
           </p>
           <form className="text-center flex flex-col">
@@ -127,7 +127,7 @@ const TourGuideuser = () => {
             ></textarea>
             <button
               type="button"
-              className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 my-5"
+              className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 my-5 justify-center"
             >
               SEND
             </button>

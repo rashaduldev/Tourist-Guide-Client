@@ -52,7 +52,7 @@ const Faqright = () => {
   ];
 
   return (
-    <div className="w-[600px] mx-auto mt-8 p-10">
+    <div className="lg:w-[600px] mx-auto mt-8 p-10">
       {/* <h1 className="text-2xl font-bold mb-16">Frequently Asked Questions</h1> */}
       {faqs.map((faq) => (
         <FAQItem key={faq.id} question={faq.question} answer={faq.answer} />

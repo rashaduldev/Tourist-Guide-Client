@@ -10,7 +10,7 @@ const ContactUs = () => {
         title="Contact Us"
         subtitle="We'd love to hear from you!"
       ></Cover>
-      <div className="h-auto my-11 flex mx-10 text-black gap-10 lg:mx-36">
+      <div className="h-auto my-11 flex flex-col lg:flex-row mx-10 text-black gap-10 lg:mx-36">
         <div className="flex-1 items-center">
           <p className="italic">Would like to talk?</p>
           <h2 className="text-3xl my-6">CONTACT DETAILS</h2>
@@ -62,7 +62,7 @@ const ContactUs = () => {
                   id=""
                   cols="30"
                   rows="10"
-                ></textarea>
+                />
               </div>
             </div>
             <button

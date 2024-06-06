@@ -30,7 +30,7 @@ const handleClick=()=>{
 }
 
   return (
-    <div className="relative lg:h-[450px] mx-36 py-10">
+    <div className="relative lg:h-[450px] lg:mx-36 py-10">
       <div
         className="absolute inset-0"
         style={{

@@ -1,6 +1,6 @@
 const TourStories = () => {
   return (
-    <div className="mx-36 my-20">
+    <div className="lg:mx-36 my-20">
        <h2 className="text-5xl text-center my-5 font-bold pb-8">Tour Reviews</h2>
        <div className="flex flex-col lg:flex-row-reverse mx-10 my-10">
       <div className="flex-1">

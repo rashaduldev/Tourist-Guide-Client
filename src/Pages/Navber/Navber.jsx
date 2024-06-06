@@ -66,8 +66,8 @@ const Navber = () => {
     },
 ]
   return (
-    <header className="flex flex-wrap sm:justify-start sm:flex-nowrap z-50  border-b border-gray-200 text-sm py-3 sm:py-0 dark:bg-neutral-800 dark:border-neutral-700 my-5 mx-36">
-    <nav className="relative max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8" aria-label="Global">
+    <header className="flex flex-wrap sm:justify-start sm:flex-nowrap z-50  border-b border-gray-200 text-sm py-3 sm:py-0 dark:bg-neutral-800 dark:border-neutral-700 my-5 lg:mx-36">
+    <nav className="relative lg:max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8" aria-label="Global">
       <div className="flex items-center justify-between">
         {/* <a className="flex-none text-xl font-semibold dark:text-white" href="#" aria-label="Brand">Brand</a> */}
         <img className="h-20 w-20" src="https://i.ibb.co/YWWPShY/travel-tourism.jpg" alt="" />
@@ -112,7 +112,7 @@ const Navber = () => {
                    <div className="hs-dropdown relative inline-flex">
                       <div className="relative">
                         <div
-                          className="cursor-pointer flex items-center gap-2"
+                          className="cursor-pointer flex items-center gap-2 relative"
                           onClick={toggleOptions}
                         >
                           <img
@@ -170,15 +170,6 @@ const Navber = () => {
                         )}
       
                        </div>
-                     <Link to={"/login"}>
-                      <button
-                         onClick={handleLogout}
-                         className="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                         
-                       >
-                         Logout
-                       </button>
-                      </Link>
                    </div>
                  </div>
                ) : (

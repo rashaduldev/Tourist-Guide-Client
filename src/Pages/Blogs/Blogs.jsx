@@ -17,9 +17,9 @@ const Blogs = () => {
   }, []);
   return (
     <div>
-      <Cover img={coverImg} title="Blogs" subtitle=" We share stories and give advice"></Cover>
+      <Cover img={coverImg} title="Blogs" subtitle=" We share stories and give advice"/>
       <div>
-        <div className="grid grid-cols-1 md:grid-cols-4 mx-10">
+        <div className="grid grid-cols-1 md:grid-cols-4 lg:mx-10">
           <div className="col-span-3">
             {blogs.map(
               (blog) => (
@@ -45,33 +45,33 @@ const Blogs = () => {
                         <p className="mt-3 text-gray-500">{blog.description}</p>
                         <p className="mt-3 text-gray-500">{blog.content}</p>
                       </div>
-                      <div className="mt-auto flex border-t border-gray-200 divide-x divide-gray-200 dark:border-gray-700 dark:divide-gray-700">
+                      <div className="mt-auto flex flex-col md:flex-row lg:flex-row border-t border-gray-200 divide-x divide-gray-200 dark:border-gray-700 dark:divide-gray-700">
                         <a
                           className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-es-xl bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                           href="#"
                         >
-                          <FaFacebook></FaFacebook>
+                          <FaFacebook/>
                           Facebook
                         </a>
                         <a
                           className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-ee-xl bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                           href="#"
                         >
-                          <FaYoutube></FaYoutube>
+                          <FaYoutube/>
                           Youtube
                         </a>
                         <a
                           className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-ee-xl bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                           href="#"
                         >
-                          <FaInstagram></FaInstagram>
+                          <FaInstagram/>
                           Instagram
                         </a>
                         <a
                           className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-ee-xl bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                           href="#"
                         >
-                          <FaTwitter></FaTwitter>
+                          <FaTwitter/>
                           Twitter
                         </a>
                       </div>
