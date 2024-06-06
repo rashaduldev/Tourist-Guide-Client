@@ -24,7 +24,7 @@ const SingleCard = ({ data }) => {
       });
   }, []);
   return (
-    <div>
+    <div className="lg:mx-36">
       <h1 className="text-5xl font-bold my-7 text-center">
         Photo Gellary Here
       </h1>
@@ -215,19 +215,19 @@ const SingleCard = ({ data }) => {
       </div>
       </div>
       {/* tour guides */}
-      <div>
+      <div className="my-10">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-white md:text-4xl md:leading-tight dark:text-white">
+          <h2 className="text-2xl font-bold text-black md:text-4xl md:leading-tight dark:text-white">
             Meet Our Guide
           </h2>
-          <p className="mt-1 text-white dark:text-gray-400">Creative people</p>
+          <p className="mt-1 text-black dark:text-gray-400">Creative people</p>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 mx-10 shadow-2xl my-5">
           {packages.map((pack) => (
             <SinglePageTourGuide
               pack={pack}
               key={pack._id}
-            ></SinglePageTourGuide>
+            />
           ))}
         </div>
         <BookingForm price={price} packages={packages}></BookingForm>

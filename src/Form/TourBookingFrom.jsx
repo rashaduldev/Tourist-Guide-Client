@@ -76,7 +76,7 @@ const BookingForm = ({price ,packages}) => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="my-20 border border-b-amber-400 p-5">
       <div className='grid grid-cols-1 lg:grid-cols-2 items-center mx-10 gap-8'>
       <div className='text-center lg:mx-5 my-5'>
         <h1 className='text-5xl font-bold'>Booking............</h1>

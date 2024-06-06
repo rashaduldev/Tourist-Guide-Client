@@ -12,11 +12,11 @@ const GuideDetails = () => {
     return (
         <div>
             {/* <!-- Card Blog --> */}
-<div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+<div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 lg:mx-36">
   {/* <!-- Grid --> */}
   <div className="">
     {/* <!-- Card --> */}
-    <div className="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7]">
+    <div className="group flex flex-col h-full bg-black border border-gray-200 shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7]">
       <img className="h-52 w-1/2" src={image} alt="" />
       <div className="p-4 md:p-6">
         <span className="block mb-1 text-xs font-semibold uppercase text-blue-600 dark:text-blue-500">

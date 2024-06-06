@@ -32,61 +32,61 @@ const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root></Root>,
-    errorElement: <ErrorPage></ErrorPage>,
+    element: <Root/>,
+    errorElement: <ErrorPage/>,
     children: [
       {
         path: "/",
-        element: <Home></Home>,
+        element: <Home/>,
       },
       {
         path: "login",
-        element: <Login></Login>,
+        element: <Login/>,
       },
       {
         path: "signup",
-        element: <Signup></Signup>,
+        element: <Signup/>,
       },
       {
         path: "wishList",
-        element: <Signup></Signup>,
+        element: <Signup/>,
       },
       {
         path: "signup",
-        element: <Signup></Signup>,
+        element: <Signup/>,
       },
       {
         path: "allpackage",
-        element: <Packages></Packages>,
+        element: <Packages/>,
       },
       {
         path: 'guidedetails/:id',
-        element: <GuideDetails></GuideDetails>,
+        element: <GuideDetails/>,
       },
       {
         path: 'blogs',
-        element: <Blogs></Blogs>,
+        element: <Blogs/>,
       },
       {
         path: 'about',
-        element: <AboutUs></AboutUs>,
+        element: <AboutUs/>,
       },
       {
         path: 'contact',
-        element: <ContactUs></ContactUs>,
+        element: <ContactUs/>,
       },
       {
         path: 'single/:name',
-        element: <SingleType></SingleType>,
+        element: <SingleType/>,
       },
       {
         path: 'details/:id',
-        element: <DetailsCard></DetailsCard>,
+        element: <DetailsCard/>,
         loader:()=>fetch('https://tourist-guide-server-tawny.vercel.app/packages')
       },
       {
         path: 'detailsuser/:id',
-        element: <TourGuideuser></TourGuideuser>,
+        element: <TourGuideuser/>,
         loader:()=>fetch('https://tourist-guide-server-tawny.vercel.app/guides')
 
       },
@@ -94,19 +94,19 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element:<PrivetRoute><DashBoard></DashBoard></PrivetRoute>,
+    element:<PrivetRoute><DashBoard/></PrivetRoute>,
     children:[
       {
         path: "/dashboard",
-        element:<Dash></Dash>
+        element:<Dash/>
       },
       {
         path: "/dashboard/list",
-        element:<List></List>
+        element:<List/>
       },
       {
         path: "/dashboard/booking",
-        element:<Booking></Booking>
+        element:<Booking/>
       }
     ]
   }
