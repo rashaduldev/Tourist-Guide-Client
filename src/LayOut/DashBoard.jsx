@@ -45,7 +45,7 @@ import useList from "../Hooks/useList";
                   </NavLink>
                 </li>
                 <li className="mb-2">
-                  <NavLink to={"/profile"}>
+                  <NavLink to={"/dashboard/profile"}>
                     <div className="flex items-center gap-3">
                     <FaHouseMedical/>
                     <p>Profile</p>

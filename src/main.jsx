@@ -28,6 +28,7 @@ import TourGuideuser from "./Components/TourGuideuser";
 import Booking from "./Pages/DashBoard/User/Booking/Booking";
 import DashBoard from "./LayOut/DashBoard";
 import Editprofile from "./Pages/DashBoard/Editprofile/Editprofile";
+import Profile from "./Pages/DashBoard/Profile/Profile";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -100,6 +101,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element:<Dash/>
+      },
+      {
+        path: "/dashboard/profile",
+        element:<Profile/>
       },
       {
         path: "/dashboard/list",
