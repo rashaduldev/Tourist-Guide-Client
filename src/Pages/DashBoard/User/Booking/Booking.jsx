@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+
 import { FaNutritionix, FaTrash} from "react-icons/fa6";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
@@ -10,6 +10,7 @@ const Booking = () => {
     const [booking,refetch]=useBooking(); 
     console.log(booking);
     const {user}=useAuth();
+    console.log(user);
     // const totatPrice=booking.reduce((total,item)=>total+item.price,0)
     const axiosSecure=useAxiosSecure();
 

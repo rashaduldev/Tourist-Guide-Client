@@ -14,7 +14,6 @@ import Signup from "./Pages/Signup/Signup";
 import AuthProvider from "./Provider/AuthProvider";
 // import Dashboard from "./LayOut/DashBoard";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Dash from "./Pages/DashBoard/Dash";
 import List from "./Pages/DashBoard/User/List/List";
 import GuideDetails from "./Pages/DashBoard/TourGuide/GuideDetails";
 import Blogs from "./Pages/Blogs/Blogs";
@@ -30,6 +29,7 @@ import DashBoard from "./LayOut/DashBoard";
 import Editprofile from "./Pages/DashBoard/Editprofile/Editprofile";
 import Profile from "./Pages/DashBoard/Profile/Profile";
 import AllUsers from "./Pages/DashBoard/Admin/AllUser/AllUser";
+import AdminDashboard from "./Pages/DashBoard/Admin/AdminDashboard/AdminDashboard";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -101,7 +101,7 @@ const router = createBrowserRouter([
     children:[
       {
         path: "/dashboard",
-        element:<Dash/>
+        element:<AdminDashboard/>,
       },
       {
         path: "/dashboard/profile",
