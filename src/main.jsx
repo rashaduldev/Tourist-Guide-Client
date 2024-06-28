@@ -28,8 +28,8 @@ import Booking from "./Pages/DashBoard/User/Booking/Booking";
 import DashBoard from "./LayOut/DashBoard";
 import Editprofile from "./Pages/DashBoard/Editprofile/Editprofile";
 import Profile from "./Pages/DashBoard/Profile/Profile";
-import AllUsers from "./Pages/DashBoard/Admin/AllUser/AllUser";
 import AdminDashboard from "./Pages/DashBoard/Admin/AdminDashboard/AdminDashboard";
+import Users from "./Pages/DashBoard/Admin/Users/Users";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -109,7 +109,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/manageusers",
-        element:<AllUsers/>
+        element: <Users/>
       },
       {
         path: "/dashboard/list",

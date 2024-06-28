@@ -1,47 +1,125 @@
+
 import { useContext } from "react";
-import { FaFacebook, FaYoutube } from "react-icons/fa6";
+import { IoLocationSharp } from "react-icons/io5";
+import { MdEmail } from "react-icons/md";
+import { PiGenderFemaleFill } from "react-icons/pi";
+import { RiVerifiedBadgeFill } from "react-icons/ri";
+import { RiContactsFill } from "react-icons/ri";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../../Provider/AuthProvider";
-
-
 
 const Profile = () => {
     const {user}=useContext(AuthContext);
     console.log(user);
+    const handleclick = () => {
+        Swal.fire({
+            title: "<p>To Verify, You’ve to pay the amount of<u> $25</u></p>",
+            icon: "info",
+            html: `
+                <div class='flex gap-5 items-center'>
+                    <div class="bg-[#CABDFF] w-3 h-8 rounded-lg"></div>
+                    <div>
+                        <p class="font-bold text-lg">General information</p>
+                    </div>
+                </div>
+            `,
+            showCloseButton: true,
+            showCancelButton: false,
+            focusConfirm: false,
+            confirmButtonText: `
+                <i class="fa fa-thumbs-up"></i> Proceed to pay
+            `,
+            confirmButtonAriaLabel: "Thumbs up, great!",
+            cancelButtonAriaLabel: "Thumbs down"
+        });
+    };
+    
     return (
-        <div>
-            <h1 className="text-4xl ml-10 mt-10">Welcome to Mr, <p className="font-bold">{user?.displayName}</p></h1>
-            <div>
-            {/* <!-- Card Blog --> */}
-<div className="lg:max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-  {/* <!-- Grid --> */}
-  <div className="lg:w-1/2 mx-auto">
-    {/* <!-- Card --> */}
-    <div className="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7]">
-      <img className="lg:h-80" src={user.photoURL} alt="" />
-      <div className="p-4 md:p-6">
-        <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-300 dark:hover:text-white">
-          {user.displayName}
-        </h3>
-        <p className="mt-3 text-gray-500">
-          A software that develops products for software developers and developments.
-        </p>
-        <p className="my-3">Profetional carears: <span className="text-red-600 font-bold">30+ Tour</span></p>
-      </div>
-      <div className="mt-auto flex border-t border-gray-200 divide-x divide-gray-200 dark:border-gray-700 dark:divide-gray-700">
-        <a className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-es-xl bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">
-          <FaFacebook></FaFacebook> Facebook
-        </a>
-        <a className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-ee-xl bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">
-         <FaYoutube></FaYoutube> Youtube
-        </a>
-      </div>
-    </div>
-    {/* <!-- End Card --> */}
-  </div>
-  {/* <!-- End Grid --> */}
-</div>
-{/* <!-- End Card Blog --> */}
+        <div className='relative'>
+            <div className='h-28 w-full'>   <img
+            src="https://i.ibb.co/HP28p9X/Cover-photo.png"
+            alt="Profile Image"
+            className="w-full "
+            />
             </div>
+          <div className="lg:w-[90%] mx-auto absolute top-[90%] px-5 lg:left-20">
+             <div className="">
+           <div className='p-10 bg-white rounded-md -bottom-30 w-full shadow-xl'>
+            <div className='flex justify-between '>
+                    <div className='flex gap-5'>
+                        <div>
+                        <img
+                src={user.photoURL}
+                alt="Profile Image"
+                className="rounded-full h-10 w-10"
+                />  
+                        </div>
+                        <div>
+                            <div className='flex items-center lg:gap-2'>
+                            <h1 className='lg:text-3xl font-bold'>{user.displayName}</h1>
+                            <RiVerifiedBadgeFill className='text-2xl text-[#22CD5A]' />
+                            </div>
+                            <p>Dream big. Think different. Do great!</p>
+                        </div>
+                    </div>
+                    <div>
+                       <Link to={'/dashboard/edituser'}>
+                       <button className='py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none'>Edit Profile</button>
+                       </Link>
+                    </div>
+                    
+                </div>
+                <hr className='my-10' />
+                    <button className='btn'>Basic Info</button>
+            </div>
+             </div>
+             <div className="py-8">
+           <div className='p-10 bg-white rounded-md -bottom-30 w-full shadow-xl'>
+           <div className='flex gap-5 items-center'>
+                        <div className="bg-[#CABDFF] w-3 h-8 rounded-lg"> 
+                        </div>
+                        <div>
+                            <p className="font-bold text-lg">General information</p>
+                        </div>
+                    </div>
+            <div className='flex flex-col lg:flex-row justify-between mt-10'>
+ 
+                    <div className="mt-9">
+                        <div className="flex items-center gap-3">
+                            <p className="text-[#2F7889] text-xl"><RiContactsFill /></p>
+                            <p className="font-bold">Nickname: <b>{user?.displayName}</b></p>
+                        </div>
+                        <div className="flex items-center gap-3 my-3">
+                            <p className="text-[#2F7889] text-xl"><PiGenderFemaleFill /></p>
+                            <p className="font-bold">Gender: <b>Male</b></p>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <p className="text-[#2F7889] text-xl"><MdEmail /></p>
+                            <p className="font-bold">Email address: <b>{user?.email}</b></p>
+                        </div>
+                        <div className="flex items-center gap-3 my-3">
+                            <p className="text-[#2F7889] text-xl"><IoLocationSharp /></p>
+                            <p className="font-bold">Location: <b>Dhaka, Bangladesh</b></p>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <p className="text-[#2F7889] text-xl"><RiContactsFill /></p>
+                            <p className="font-bold">Contact number : <b>{
+                                user? user.phoneNumber:
+                                "...."
+                                }</b>....</p>
+                        </div>
+                    </div>
+                    <div className="text-center">
+                    <RiVerifiedBadgeFill className='text-9xl text-[#22CD5A] mx-auto' />
+                    <button onClick={handleclick} className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-gray-500 text-white hover:bg-gray-600 disabled:opacity-50 disabled:pointer-events-none">Apply for verification</button>
+                    <p className="py-5">If you verify, There is a huge chance of <br /> investor who’ll love to invest in your pitch</p>
+                    </div>
+                    
+                </div>
+            </div>
+             </div>
+          </div>
         </div>
     );
 };

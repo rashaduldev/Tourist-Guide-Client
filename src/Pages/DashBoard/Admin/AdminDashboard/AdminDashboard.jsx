@@ -21,7 +21,7 @@ const AdminDashboard = () => {
   return (
     <>
          <div className="w-full">
-        <h1 className="text-5xl font-bold m-4">Dashboard</h1>
+        <h1 className="text-5xl font-bold m-4"> Admin Dashboard</h1>
       <div className="bg-white m-[20px] py-[20px] rounded-md">
       <div className="flex items-center justify-between px-[40px] py-[20px]">
            <div className="flex items-center gap-[10px]">

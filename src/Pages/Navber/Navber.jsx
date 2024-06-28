@@ -2,10 +2,12 @@ import { useContext, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import useAdmin from "../../Hooks/useAdmin";
 const Navber = () => {
   const [isOptionsVisible, setOptionsVisible] = useState();
   const { user, logOut } = useContext(AuthContext);
   const location = useLocation();
+  const [isAdmin] = useAdmin();
 
   const toggleOptions = () => {
     setOptionsVisible(!isOptionsVisible);
@@ -128,20 +130,24 @@ const Navber = () => {
 
                         {isOptionsVisible && (
                           <div  className="fixed lg:top-20 lg:right-80 z-50 w-56 bg-white shadow-md rounded-md mt-2">
-                            <Link to={"/dashboard"}>
+                            {
+                            isAdmin ? (
+                              <Link to={"/dashboard"}>
+                              <button
+                                className="w-full px-4 py-2 text-left hover:bg-gray-100"
+                                
+                              >
+                                DashBoard
+                              </button>
+                              </Link>
+                            ):""
+                          }
+                            <Link to={"/dashboard/profile"}>
                             <button
                             onClick={toggleOptions}
                               className="w-full px-4 py-2 text-left hover:bg-gray-100"
                             >
                               Profile
-                            </button>
-                            </Link>
-                            <Link to={"/dashboard"}>
-                            <button
-                              className="w-full px-4 py-2 text-left hover:bg-gray-100"
-                              
-                            >
-                              DashBoard
                             </button>
                             </Link>
                             <button
