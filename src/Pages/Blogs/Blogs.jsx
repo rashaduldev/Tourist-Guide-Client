@@ -11,7 +11,6 @@ const Blogs = () => {
     fetch("https://tourist-guide-server-tawny.vercel.app/blogs")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setBlogs(data);
       });
   }, []);

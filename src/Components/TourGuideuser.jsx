@@ -1,11 +1,8 @@
 import { useLoaderData, useParams } from "react-router-dom";
 const TourGuideuser = () => {
   const { id } = useParams();
-  console.log(id);
   const loadedData = useLoaderData();
-  console.log(loadedData);
   const findedData = loadedData.find((data) => data.id == id);
-  console.log(findedData);
   return (
     <div className="lg:mx-36">
       {/* <!-- Card Blog --> */}

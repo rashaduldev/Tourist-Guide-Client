@@ -8,7 +8,6 @@ const usePackages = () => {
         fetch('https://tourist-guide-server-tawny.vercel.app/packages')
         .then(res=>res.json())
         .then(data=>{
-            console.log(data);
             setPackages(data);
            setLoading(false);
         })

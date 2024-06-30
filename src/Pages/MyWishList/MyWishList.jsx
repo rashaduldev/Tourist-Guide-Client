@@ -10,10 +10,7 @@ import Swal from "sweetalert2";
 const MyWishList = ({item}) => {
     // eslint-disable-next-line no-unused-vars
     const {tour_type,image,trip_title,price,_id,id}=item;
-    console.log(item);
-
     const {user}=useAuth();
-    console.log(user);
     const navigate=useNavigate();
     const location=useLocation();
     const axiosSecure=useAxiosSecure();
@@ -30,7 +27,6 @@ const MyWishList = ({item}) => {
             trip_title,
             price
           }
-          console.log(cartItem);
           axiosSecure.post('/wishlists',cartItem)
           .then(res=>{
             console.log(res.data);

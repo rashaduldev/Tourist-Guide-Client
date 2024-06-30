@@ -129,7 +129,7 @@ const Navber = () => {
                         </div>
 
                         {isOptionsVisible && (
-                          <div  className="fixed lg:top-20 lg:right-80 z-50 w-56 bg-white shadow-md rounded-md mt-2">
+                          <div  className="fixed lg:top-20 md:right-10 lg:right-64 z-50 w-56 bg-white shadow-md rounded-md mt-2">
                             {
                             isAdmin ? (
                               <Link to={"/dashboard"}>

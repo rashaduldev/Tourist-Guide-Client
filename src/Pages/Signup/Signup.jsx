@@ -40,6 +40,9 @@ const Signup = () => {
         const userInfo = {
           name,
           email,
+          password,
+          photo,
+          // role?role:"",
         };
         axiosPublic.post('/users',userInfo)
           .then((res) =>{
@@ -50,7 +53,7 @@ const Signup = () => {
               Swal.fire({
                 position: "top-end",
                 icon: "success",
-                title: "User Created Successfully",
+                title: "User Signup",
                 showConfirmButton: false,
                 timer: 1500
               });
@@ -60,6 +63,14 @@ const Signup = () => {
       })
       .catch((error) => {
         console.log(error.message);
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "auth/email-already-in-use",
+          showConfirmButton: false,
+          timer: 1500
+        });
+
       });
   };
   return (

@@ -1,26 +1,39 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+import useAxiosPublick from "../../Hooks/useAxiosPublick";
 
 const TripDetails = () => {
-    const [datafil,setDatafil]=useState([]);
-    const params=useParams();
-    console.log(params);
+    const [datafil, setDatafil] = useState([]);
+    const axiosPublick = useAxiosPublick();
+    const params = useParams();
+    const [loading, setLoading] = useState(true);
 
-    useEffect(()=>{
-        fetch('https://tourist-guide-server-tawny.vercel.app/packages')
-        .then(response => response.json())
-        .then(data=>{
-          console.log(data);
-          setDatafil(data);
-        })
-      },[])
-     const newData = datafil.find((item) => item.id == params.id);
-        console.log(newData);
-        const {image} = newData;
+    useEffect(() => {
+        axiosPublick.get('/packages')
+            .then((res) => {
+                setDatafil(res.data);
+                setLoading(false);
+            })
+            .catch((err) => {
+                console.error('Error fetching packages:', err);
+                setLoading(false);
+            });
+    }, [axiosPublick]);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    const newData = datafil.find((item) => item.id == params.id);
+    if (!newData) {
+        return <div>No data found</div>;
+    }
+    
+    const { image } = newData;
+
     return (
         <div>
-         <img src={image} alt="" />
+            <img src={image} alt="Trip" />
         </div>
     );
 };
