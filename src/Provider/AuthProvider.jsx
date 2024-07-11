@@ -18,9 +18,9 @@ const AuthProvider = ({children}) => {
     useEffect(()=>{
        const unsubscribe= onAuthStateChanged(auth,curretnUser=>{
             setUser(curretnUser)
-            console.log(curretnUser);
+            // console.log(curretnUser);
             if (curretnUser) {
-                console.log('get token');
+                // console.log('get token');
                 const userInfo={
                     email: curretnUser.email
                 }
@@ -32,7 +32,7 @@ const AuthProvider = ({children}) => {
                 })
             }
             else{
-            console.log('remove token');
+            // console.log('remove token');
             localStorage.removeItem('access-token');
             }
             setLoading(false)

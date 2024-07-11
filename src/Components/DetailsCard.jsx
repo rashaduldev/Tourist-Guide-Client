@@ -6,9 +6,9 @@ import SingleCard from "./SingleCard";
 const DetailsCard = () => {
     const [data,setData]=useState([]);
     const dataLoaded=useLoaderData();
-    console.log(dataLoaded);
+    // console.log(dataLoaded);
     const {id,_id}=useParams();
-    console.log(id);
+    // console.log(id);
     useEffect(()=>{
         const findcard=dataLoaded.find(daata=>daata.id == id ||_id);
         setData(findcard);

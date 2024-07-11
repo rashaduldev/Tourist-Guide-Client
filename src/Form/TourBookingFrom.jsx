@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import{ useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -27,7 +28,6 @@ const BookingForm = ({price ,packages}) => {
     const name=form.name.value;
     // start
     if (user && user.email) {
-      console.log("good");
       const formData = {
         name,
         email,

@@ -24,9 +24,9 @@ const SingleType = () => {
   const filteredPackages = packages.filter((item) => item.tour_type === params.name.toLowerCase());
 
   return (
-    <div>
+    <div className="lg:mx-36">
       <h1 className="text-5xl text-center uppercase font-bold my-5">{params.name}</h1>
-      <div className="grid grid-cols-3">
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1">
         {loading ? (
           <div className="text-center text-white">Loading...</div>
         ) : (

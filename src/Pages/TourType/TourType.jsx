@@ -31,10 +31,6 @@ const TourType = () => {
   const hiking = packages.filter((item) => item.tour_type === "hiking");
   const airrides = packages.filter((item) => item.tour_type === "airrides");
 
-  const handleClick = () => {
-    console.log('good');
-  }
-
   return (
     <div className="relative lg:h-[450px] lg:mx-36 py-10">
       <div
@@ -45,17 +41,17 @@ const TourType = () => {
           opacity: 0.4, // Adjust the opacity as needed
           backgroundColor: "rgba(0, 0, 0, 0.966)", // Overlay color
         }}
-      ></div>
+      />
       <div className="relative text-center z-20">
         <h2 className="text-black pt-7 text-xl italic">Here Find a tour</h2>
         <h2 className="text-5xl my-5 text-black font-bold">Tour Type</h2>
       </div>
-      <hr className="border-white dark:border-white mx-10"></hr>
+      <hr className="border-white dark:border-white mx-10"/>
       {loading ? (
         <div className="text-center text-white">Loading...</div>
       ) : (
         <>
-          <h3></h3>
+          {/* <h3></h3> */}
           <br />
           <div className="mx-16">
             <Swiper
@@ -64,30 +60,24 @@ const TourType = () => {
               className="mySwiper"
             >
               <SwiperSlide>
-                <div onClick={handleClick}>
-                  <Swipslider itemsss={sports} heading={'Sports'} icon={<FaWheelchair />}>
-                  </Swipslider>
+                <div>
+                  <Swipslider itemsss={sports} heading={'Sports'} icon={<FaWheelchair />}/>
                 </div>
               </SwiperSlide>
               <SwiperSlide>
                 <Swipslider itemsss={walking} heading={'Walking'} icon={<FaPersonWalking />}/>
-                
               </SwiperSlide>
               <SwiperSlide>
                 <Swipslider itemsss={wildlife} heading={'Wildlife'} icon={<FaCat />}/>
-               
               </SwiperSlide>
               <SwiperSlide>
                 <Swipslider itemsss={airrides} heading={'Air Rides'} icon={<FaWind />}/>
-                
               </SwiperSlide>
               <SwiperSlide>
                 <Swipslider itemsss={cruises} heading={'Cruises'} icon={<FaShapes />}/>
-               
               </SwiperSlide>
               <SwiperSlide>
                 <Swipslider itemsss={hiking} heading={'Hiking'} icon={<FaBagShopping />}/>
-               
               </SwiperSlide>
             </Swiper>
           </div>

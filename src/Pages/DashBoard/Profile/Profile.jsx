@@ -11,7 +11,6 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 
 const Profile = () => {
     const {user}=useContext(AuthContext);
-    console.log(user);
     const handleclick = () => {
         Swal.fire({
             title: "<p>To Verify, You’ve to pay the amount of<u> $25</u></p>",
@@ -77,8 +76,8 @@ const Profile = () => {
              <div className="py-8">
            <div className='p-10 bg-white rounded-md -bottom-30 w-full shadow-xl'>
            <div className='flex gap-5 items-center'>
-                        <div className="bg-[#CABDFF] w-3 h-8 rounded-lg"> 
-                        </div>
+                        <div className="bg-[#CABDFF] w-3 h-8 rounded-lg"/> 
+                        
                         <div>
                             <p className="font-bold text-lg">General information</p>
                         </div>

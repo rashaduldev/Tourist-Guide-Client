@@ -10,21 +10,21 @@ const ExtraLogin = () => {
     const navigate=useNavigate();
     const Location=useLocation();
     const from=Location.state?.from?.pathname || "/";
-    console.log("pathname: ", Location.state);
+    // console.log("pathname: ", Location.state);
     const axiosPublic=useAxiosPublick();
 
     const handleGoogleSignin =()=>{
         googleSignin()
         .then(res=>{
-            console.log(res);
+            // console.log(res);
             const userInfo={
               email:res.user?.email,
               name:res.user?.displayName
             }
             axiosPublic.post('/users',userInfo)
-            .then(res=>{
-              console.log(res.data);
-            });
+            // .then(res=>{
+            //   console.log(res.data);
+            // });
             // reset();
           Swal.fire({
             position: "center",
@@ -43,7 +43,7 @@ const ExtraLogin = () => {
       className="btn btn-primary flex items-center gap-2 text-xl">
         
         <button type="button" className="py-3 px-4 inline-flex items-center gap-x-2 rounded-lg border text-black hover:border-blue-500 hover:text-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 border-neutral-400 focus:border-accent font-light bg-primary text-base">
-        <FaGoogle></FaGoogle>
+        <FaGoogle/>
         Google
       </button>
       </div>
@@ -52,7 +52,7 @@ const ExtraLogin = () => {
       className="btn btn-primary flex items-center gap-2 text-xl">
         
         <button type="button" className="py-3 px-4 inline-flex items-center gap-x-2 rounded-lg border text-black hover:border-blue-500 hover:text-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 border-neutral-400 focus:border-accent font-light bg-primary text-base">
-        <FaFacebook></FaFacebook>
+        <FaFacebook/>
         Facebook
       </button>
       </div>
@@ -61,7 +61,7 @@ const ExtraLogin = () => {
       className="btn btn-primary flex items-center gap-2 text-xl">
         
         <button type="button" className="py-3 px-4 inline-flex items-center gap-x-2 rounded-lg border text-black hover:border-blue-500 hover:text-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 border-neutral-400 focus:border-accent font-light bg-primary text-base">
-        <FaGithub></FaGithub>
+        <FaGithub/>
         Github
       </button>
       </div>

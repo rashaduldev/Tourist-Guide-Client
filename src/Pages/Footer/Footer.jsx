@@ -7,8 +7,10 @@ const Footer = () => {
   {/* <!-- Grid --> */}
   <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 mb-10">
     <div className="col-span-full hidden lg:col-span-1 lg:block">
-      <a className="flex-none text-xl font-semibold dark:text-white dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#" aria-label="Brand">Brand</a>
-      <p className="mt-3 text-xs sm:text-sm text-gray-600 dark:text-gray-400">© 2022 Preline.</p>
+      <a className="flex-none text-2xl font-semibold dark:text-white dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/" aria-label="Brand">Tour & Travel</a>
+      <p className="mt-3 text-xs sm:text-sm text-gray-600 dark:text-gray-400 flex items-center">© Copyright by <a className="underline text-blue-600" href="https://rashadul-resume.vercel.app">Md Rashadul Islam</a></p>
+      <p className="mt-3 text-xs sm:text-sm text-gray-600 dark:text-gray-400">rashadul.dev@gmail.com</p>
+      <p className="mt-3 text-xs sm:text-sm text-gray-600 dark:text-gray-400 flex items-center">01603010103 <a className="underline text-blue-600" href="https://rashadul-resume.vercel.app">(whatsapp)</a> </p>
     </div>
     {/* <!-- End Col --> */}
 

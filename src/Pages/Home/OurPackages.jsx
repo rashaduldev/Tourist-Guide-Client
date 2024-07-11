@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const OurPackages = () => {
   const [packages] = usePackages();
-  console.log(packages);
+  // console.log(packages);
   const handleClick=()=>{
   }
 
@@ -14,7 +14,7 @@ const OurPackages = () => {
    <div>
      <div className="grid sm:grid-cols-2 lg:grid-cols-4">
       {popular.map((item) => (
-        <MyWishList key={item._id} item={item}></MyWishList>
+        <MyWishList key={item._id} item={item}/>
       ))}
      
     </div>

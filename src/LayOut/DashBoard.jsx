@@ -10,12 +10,11 @@ import {
 // import useAdmin from "../Hooks/useAdmin";
 import { useState } from "react";
 import useAdmin from "../Hooks/useAdmin";
-import useAuth from "../Hooks/useAuth";
+// import useAuth from "../Hooks/useAuth";
 import useList from "../Hooks/useList";
 
   const DashBoard = () => {
-    const {user}=useAuth();
-    console.log(user);
+    // const {user}=useAuth();
     const [list] = useList();
     const [isAdmin] = useAdmin();
     // const [isAdmin] = useState(false);

@@ -1,8 +1,8 @@
 # Tourist Guide
 
 ## Admin Login
-   Email:admin@admin.com
-   password:admin@admin.com
+   - Email:admin@admin.com
+   - Password:admin@admin.com
 
 ## Overview
 Tourist Guide is a web application that helps tourists to explore various tourist spots, get recommendations, and plan their trips effectively. This project is built using React.js for the frontend, Node.js and Express.js for the backend, and MongoDB for the database. Vite is used as the build tool for the frontend, and Tailwind CSS is used for styling.
