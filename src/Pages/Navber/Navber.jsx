@@ -16,7 +16,6 @@ const Navber = () => {
 
      logOut()
        .then(() => {
-         console.log("Logout Successfully");
          let timerInterval;
          Swal.fire({
            title: "LogOut Successfully, Please Login Again!",
@@ -104,9 +103,7 @@ const Navber = () => {
          <button
          type="button"
          className="flex items-center w-full text-gray-500 hover:text-gray-400 font-medium dark:text-gray-400 dark:hover:text-gray-500 "
-       >
-         
-       </button>:''
+       />:''
         }
             </div>
             {user?.email ? (
