@@ -10,9 +10,9 @@ const FAQItem = ({ question, answer }) => {
   return (
     <div className="mb-4">
       <div className="flex justify-between items-center border-b border-gray-300 pb-2">
-        <h3 className="text-lg font-semibold">{question}</h3>
+        <h3 className="text-2xl font-semibold">{question}</h3>
         <button
-          className="text-blue-500 focus:outline-none"
+          className="text-blue-500 focus:outline-none text-3xl w-10 h-10"
           onClick={toggleAnswer}
         >
           {isOpen ? "-" : "+"}

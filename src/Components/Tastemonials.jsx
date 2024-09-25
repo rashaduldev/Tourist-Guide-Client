@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 const Tastemonials = () => {
     return (
       <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
@@ -16,14 +17,19 @@ const Tastemonials = () => {
                 </em>
               </p>
             </div>
-            <div className="p-4 rounded-b-xl md:px-6">
-              <h3 className="text-sm font-semibold text-gray-800 sm:text-base dark:text-neutral-200">
-                Nicole Grazioso
-              </h3>
-              <p className="text-sm text-gray-500 dark:text-neutral-500">
-                Director Payments & Risk | HubSpot
-              </p>
+          <div className="flex items-center ml-5">
+            <div className="border rounded-full">
+                <img className="w-10 h-10" src="" alt="img" />
             </div>
+            <div className="p-4 rounded-b-xl md:px-6">
+                <h3 className="text-sm font-semibold text-gray-800 sm:text-base dark:text-neutral-200">
+                  Nicole Grazioso
+                </h3>
+                <p className="text-sm text-gray-500 dark:text-neutral-500">
+                  Director Payments & Risk | HubSpot
+                </p>
+              </div>
+          </div>
           </div>
           {/* End Card 1 */}
           
@@ -39,6 +45,10 @@ const Tastemonials = () => {
                 </em>
               </p>
             </div>
+          <div className="flex items-center ml-5">
+          <div className="border rounded-full">
+                <img className="w-10 h-10" src="" alt="img" />
+            </div>
             <div className="p-4 rounded-b-xl md:px-6">
               <h3 className="text-sm font-semibold text-gray-800 sm:text-base dark:text-neutral-200">
                 Alex Johnson
@@ -47,6 +57,7 @@ const Tastemonials = () => {
                 CEO | Tech Innovators
               </p>
             </div>
+          </div>
           </div>
           {/* End Card 2 */}
           
@@ -62,6 +73,10 @@ const Tastemonials = () => {
                 </em>
               </p>
             </div>
+           <div className="flex items-center ml-5">
+           <div className="border rounded-full">
+                <img className="w-10 h-10" src="" alt="img" />
+            </div>
             <div className="p-4 rounded-b-xl md:px-6">
               <h3 className="text-sm font-semibold text-gray-800 sm:text-base dark:text-neutral-200">
                 Jamie Lee
@@ -70,6 +85,7 @@ const Tastemonials = () => {
                 Marketing Specialist | Creative Agency
               </p>
             </div>
+           </div>
           </div>
           {/* End Card 3 */}
         </div>

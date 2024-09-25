@@ -10,7 +10,7 @@ const ContactUs = () => {
         title="Contact Us"
         subtitle="We'd love to hear from you!"
       ></Cover>
-      <div className="h-auto my-11 flex flex-col lg:flex-row mx-10 text-black gap-10 lg:mx-36">
+      <div className="h-auto my-16 flex flex-col lg:flex-row mx-10 text-black gap-10 lg:mx-36">
         <div className="flex-1 items-center">
           <p className="italic">Would like to talk?</p>
           <h2 className="text-3xl my-6">CONTACT DETAILS</h2>
@@ -37,7 +37,7 @@ const ContactUs = () => {
           </div>
         </div>
         <div className="flex-1">
-          <form className="shadow-2xl shadow-blue-500 p-10">
+          <form className="border border-neutral-300 rounded-sm p-10">
             <div className="">
               <div className="flex gap-5 mx-auto justify-between">
                 <div className="w-full">

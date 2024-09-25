@@ -49,7 +49,7 @@ const AllPackages = ({ pack }) => {
 
   return (
     <div className="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7] relative">
-      <img className="h-48 w-full object-cover" src={image} alt={trip_title} />
+      <img className="h-48 w-full object-cover rounded-t-md" src={image} alt={trip_title} />
       <div onClick={handleAddtoCart} className="text-4xl absolute top-0 bottom-0 text-blue-700 cursor-pointer">
         <FaHeart />
       </div>
