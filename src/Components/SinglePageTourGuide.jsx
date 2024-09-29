@@ -10,16 +10,11 @@ const SinglePageTourGuide = ({pack}) => {
         <div className="">
            {/* <!-- Team --> */}
 <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:pb-10 mx-auto">
-  {/* <!-- Title --> */}
-  <div className="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
-  </div>
-  {/* <!-- End Title --> */}
-
   {/* <!-- Grid --> */}
   <div className="">
 
    <Link to={`/detailsuser/${id}`}>
-   <div className="grid sm:flex sm:items-center gap-y-3 gap-x-4 shadow-2xl cursor-pointer rounded-md p-5">
+   <div className="grid sm:flex sm:items-center gap-y-3 gap-x-4 border cursor-pointer rounded-md p-5">
       <img className="rounded-full w-20 h-20" src={image} alt="Image Description"/>
 
       <div className="sm:flex sm:flex-col sm:h-full">

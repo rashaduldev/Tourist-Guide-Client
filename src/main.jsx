@@ -31,6 +31,7 @@ import Profile from "./Pages/DashBoard/Profile/Profile";
 import AdminDashboard from "./Pages/DashBoard/Admin/AdminDashboard/AdminDashboard";
 import Users from "./Pages/DashBoard/Admin/Users/Users";
 import AdminRoute from "./Route/AdminRoute";
+import AddPackageForm from "./Pages/DashBoard/Admin/AddPackageForm/AddPackageForm";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -102,7 +103,7 @@ const router = createBrowserRouter([
     children:[
       {
         path: "/dashboard",
-        element:<AdminRoute></AdminRoute>,
+        element:<AdminRoute><AdminDashboard/></AdminRoute>,
       },
       {
         path: "/dashboard/profile",
@@ -123,6 +124,11 @@ const router = createBrowserRouter([
       {
         path:"/dashboard/edituser",
         element:<Editprofile/>,
+        
+      },
+      {
+        path:"/dashboard/addpackage",
+        element:<AddPackageForm />,
         
       }
     ]

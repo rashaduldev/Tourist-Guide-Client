@@ -76,7 +76,7 @@ const BookingForm = ({price ,packages}) => {
   };
 
   return (
-    <div className="my-20 border border-b-amber-400 p-5">
+    <div className="my-20 p-5">
       <div className='grid grid-cols-1 lg:grid-cols-2 items-center mx-10 gap-8'>
       <div className='text-center lg:mx-5 my-5'>
         <h1 className='text-5xl font-bold'>Booking............</h1>
@@ -85,7 +85,7 @@ const BookingForm = ({price ,packages}) => {
       <div>
       <form
         onSubmit={handleFormSubmit}
-        className=" shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full sm:w-2/3"
+        className="border rounded px-8 pt-6 pb-8 mb-4 w-full sm:w-2/3"
       >
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="package">

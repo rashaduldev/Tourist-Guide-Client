@@ -9,8 +9,8 @@ const ContactUs = () => {
         img={coverImg}
         title="Contact Us"
         subtitle="We'd love to hear from you!"
-      ></Cover>
-      <div className="h-auto my-16 flex flex-col lg:flex-row mx-10 text-black gap-10 lg:mx-36">
+      />
+      <div className="h-auto my-16 flex flex-col lg:flex-row text-black gap-10 max-w-[85rem] mx-auto">
         <div className="flex-1 items-center">
           <p className="italic">Would like to talk?</p>
           <h2 className="text-3xl my-6">CONTACT DETAILS</h2>
@@ -20,19 +20,19 @@ const ContactUs = () => {
             details listed below or fill in the form on the right.
           </p>
           <div className="flex items-center gap-3 text-xl mb-4">
-            <FaLocationArrow></FaLocationArrow>
+            <FaLocationArrow/>
             <p> 777 Franklin St, San Francisco</p>
           </div>
           <div className="flex items-center gap-3 text-xl mb-4">
-            <FaPhone></FaPhone>
+            <FaPhone/>
             <p> +1 420-240-6000</p>
           </div>
           <div className="flex items-center gap-3 text-xl mb-4">
-            <FaMessage></FaMessage>
+            <FaMessage/>
             <p>contact@adventuretours.com</p>
           </div>
           <div className="flex items-center gap-3 text-xl mb-4">
-            <FaSkype></FaSkype>
+            <FaSkype/>
             <p>adventure.tours</p>
           </div>
         </div>

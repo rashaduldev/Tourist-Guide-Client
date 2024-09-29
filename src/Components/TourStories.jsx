@@ -1,9 +1,9 @@
 const TourStories = () => {
   return (
-    <div className="lg:mx-36 my-20">
+    <div className="max-w-[85rem] mx-auto my-20">
        <h2 className="text-5xl text-center my-5 font-bold pb-8">Tour Reviews</h2>
        <div className="flex flex-col lg:flex-row my-10">
-      <div className="">
+      <div className="grid grid-cols-1 lg:grid-cols-2 mx-auto">
       <div className="flex justify-evenly text-center gap-16 border p-4 m-3 rounded-md">
        <div >
           <img
@@ -194,11 +194,6 @@ const TourStories = () => {
           </p>
         </div>
        </div>
-        {/* <h2 className="text-5xl text-center my-4">Tour Stories</h2>
-        <img className="rounded" src="https://i.ibb.co/GVgnV3J/packing-1140x760.jpg" alt="" /> */}
-      </div>
-      <div className="">
-       
        <div className="flex justify-evenly text-center gap-16 border p-4 m-3 rounded-md">
        <div >
           <img
@@ -389,7 +384,6 @@ const TourStories = () => {
           </p>
         </div>
        </div>
-
       </div>
     </div>
     </div>

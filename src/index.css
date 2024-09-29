@@ -1,3 +1,83 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+/* Base styles */
+.Primary_Text_Colour {
+    color: #212B36;
+}
+
+.Secondery_Text_Colour {
+    color: #637381;
+}
+.primary_color{
+    color: #A9BF1C;
+}
+
+.button_colour {
+    background-color: #C8E031;
+    color: #212B36;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button_colour:hover {
+    background-color: #B0CB28;
+    color: #212B36;
+}
+
+.description {
+    color: #637381;
+    font-size: 14px;
+}
+.title_description{
+font-size: 16px;
+font-weight: 400;
+line-height: 24px;
+}
+
+.header_text {
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 64px;
+    color: #212B36;
+}
+
+/* Responsive styles */
+
+/* For tablets (portrait orientation) and up */
+@media (max-width: 768px) {
+    .header_text {
+        font-size: 36px;
+        line-height: 48px;
+    }
+
+    .description {
+        font-size: 13px;
+    }
+
+    .button_colour {
+        padding: 8px 16px;
+    }
+}
+
+/* For mobile phones */
+@media (max-width: 480px) {
+    .header_text {
+        font-size: 28px;
+        line-height: 38px;
+    }
+
+    .description {
+        font-size: 12px;
+    }
+
+    .button_colour {
+        padding: 6px 12px;
+    }
+}

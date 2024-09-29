@@ -15,10 +15,10 @@ const Blogs = () => {
       });
   }, []);
   return (
-    <div>
+    <div className="">
       <Cover img={coverImg} title="Blogs" subtitle=" We share stories and give advice"/>
       <div>
-        <div className="grid grid-cols-1 md:grid-cols-4 lg:mx-10">
+        <div className="flex justify-center gap-8 lg:mx-10">
           <div className="col-span-3">
             {blogs.map(
               (blog) => (
@@ -84,8 +84,9 @@ const Blogs = () => {
             )}
           </div>
           <div className="mt-14">
+            {/* tags */}
             <div className="w-full h-[300px]  shadow-2xl shadow-blue-600 rounded">
-              <p className="text-3xl text-center text-white font-bold">Tags</p>
+              <p className="text-3xl text-center font-bold">Tags</p>
               <div className="italic grid grid-cols-2 pt-6 text-center leading-10 gap-4 mx-2">
                 <p className="shadow-2xl bg-slate-400 cursor-pointer text-white">
                   Adventure
@@ -113,6 +114,7 @@ const Blogs = () => {
                 </p>
               </div>
             </div>
+            
             <div className="w-full h-[250px] rounded my-5 relative">
               <img
               className="h-full rounded"
@@ -202,6 +204,7 @@ const Blogs = () => {
                 <p className="text-2xl text-white mt-5 font-bold">Discover Costa Rica</p>
               </div>
             </div>
+            
             <div className="w-full h-[350px] ">
             <div className="flex flex-col rounded-xl p-4 md:p-6 bg-white border border-gray-200 dark:bg-slate-900 dark:border-gray-700">
         <div className="flex items-center gap-x-4">
@@ -241,6 +244,7 @@ const Blogs = () => {
         {/* <!-- End Social Brands --> */}
       </div>
             </div>
+
           </div>
         </div>
       </div>

@@ -35,7 +35,7 @@ const SingleCard = ({ data }) => {
   }, [axiosPublick]);
 
   return (
-    <div className="lg:mx-36">
+    <div className="max-w-[85rem] mx-auto">
       <h1 className="text-5xl font-bold my-7 text-center">
         Photo Gallery Here
       </h1>
@@ -235,14 +235,14 @@ const SingleCard = ({ data }) => {
           </h2>
           <p className="mt-1 text-black dark:text-gray-400">Creative people</p>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 mx-10 shadow-2xl my-5">
+        <div className="grid grid-cols-1 lg:grid-cols-3 mx-10 my-5">
           {/* Render each tour guide */}
           {packages.map((pack) => (
             <SinglePageTourGuide pack={pack} key={pack._id} />
           ))}
         </div>
         {/* Booking form */}
-        <BookingForm price={price} packages={packages}></BookingForm>
+        <BookingForm price={price} packages={packages} />
       </div>
     </div>
   );

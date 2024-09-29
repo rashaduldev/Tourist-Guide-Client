@@ -4,7 +4,7 @@ const TourGuideuser = () => {
   const loadedData = useLoaderData();
   const findedData = loadedData.find((data) => data.id == id);
   return (
-    <div className="lg:mx-36">
+    <div className="max-w-[85rem] mx-auto">
       {/* <!-- Card Blog --> */}
       <div className="flex flex-col lg:flex-row">
         <div className="w-full flex-1 px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
@@ -115,13 +115,13 @@ const TourGuideuser = () => {
             </p>
             <textarea
               style={{ border: "2px solid black" }}
-              className="my-5 rounded"
+              className="my-5 rounded p-3"
               placeholder="Enter your feedback"
               name=""
               id=""
               cols="30"
               rows="10"
-            ></textarea>
+            />
             <button
               type="button"
               className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 my-5 justify-center"

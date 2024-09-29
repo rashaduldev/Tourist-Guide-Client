@@ -32,7 +32,7 @@ const TourType = () => {
   const airrides = packages.filter((item) => item.tour_type === "airrides");
 
   return (
-    <div className="relative lg:h-[450px] lg:mx-36 py-10">
+    <div className="relative lg:h-[450px] max-w-[85rem] mx-auto py-10">
       <div
         className="absolute inset-0"
         style={{

@@ -41,9 +41,9 @@ const Packages = () => {
     };
 
     return (
-        <div className="lg:mx-36">
+        <div className="max-w-[85rem] mx-auto">
             <h1 className="text-5xl font-bold text-center my-10 text-black">All Packages</h1>
-            <div className="flex flex-col lg:flex-row mx-auto items-center justify-between lg:space-x-5">
+            <div className="flex flex-col lg:flex-row mx-auto items-center justify-between lg:space-x-5 px-4">
                 {/* Filter Dropdown on the Left */}
                 <div className="flex flex-row items-center text-center w-full lg:w-1/3">
                     <h1 className="text-2xl font-bold mr-5 text-black">Filter</h1>
