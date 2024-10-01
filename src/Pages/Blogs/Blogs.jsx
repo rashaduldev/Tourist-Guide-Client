@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Cover from "../../Components/Cover";
 import coverImg from "../../assets/bgimg.jpg";
-import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa6";
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -18,7 +17,7 @@ const Blogs = () => {
     <div className="">
       <Cover img={coverImg} title="Blogs" subtitle=" We share stories and give advice"/>
       <div>
-        <div className="flex justify-center gap-8 lg:mx-10">
+        <div className="flex flex-col lg:flex-row justify-center gap-8 lg:mx-10">
           <div className="col-span-3">
             {blogs.map(
               (blog) => (
@@ -31,9 +30,9 @@ const Blogs = () => {
                   <div className="">
                     {/* <!-- Card --> */}
                     <div className="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7]">
-                      <h1 className="text-3xl text-center font-bold my-5">
+                      <h1 className="text-3xl text-left font-bold my-5 ml-5">
                         {" "}
-                        {blog.content_head}{" "}
+                       Title: {blog.content_head}{" "}
                       </h1>
                       <div className="flex justify-between mx-5 my-2">
                         <p>Date {blog.date}</p>
@@ -44,36 +43,7 @@ const Blogs = () => {
                         <p className="mt-3 text-gray-500">{blog.description}</p>
                         <p className="mt-3 text-gray-500">{blog.content}</p>
                       </div>
-                      <div className="mt-auto flex flex-col md:flex-row lg:flex-row border-t border-gray-200 divide-x divide-gray-200 dark:border-gray-700 dark:divide-gray-700">
-                        <a
-                          className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-es-xl bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                          href="#"
-                        >
-                          <FaFacebook/>
-                          Facebook
-                        </a>
-                        <a
-                          className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-ee-xl bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                          href="#"
-                        >
-                          <FaYoutube/>
-                          Youtube
-                        </a>
-                        <a
-                          className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-ee-xl bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                          href="#"
-                        >
-                          <FaInstagram/>
-                          Instagram
-                        </a>
-                        <a
-                          className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-ee-xl bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                          href="#"
-                        >
-                          <FaTwitter/>
-                          Twitter
-                        </a>
-                      </div>
+                     <button className="p-5 bg-gray-400 text-white text-xl rounded-b-xl">Details</button>
                     </div>
                     {/* <!-- End Card --> */}
                   </div>

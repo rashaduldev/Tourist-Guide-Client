@@ -8,8 +8,8 @@ const SinglePageTourGuide = ({pack}) => {
 
     return (
         <div className="">
-           {/* <!-- Team --> */}
-<div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:pb-10 mx-auto">
+           {/* <!-- Team px-4 py-10 sm:px-6 lg:px-8 lg:pb-10  --> */}
+<div className="max-w-[85rem] mx-auto p-2">
   {/* <!-- Grid --> */}
   <div className="">
 
@@ -25,7 +25,7 @@ const SinglePageTourGuide = ({pack}) => {
           <p className="mt-1 text-xs uppercase text-black my-2">
             {description}
           </p>
-          <p className="mt-1 text-lg text-black my-2 font-bold">
+          <p className="mt-1 text-md text-black my-2 font-bold">
            Email: {email}
           </p>
         </div>

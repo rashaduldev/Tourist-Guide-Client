@@ -8,7 +8,7 @@ const Navber = () => {
   const { user, logOut } = useContext(AuthContext);
   const location = useLocation();
   const [isAdmin] = useAdmin();
-
+  console.log(user);
   const toggleOptions = () => {
     setOptionsVisible(!isOptionsVisible);
   };
@@ -71,7 +71,7 @@ const Navber = () => {
     <nav className="relative lg:max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8" aria-label="Global">
       <div className="flex items-center justify-between">
         {/* <a className="flex-none text-xl font-semibold dark:text-white" href="#" aria-label="Brand">Brand</a> */}
-        <img className="h-20 w-20" src="https://i.ibb.co/YWWPShY/travel-tourism.jpg" alt="" />
+       <a href="/"> <img className="h-20 w-20" src="https://i.ibb.co/YWWPShY/travel-tourism.jpg" alt="" /></a>
         <div className="sm:hidden">
           <button type="button" className="hs-collapse-toggle size-9 flex justify-center items-center sm:text-3xl p-4 lg:text-sm font-semibold rounded-lg border border-gray-200 text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:border-neutral-700 dark:hover:bg-neutral-700" data-hs-collapse="#navbar-collapse-with-animation" aria-controls="navbar-collapse-with-animation" aria-label="Toggle navigation">
             <svg className="hs-collapse-open:hidden size-4" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
@@ -120,7 +120,7 @@ const Navber = () => {
                             className="rounded-full h-10 w-10"
                           />
                           <div>
-                            <p className="font-bold">{user?.displayName}</p>
+                            <p className="font-bold">{user?.displayName} {user?.name}</p>
                             <p>New User</p>
                           </div>
                         </div>
