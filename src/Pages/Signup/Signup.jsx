@@ -84,7 +84,7 @@ const Signup = () => {
             <h1 className="text-2xl lg:text-5xl font-bold mb-9">Signup Here</h1>
             <img src={img} alt="" />
           </div>
-          <div className=" w-full max-w-lg border bg-base-300 rounded pt-8 p-4">
+          <div className=" w-full max-w-lg bg-base-300 rounded pt-8 p-4">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               <div className="grid grid-cols-2 gap-4">
                 <div className="form-control">

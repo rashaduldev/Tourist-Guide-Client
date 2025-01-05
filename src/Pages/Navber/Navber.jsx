@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import useAdmin from "../../Hooks/useAdmin";
@@ -9,7 +9,7 @@ const Navber = () => {
     const [isOptionsVisible, setOptionsVisible] = useState(false);
     const [isModalOpen, setModalOpen] = useState(false);
     const { user, logOut } = useContext(AuthContext);
-    const location = useLocation();
+    // const location = useLocation();
     const [isAdmin] = useAdmin();
 
     const toggleOptions = () => {
@@ -198,7 +198,8 @@ const Navber = () => {
                   location.pathname === "/login" || location.pathname === "/signup"
                     ? "text-blue-300 border-b-2 border-accent"
                     : ""
-                } capitalize font-medium hover:text-accent transition-all text-white`}
+                } capitalize font-medium hover:text-accent transition-all text-black ml-0 mt-3 md:mt-0 md:ml-5`}
+
                             >
                                 <Link to={"/login"}>Login</Link>
                             </div>

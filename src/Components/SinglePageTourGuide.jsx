@@ -19,7 +19,7 @@ const SinglePageTourGuide = ({pack}) => {
 
       <div className="sm:flex sm:flex-col sm:h-full">
         <div>
-          <h3 className="font-medium text-black dark:text-gray-200 text-3xl">
+          <h3 className="font-medium text-black dark:text-black text-3xl">
             {name}
           </h3>
           <p className="mt-1 text-xs uppercase text-black my-2">

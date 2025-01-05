@@ -1,10 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
 const Tastemonials = () => {
     return (
-      <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-        <h1 className="text-5xl font-bold text-center my-10">Tastemonials</h1>
+      <div className="px-4 py-10 sm:px-6 md:px-0 lg:py-14">
+        <div className="md:mx-36">
+        <h1 className="text-3xl md:text-5xl font-bold text-center my-10">Tastemonials</h1>
+        <hr className="font-bold border-neutral-700" />
+        </div>
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-5 container mx-auto">
           {/* Card 1 */}
           <div className="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700">
             <div className="flex-auto p-4 md:p-6">

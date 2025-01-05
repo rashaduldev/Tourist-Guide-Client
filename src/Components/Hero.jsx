@@ -14,7 +14,7 @@ const Hero = () => {
   {/* <!-- Grid --> */}
   <div className="grid md:grid-cols-2 gap-4 md:gap-8 xl:gap-20 md:items-center">
     <div>
-      <h1 className="block text-3xl font-bold text-gray-800 sm:text-4xl lg:text-5xl lg:leading-tight dark:text-white">Start your journey with <br /> <span className="text-blue-600">T{text}</span></h1>
+      <h1 className="block text-3xl font-bold text-gray-800 sm:text-4xl lg:text-5xl lg:leading-tight dark:text-black">Start your journey with <br /> <span className="text-blue-600">T{text}</span></h1>
       <p className="mt-3 text-lg text-gray-800 dark:text-gray-400">Tourism involves traveling for leisure, adventure, culture, and business, boosting economies and fostering cultural exchange. Travel, encompassing all movement, connects people globally, promoting personal growth and global understanding. Sustainable practices are vital to mitigate environmental and cultural impacts.</p>
 
       {/* <!-- Buttons --> */}

@@ -27,11 +27,6 @@ const Packages = () => {
         setFilteredPackages(filtered);
     }, [packages, filterQuery, searchQuery]);
 
-    const handleSearch = () => {
-        // Trigger the search when the button is clicked
-        // (Search is handled live with the input change, but this is to simulate a button click search)
-    };
-
     const handleSearchInputChange = (e) => {
         setSearchQuery(e.target.value);
     };
@@ -43,16 +38,15 @@ const Packages = () => {
     return (
         <div className="max-w-[85rem] mx-auto">
             <h1 className="text-5xl font-bold text-center my-10 text-black">All Packages</h1>
-            <div className="flex flex-col lg:flex-row mx-auto items-center justify-between lg:space-x-5 px-4">
+            <div className="flex flex-row mx-auto items-center justify-between px-4">
                 {/* Filter Dropdown on the Left */}
                 <div className="flex flex-row items-center text-center w-full lg:w-1/3">
-                    <h1 className="text-2xl font-bold mr-5 text-black">Filter</h1>
                     <select
-                        className="flex h-[48px] w-full lg:w-52 rounded-md border border-neutral-400 font-light bg-primary px-4 py-3 text-base outline-none"
+                        className="flex h-[48px] w-1/2 md:w-full lg:w-64 rounded-md border border-neutral-400 font-light bg-primary px-4 py-3 text-base outline-none"
                         value={filterQuery}
                         onChange={handleFilter}
                     >
-                        <option value="all">All</option>
+                        <option value="all">Filter your tour...</option>
                         <option value="adventure">Adventure</option>
                         <option value="leisure">Leisure</option>
                         <option value="cultural">Cultural</option>
@@ -60,29 +54,29 @@ const Packages = () => {
                     </select>
                 </div>
 
-                {/* Search Input and Button on the Right */}
-                <div className="flex flex-row items-center text-center w-full lg:w-1/3 lg:justify-end mt-5 lg:mt-0">
+                {/* Search Input on the Right */}
+                <div className="flex flex-row-reverse md:flex-row items-center text-center w-full lg:w-1/3 lg:justify-end">
                     <input
-                        className="flex h-[48px] w-full lg:w-52 rounded-l-md border border-neutral-400 focus:border-accent font-light bg-primary px-4 py-3 text-base placeholder:text-black/60 outline-none"
+                        className="flex h-[48px] w-1/2 md:w-full lg:w-64 rounded-md border border-neutral-400 focus:border-accent font-light bg-primary px-4 py-3 text-base placeholder:text-black/60 outline-none"
                         type="text"
                         placeholder="Search here..."
                         value={searchQuery}
                         onChange={handleSearchInputChange}
                     />
-                    <button
-                        className="text-white bg-slate-900 px-4 py-3 rounded-r-md"
-                        onClick={handleSearch}
-                    >
-                        Search
-                    </button>
                 </div>
             </div>
 
             {/* Display Filtered Packages */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mx-5 my-10 rounded-t-md">
-                {filteredPackages.map((pack) => (
-                    <AllPackages pack={pack} key={pack.id} />
-                ))}
+                {filteredPackages.length > 0 ? (
+                    filteredPackages.map((pack) => (
+                        <AllPackages pack={pack} key={pack.id} />
+                    ))
+                ) : (
+                    <div className="col-span-full text-center text-xl font-semibold text-red-500">
+                        No data found
+                    </div>
+                )}
             </div>
         </div>
     );

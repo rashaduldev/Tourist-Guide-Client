@@ -1,7 +1,7 @@
 const TourStories = () => {
   return (
     <div className="max-w-[85rem] mx-auto my-20">
-       <h2 className="text-5xl text-center my-5 font-bold pb-8">Tour Reviews</h2>
+       <h2 className="text-3xl md:text-5xl text-center md:my-5 font-bold md:pb-8">Tour Reviews</h2>
        <div className="flex flex-col lg:flex-row my-10">
       <div className="grid grid-cols-1 lg:grid-cols-2 mx-auto">
       <div className="flex justify-evenly text-center gap-16 border p-4 m-3 rounded-md">
@@ -14,8 +14,8 @@ const TourStories = () => {
           <h2 className="my-7">Jessica</h2>
         </div>
         <div className="text-left">
-          <h2 className="text-2xl">Canadian Rockies</h2>
-          <h2>The sightseeing and activities were better than we even thought! I still can’t believe we did so much in such a short time, but we did not feel stressed. We really loved the tour and would do it all over again in a minute! Thanks.</h2>
+          <h2 className="text-lg md:text-2xl">Canadian Rockies</h2>
+          <h2 className="text-[14px] md:text-lg">The sightseeing and activities were better than we even thought! I still can’t believe we did so much in such a short time, but we did not feel stressed. We really loved the tour and would do it all over again in a minute! Thanks.</h2>
           <p className="mt-5">
             {/* <!-- Rating --> */}
             <div className="flex items-center">
@@ -109,8 +109,8 @@ const TourStories = () => {
           <h2 className="my-7">Jessica</h2>
         </div>
         <div className="text-left">
-          <h2 className="text-2xl">Canadian Rockies</h2>
-          <h2>The sightseeing and activities were better than we even thought! I still can’t believe we did so much in such a short time, but we did not feel stressed. We really loved the tour and would do it all over again in a minute! Thanks.</h2>
+          <h2 className="text-lg md:text-2xl">Canadian Rockies</h2>
+          <h2 className="text-[14px] md:text-lg">The sightseeing and activities were better than we even thought! I still can’t believe we did so much in such a short time, but we did not feel stressed. We really loved the tour and would do it all over again in a minute! Thanks.</h2>
           <p className="mt-5">
             {/* <!-- Rating --> */}
             <div className="flex items-center">
@@ -204,8 +204,8 @@ const TourStories = () => {
           <h2 className="my-7">Jessica</h2>
         </div>
         <div className="text-left">
-          <h2 className="text-2xl">Canadian Rockies</h2>
-          <h2>The sightseeing and activities were better than we even thought! I still can’t believe we did so much in such a short time, but we did not feel stressed. We really loved the tour and would do it all over again in a minute! Thanks.</h2>
+          <h2 className="text-lg md:text-2xl">Canadian Rockies</h2>
+          <h2 className="text-[14px] md:text-lg">The sightseeing and activities were better than we even thought! I still can’t believe we did so much in such a short time, but we did not feel stressed. We really loved the tour and would do it all over again in a minute! Thanks.</h2>
           <p className="mt-5">
             {/* <!-- Rating --> */}
             <div className="flex items-center">
@@ -299,8 +299,8 @@ const TourStories = () => {
           <h2 className="my-7">Jessica</h2>
         </div>
         <div className="text-left">
-          <h2 className="text-2xl">Canadian Rockies</h2>
-          <h2>The sightseeing and activities were better than we even thought! I still can’t believe we did so much in such a short time, but we did not feel stressed. We really loved the tour and would do it all over again in a minute! Thanks.</h2>
+          <h2 className="text-lg md:text-2xl">Canadian Rockies</h2>
+          <h2 className="text-[14px] md:text-lg">The sightseeing and activities were better than we even thought! I still can’t believe we did so much in such a short time, but we did not feel stressed. We really loved the tour and would do it all over again in a minute! Thanks.</h2>
           <p className="mt-5">
             {/* <!-- Rating --> */}
             <div className="flex items-center">

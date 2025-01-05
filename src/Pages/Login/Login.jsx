@@ -61,12 +61,12 @@ const Login = () => {
       </Helmet>
 
       <div className="w-full my-20">
-        <div className="flex flex-col lg:flex-row justify-center lg:mx-36">
+        <div className="flex flex-col lg:flex-row justify-center container mx-auto">
           <div className="text-center flex-1  max-w-lg lg:text-left mx-auto">
             <h1 className="text-5xl text-black font-bold text-center mb-9">Login now!</h1>
             <img src={img} alt="" />
           </div>
-          <div className="max-w-md flex-1  p-10 border bg-base-300 mx-auto">
+          <div className="md:max-w-md max-w-sm flex-1 md:p-10 bg-base-300 mx-auto">
             {/* <!-- Form --> */}
             <form onSubmit={handleLogin}>
               <div className="grid gap-y-4">

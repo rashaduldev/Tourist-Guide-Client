@@ -81,3 +81,15 @@ line-height: 24px;
         padding: 6px 12px;
     }
 }
+/*card details*/
+.hs-accordion-content {
+    transition: height 1s ease, opacity 1s ease;
+    overflow: hidden;
+    opacity: 0;
+    height: 0;
+}
+
+.hs-accordion-content.active {
+    opacity: 1;
+    height: auto; /* Or a specific height if needed */
+}

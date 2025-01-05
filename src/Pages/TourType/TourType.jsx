@@ -43,8 +43,8 @@ const TourType = () => {
         }}
       />
       <div className="relative text-center z-20">
-        <h2 className="text-black font-bold pt-7 text-xl italic">Here Find a tour</h2>
-        <h2 className="text-5xl my-5 text-black font-bold">Tour Type</h2>
+        <h2 className="text-black font-bold pt-7 text-lg md:text-xl italic">Here Find a tour</h2>
+        <h2 className="text-3xl md:text-5xl my-5 text-black font-bold">Tour Type</h2>
       </div>
       <hr className="border-white dark:border-white mx-10"/>
       {loading ? (
@@ -53,7 +53,7 @@ const TourType = () => {
         <>
           {/* <h3></h3> */}
           <br />
-          <div className="mx-16">
+          <div className="md:mx-16">
             <Swiper
               watchSlidesProgress={true}
               slidesPerView={3}

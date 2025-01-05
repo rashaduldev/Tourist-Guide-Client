@@ -32,13 +32,13 @@ const Faq = () => {
     };
 
     return (
-       <div className='max-w-[85rem] mx-auto'>
-           <div className="flex flex-col lg:flex-row justify-center lg:my-36 my-8 lg:gap-72 gap-12 px-4 lg:px-0 py-6">
+       <div className='container mx-auto'>
+           <div className="flex flex-col lg:flex-row justify-center lg:my-36 my-8 lg:gap-36 gap-12 px-4 lg:px-0 py-6">
             <div className='text-center lg:text-left'>
-                <h1 className="header_text">
-                    Frequently Asked <br /> Questions
+                <h1 className="text-2xl md:text-5xl font-bold">
+                    Frequently Asked Questions
                 </h1>
-                <p className='mt-6 text-xl'>
+                <p className='mt-6 text-[14px] mx-14 md:mx-0 md:text-xl'>
                     Explore our eLearning platform FAQ section for quick <br className='hidden lg:inline' />
                     solutions to common queries, ensuring a seamless <br className='hidden lg:inline' />
                     learning journey.
@@ -51,27 +51,31 @@ const Faq = () => {
                             className="flex items-center justify-between p-4 cursor-pointer "
                             onClick={() => toggleCollapse(index)}
                         >
-                            <span className="text-lg lg:text-xl font-medium flex gap-2">
+                            <span className="text-sm lg:text-xl font-medium flex gap-2">
                                 <h4 className='font-bold'>Q:{item.id}</h4>
                                 {item.question}
                             </span>
                             {openIndex === index ? (
-                                <button className='flex items-center gap-3 btn bg-[#E5F4EE] hover:bg-[#E5F4EE] text-[#007B55] py-2 px-5 rounded'>
+                                <button className='flex items-center text-sm lg:text-xl gap-3 btn bg-[#E5F4EE] hover:bg-[#E5F4EE] text-[#007B55] py-2 px-5 rounded'>
                                     <p className=''>Answer</p>
-                                    <FaChevronUp className="text-xl" />
+                                    <FaChevronUp className="text-sm lg:text-xl" />
                                 </button>
                             ) : (
-                                <button className='flex items-center gap-3 btn bg-[#E5F4EE] hover:bg-[#E5F4EE] text-[#007B55] py-2 px-5 rounded'>
+                                <button className='flex items-center gap-3 text-sm lg:text-xl btn bg-[#E5F4EE] hover:bg-[#E5F4EE] text-[#007B55] py-2 px-5 rounded'>
                                     <p className=''>Answer</p>
-                                    <FaChevronDown className="text-xl" />
+                                    <FaChevronDown className="text-sm lg:text-xl" />
                                 </button>
                             )}
                         </div>
-                        {openIndex === index && (
-                            <div className="p-4">
-                                <p>{item.answer}</p>
-                            </div>
-                        )}
+                        <div
+                            className={`overflow-hidden transition-all duration-1000 ease-in-out ${openIndex === index ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}
+                        >
+                            {openIndex === index && (
+                                <div className="p-4">
+                                    <p>{item.answer}</p>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 ))}
             </div>

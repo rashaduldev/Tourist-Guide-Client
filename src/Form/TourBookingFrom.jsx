@@ -77,10 +77,10 @@ const BookingForm = ({price ,packages}) => {
 
   return (
     <div className="my-20 p-5">
-      <div className='grid grid-cols-1 lg:grid-cols-2 items-center mx-10 gap-8'>
+      <div className='grid grid-cols-1 lg:grid-cols-2 items-center md:mx-10 gap-8'>
       <div className='text-center lg:mx-5 my-5'>
-        <h1 className='text-5xl font-bold'>Booking............</h1>
-        <h3 className='text-4xl my-7'>Please Confirm Your Booking</h3>
+        <h1 className='text-3xl md:text-5xl font-bold'>Booking......</h1>
+        <h3 className='text-lg md:text-4xl my-2'>Please Confirm Your Booking</h3>
       </div>
       <div>
       <form
@@ -95,7 +95,7 @@ const BookingForm = ({price ,packages}) => {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="package"
             type="text"
-            placeholder="Package Name"
+            placeholder="Login first"
             value={user?.displayName}
             name='name'
             disabled
