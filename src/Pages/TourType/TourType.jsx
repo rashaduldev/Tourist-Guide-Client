@@ -19,7 +19,7 @@ const TourType = () => {
         setLoading(false);
       })
       .catch((err) => {
-        console.error('Error fetching packages:', err);
+        console.error('প্যাকেজ লোড করতে সমস্যা হয়েছে:', err);
         setLoading(false);
       });
   }, [axiosPublick]);
@@ -32,26 +32,24 @@ const TourType = () => {
   const airrides = packages.filter((item) => item.tour_type === "airrides");
 
   return (
-    <div className="relative lg:h-[450px] max-w-[85rem] mx-auto py-10">
+    <div className="relative lg:h-[450px] max-w-7xl mx-auto py-10 my-10">
       <div
         className="absolute inset-0"
         style={{
           backgroundImage: `url(${backgroundImg})`,
           backgroundSize: "cover",
-          opacity: 0.4, // Adjust the opacity as needed
-          backgroundColor: "rgba(0, 0, 0, 0.966)", // Overlay color
+          opacity: 0.3,
+          backgroundColor: "rgb(0, 0, 0)",
         }}
       />
       <div className="relative text-center z-20">
-        <h2 className="text-black font-bold pt-7 text-lg md:text-xl italic">Here Find a tour</h2>
-        <h2 className="text-3xl md:text-5xl my-5 text-black font-bold">Tour Type</h2>
+        <h2 className="text-gray-900 dark:text-gray-100 font-bold pt-7 text-lg md:text-xl italic">এখানে আপনার জন্য ট্যুর খুঁজুন</h2>
+        <h2 className="text-3xl md:text-5xl my-5 text-gray-900 dark:text-gray-100 font-bold">ট্যুরের ধরন</h2>
       </div>
-      <hr className="border-white dark:border-white mx-10"/>
       {loading ? (
-        <div className="text-center text-white">Loading...</div>
+        <div className="text-center text-gray-900 dark:text-gray-100">লোড হচ্ছে...</div>
       ) : (
         <>
-          {/* <h3></h3> */}
           <br />
           <div className="md:mx-16">
             <Swiper
@@ -61,23 +59,23 @@ const TourType = () => {
             >
               <SwiperSlide>
                 <div>
-                  <Swipslider itemsss={sports} heading={'Sports'} icon={<FaWheelchair />}/>
+                  <Swipslider itemsss={sports} heading={'Sports'} icon={<FaWheelchair />} />
                 </div>
               </SwiperSlide>
               <SwiperSlide>
-                <Swipslider itemsss={walking} heading={'Walking'} icon={<FaPersonWalking />}/>
+                <Swipslider itemsss={walking} heading={'Walking'} icon={<FaPersonWalking />} />
               </SwiperSlide>
               <SwiperSlide>
-                <Swipslider itemsss={wildlife} heading={'Wildlife'} icon={<FaCat />}/>
+                <Swipslider itemsss={wildlife} heading={'wildlife'} icon={<FaCat />} />
               </SwiperSlide>
               <SwiperSlide>
-                <Swipslider itemsss={airrides} heading={'Air Rides'} icon={<FaWind />}/>
+                <Swipslider itemsss={airrides} heading={'এয়ার রাইডস'} icon={<FaWind />} />
               </SwiperSlide>
               <SwiperSlide>
-                <Swipslider itemsss={cruises} heading={'Cruises'} icon={<FaShapes />}/>
+                <Swipslider itemsss={cruises} heading={'ক্রুজেস'} icon={<FaShapes />} />
               </SwiperSlide>
               <SwiperSlide>
-                <Swipslider itemsss={hiking} heading={'Hiking'} icon={<FaBagShopping />}/>
+                <Swipslider itemsss={hiking} heading={'হাইকিং'} icon={<FaBagShopping />} />
               </SwiperSlide>
             </Swiper>
           </div>

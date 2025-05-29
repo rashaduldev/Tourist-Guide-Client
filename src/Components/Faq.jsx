@@ -4,25 +4,46 @@ import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 const faqdata = [
     {
         id: 1,
-        question: "What are the best times of the year to travel?",
-        answer: "The best travel time depends on your destination. For tropical countries, the dry season is typically ideal, while for colder regions, summer is the best time. Always check local seasons and weather conditions before planning your trip."
+        question: "ভ্রমণের জন্য সেরা সময় কখন?",
+        answer: "ভ্রমণের সেরা সময় আপনার গন্তব্যের উপর নির্ভর করে। গ্রীষ্মমন্ডলীয় দেশের জন্য শুষ্ক মৌসুম আদর্শ, আর ঠান্ডা অঞ্চলের জন্য গ্রীষ্মকাল উত্তম। পরিকল্পনার আগে আবহাওয়া ও ঋতু সম্পর্কে জেনে নিন।"
     },
     {
         id: 2,
-        question: "Do I need travel insurance?",
-        answer: "Yes, we recommend purchasing travel insurance for unexpected events like trip cancellations, medical emergencies, or lost luggage. Travel insurance provides peace of mind during your trip."
+        question: "আমার কি ট্রাভেল ইনস্যুরেন্স দরকার?",
+        answer: "হ্যাঁ, আমরা ট্রাভেল ইনস্যুরেন্স নেওয়ার পরামর্শ দিই, কারণ এটি হঠাৎ ট্রিপ বাতিল, চিকিৎসা জরুরি বা মালপত্র হারানোর ক্ষেত্রে সহায়তা করে। এটি আপনার ভ্রমণকে আরও নিশ্চিন্ত করে তোলে।"
     },
     {
         id: 3,
-        question: "How can I book a tour package?",
-        answer: "You can easily book a tour package online through our website. Browse our available packages, select the one that suits you best, and follow the simple booking process. For any assistance, contact our customer service team."
+        question: "আমি কীভাবে একটি ট্যুর প্যাকেজ বুক করতে পারি?",
+        answer: "আমাদের ওয়েবসাইট থেকে সহজেই একটি ট্যুর প্যাকেজ বুক করতে পারেন। আপনার পছন্দের প্যাকেজ বেছে নিয়ে সহজ স্টেপ অনুসরণ করুন। সাহায্যের জন্য আমাদের কাস্টমার সার্ভিসে যোগাযোগ করুন।"
     },
     {
         id: 4,
-        question: "What documents do I need to travel internationally?",
-        answer: "For international travel, you will need a valid passport and, depending on your destination, a visa. Some countries also require proof of vaccinations or specific health certificates. Be sure to check the entry requirements for your destination."
+        question: "আন্তর্জাতিক ভ্রমণের জন্য কী কী ডকুমেন্ট দরকার?",
+        answer: "আন্তর্জাতিক ভ্রমণের জন্য পাসপোর্ট এবং অনেক সময় ভিসার প্রয়োজন হয়। কিছু দেশে ভ্যাকসিন সার্টিফিকেট বা স্বাস্থ্য সংক্রান্ত প্রমাণপত্র চাওয়া হয়। গন্তব্যের প্রয়োজনীয়তা জেনে নিন।"
+    },
+    {
+        id: 5,
+        question: "ভ্রমণের সময় কী ধরনের পোশাক নেওয়া উচিত?",
+        answer: "আপনার গন্তব্যের আবহাওয়া অনুযায়ী পোশাক নেওয়া উচিত। শীতল স্থানে গরম কাপড় এবং উষ্ণ স্থানে হালকা, আরামদায়ক পোশাক নেওয়া ভালো।"
+    },
+    {
+        id: 6,
+        question: "ফ্লাইট মিস করলে আমি কী করতে পারি?",
+        answer: "ফ্লাইট মিস করলে দ্রুত এয়ারলাইন্সের কাস্টমার সার্ভিসে যোগাযোগ করুন। তারা পরবর্তী ফ্লাইটে আসন খালি থাকলে সাহায্য করতে পারে।"
+    },
+    {
+        id: 7,
+        question: "আমি কি আমার বুকিং বাতিল করতে পারবো?",
+        answer: "হ্যাঁ, আপনি নির্দিষ্ট সময়ের মধ্যে বুকিং বাতিল করতে পারবেন। তবে নির্ভর করে শর্ত ও প্যাকেজের উপর। বিস্তারিত জানতে আমাদের কাস্টমার কেয়ারে যোগাযোগ করুন।"
+    },
+    {
+        id: 8,
+        question: "আমি কি শিশু বা প্রবীণদের জন্য বিশেষ সুবিধা পাব?",
+        answer: "হ্যাঁ, আমাদের প্যাকেজে শিশু ও প্রবীণদের জন্য বিশেষ ডিসকাউন্ট ও সুবিধা প্রদান করা হয়। বুকিংয়ের সময় এটি নিশ্চিত করুন।"
     }
 ];
+
 
 const Faq = () => {
     const [openIndex, setOpenIndex] = useState(null);
@@ -32,55 +53,56 @@ const Faq = () => {
     };
 
     return (
-       <div className='container mx-auto'>
-           <div className="flex flex-col lg:flex-row justify-center lg:my-36 my-8 lg:gap-36 gap-12 px-4 lg:px-0 py-6">
-            <div className='text-center lg:text-left'>
-                <h1 className="text-2xl md:text-5xl font-bold">
-                    Frequently Asked Questions
-                </h1>
-                <p className='mt-6 text-[14px] mx-14 md:mx-0 md:text-xl'>
-                    Explore our eLearning platform FAQ section for quick <br className='hidden lg:inline' />
-                    solutions to common queries, ensuring a seamless <br className='hidden lg:inline' />
-                    learning journey.
-                </p>
-            </div>
-            <div className="w-full lg:w-[700px]">
-                {faqdata.map((item, index) => (
-                    <div key={item.id} className="bg-base-200 my-2 rounded-lg bg-gray-100">
+        <div className="container mx-auto px-4 md:px-0 py-10 my-0 md:my-10">
+            <div className="flex flex-col lg:flex-row justify-center gap-12 lg:gap-36">
+                {/* Left Section */}
+                <div className="text-center lg:text-left">
+                    <h1 className="text-3xl md:text-5xl font-bold text-black dark:text-white">
+                        সাধারণ জিজ্ঞাসা
+                    </h1>
+                    <p className="mt-6 text-sm md:text-lg text-gray-700 dark:text-gray-300 max-w-md mx-auto lg:mx-0">
+                        আমাদের ই-লার্নিং প্ল্যাটফর্ম সম্পর্কিত সবচেয়ে সাধারণ প্রশ্নের উত্তর খুঁজে নিন, আপনার শেখার যাত্রা সহজ করতে।
+                    </p>
+                </div>
+
+                {/* Right Section */}
+                <div className="w-full lg:w-[700px]">
+                    {faqdata.map((item, index) => (
                         <div
-                            className="flex items-center justify-between p-4 cursor-pointer "
-                            onClick={() => toggleCollapse(index)}
+                            key={item.id}
+                            className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg my-3 transition-all duration-300"
                         >
-                            <span className="text-sm lg:text-xl font-medium flex gap-2">
-                                <h4 className='font-bold'>Q:{item.id}</h4>
-                                {item.question}
-                            </span>
-                            {openIndex === index ? (
-                                <button className='flex items-center text-sm lg:text-xl gap-3 btn bg-[#E5F4EE] hover:bg-[#E5F4EE] text-[#007B55] py-2 px-5 rounded'>
-                                    <p className=''>Answer</p>
-                                    <FaChevronUp className="text-sm lg:text-xl" />
-                                </button>
-                            ) : (
-                                <button className='flex items-center gap-3 text-sm lg:text-xl btn bg-[#E5F4EE] hover:bg-[#E5F4EE] text-[#007B55] py-2 px-5 rounded'>
-                                    <p className=''>Answer</p>
-                                    <FaChevronDown className="text-sm lg:text-xl" />
-                                </button>
-                            )}
+                            <div
+                                className="flex justify-between items-center p-4 cursor-pointer"
+                                onClick={() => toggleCollapse(index)}
+                            >
+                                <span className="text-base md:text-lg font-medium text-black dark:text-white flex gap-2">
+                                    <strong>প্রঃ {item.id}</strong> {item.question}
+                                </span>
+                                {openIndex === index ? (
+                                    <FaChevronUp className="text-black dark:text-white" />
+                                ) : (
+                                    <FaChevronDown className="text-black dark:text-white" />
+                                )}
+                            </div>
+
+                            {/* Answer section */}
+                            <div
+                                className={`overflow-hidden transition-all duration-500 ${
+                                    openIndex === index ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+                                }`}
+                            >
+                                {openIndex === index && (
+                                    <div className="p-4 pt-0 text-gray-700 dark:text-gray-300 text-sm md:text-base">
+                                        উত্তরঃ {item.answer}
+                                    </div>
+                                )}
+                            </div>
                         </div>
-                        <div
-                            className={`overflow-hidden transition-all duration-1000 ease-in-out ${openIndex === index ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}
-                        >
-                            {openIndex === index && (
-                                <div className="p-4">
-                                    <p>{item.answer}</p>
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
         </div>
-       </div>
     );
 };
 

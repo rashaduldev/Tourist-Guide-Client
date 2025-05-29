@@ -1,30 +1,31 @@
 import { Parallax } from 'react-parallax';
 
 // eslint-disable-next-line react/prop-types
-const Cover = ({img,title,subtitle}) => {
+const Cover = ({ img, title, subtitle }) => {
   return (
-    <div className='mx-10 rounded my-10'>
-           <Parallax
+    <div className="mx-4 md:mx-10 my-10 rounded overflow-hidden">
+      <Parallax
         blur={{ min: -15, max: 15 }}
         bgImage={img}
-        bgImageAlt="blogs"
+        bgImageAlt="cover image"
         strength={-200}
-    >
-       <div
-        className="hero h-[400px]"
       >
-        <div className="hero-overlay bg-opacity-60"></div>
-        <div className="hero-content text-center text-neutral-content ">
-          <div className="lg:max-w-2xl bg-slate-300 bg-opacity-30 lg:px-36 py-6 shadow-2xl mt-48 mx-auto rounded">
-            <h1 className="mb-5 text-5xl font-bold uppercase text-white">{title}</h1>
-            <p className="mb-5 w-full mx-auto text-2xl text-white">
-           {subtitle}
-            </p>
+        {/* Parallax Section */}
+        <div className="relative h-[250px] sm:h-[300px] md:h-[600px] flex items-center justify-center">
+          {/* Dark overlay */}
+          <div className="absolute inset-0 bg-black bg-opacity-60 z-10" />
+
+          {/* Content box */}
+          <div className="relative z-20 px-4 text-center w-full max-w-4xl">
+            <div className="bg-gray-700 bg-opacity-30 px-6 md:px-20 py-6 rounded mx-auto">
+              <h1 className="text-3xl md:text-5xl font-bold uppercase text-white">
+                {title}
+              </h1>
+              <p className="mt-3 text-base md:text-2xl text-white">{subtitle}</p>
+            </div>
           </div>
         </div>
-      </div>
-    </Parallax>
-     
+      </Parallax>
     </div>
   );
 };

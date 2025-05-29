@@ -19,8 +19,8 @@ const Navber = () => {
         logOut()
             .then(() => {
                 Swal.fire({
-                    title: "Logged Out Successfully!",
-                    text: "Please log in again.",
+                    title: "সফলভাবে লগ আউট হয়েছ!",
+                    text: "অনুগ্রহ করে আবার লগইন করো।",
                     icon: "success",
                     timer: 2000,
                     timerProgressBar: true,
@@ -31,10 +31,10 @@ const Navber = () => {
     };
 
     const links = [
-        { name: "Blogs", path: "/blogs" },
-        { name: "About Us", path: "/about" },
-        { name: "Contact", path: "/contact" },
-        { name: "All Packages", path: "/allpackage" },
+        { name: "ব্লগসমূহ", path: "/blogs" },
+        { name: "আমাদের সম্পর্কে", path: "/about" },
+        { name: "যোগাযোগ", path: "/contact" },
+        { name: "সমস্ত প্যাকেজ", path: "/allpackage" },
     ];
 
     return (
@@ -53,7 +53,7 @@ const Navber = () => {
                 {/* Desktop Navigation */}
                 <div className="hidden sm:flex items-center space-x-7">
                     {links.map((link, index) => (
-                        <Link to={link.path} key={index} className={`capitalize font-medium hover:text-accent transition-all dark:hover:text-gray-400 ${location.pathname === link.path ? "text-blue-300 dark:text-blue-400 border-b-2 border-accent" : ""}`}>
+                        <Link to={link.path} key={index} className={`capitalize font-medium hover:text-blue-400 transition-all dark:hover:text-gray-400 ${location.pathname === link.path ? "text-blue-300 dark:text-blue-400 border-b-2 border-accent" : ""}`}>
                             {link.name}
                         </Link>
                     ))}
@@ -65,7 +65,7 @@ const Navber = () => {
                                 <img src={user?.photoURL} alt="Profile" className="rounded-full h-10 w-10" />
                                 <div>
                                     <p className="font-bold">{user?.displayName || user?.name}</p>
-                                    <p className="text-gray-400 dark:text-gray-500">New User</p>
+                                    <p className="text-gray-400 dark:text-gray-500">নতুন ব্যবহারকারী</p>
                                 </div>
                             </div>
 
@@ -75,29 +75,29 @@ const Navber = () => {
                                     {isAdmin && (
                                         <Link to="/dashboard">
                                             <button className="w-full px-4 py-2 text-left hover:bg-neutral-600 dark:hover:bg-gray-700 text-white">
-                                                Dashboard
+                                                ড্যাশবোর্ড
                                             </button>
                                         </Link>
                                     )}
                                     <Link to="/dashboard/profile">
                                         <button className="w-full px-4 py-2 text-left hover:bg-neutral-600 dark:hover:bg-gray-700 text-white">
-                                            Profile
+                                            প্রোফাইল
                                         </button>
                                     </Link>
                                     <Link to="/dashboard/edit-profile">
                                         <button className="w-full px-4 py-2 text-left hover:bg-neutral-600 dark:hover:bg-gray-700 text-white">
-                                            Edit Profile
+                                            প্রোফাইল সম্পাদনা
                                         </button>
                                     </Link>
                                     <button onClick={handleLogout} className="w-full px-4 py-2 text-left hover:bg-neutral-600 dark:hover:bg-gray-700 text-white">
-                                        Logout
+                                        লগআউট
                                     </button>
                                 </div>
                             )}
                         </div>
                     ) : (
                         <Link to="/login" className={`capitalize font-medium hover:text-accent transition-all dark:hover:text-gray-400 ${location.pathname === "/login" || location.pathname === "/signup" ? "text-blue-300 dark:text-blue-400 border-b-2 border-accent" : ""}`}>
-                            Login
+                            লগইন
                         </Link>
                     )}
                 </div>
@@ -120,7 +120,7 @@ const Navber = () => {
                             <div className="cursor-pointer flex flex-col items-center" onClick={toggleUserOptions}>
                                 <img src={user?.photoURL} alt="Profile" className="rounded-full h-16 w-16" />
                                 <p className="font-bold mt-2">{user?.displayName || user?.name}</p>
-                                <p className="text-gray-400 dark:text-gray-500">New User</p>
+                                <p className="text-gray-400 dark:text-gray-500">নতুন ব্যবহারকারী</p>
                             </div>
 
                             {/* User Options */}
@@ -129,22 +129,22 @@ const Navber = () => {
                                     {isAdmin && (
                                         <Link to="/dashboard">
                                             <button className="w-full px-4 py-2 text-left hover:bg-gray-300 dark:hover:bg-gray-700">
-                                                Dashboard
+                                                ড্যাশবোর্ড
                                             </button>
                                         </Link>
                                     )}
                                     <Link to="/dashboard/profile">
                                         <button className="w-full px-4 py-2 text-left hover:bg-gray-300 dark:hover:bg-gray-700">
-                                            Profile
+                                            প্রোফাইল
                                         </button>
                                     </Link>
                                     <Link to="/dashboard/edit-profile">
                                         <button className="w-full px-4 py-2 text-left hover:bg-gray-300 dark:hover:bg-gray-700">
-                                            Edit Profile
+                                            প্রোফাইল সম্পাদনা
                                         </button>
                                     </Link>
                                     <button onClick={handleLogout} className="w-full px-4 py-2 text-left hover:bg-gray-300 dark:hover:bg-gray-700">
-                                        Logout
+                                        লগআউট
                                     </button>
                                 </div>
                             )}

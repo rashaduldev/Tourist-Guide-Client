@@ -1,61 +1,92 @@
+import { FaMapMarkedAlt, FaMountain, FaInfoCircle } from "react-icons/fa";
+import { useState } from "react";
+
 const Overview = () => {
   const cards = [
     {
-      videoUrl: "https://www.youtube.com/embed/gb7yd8xM3js?si=iPKatPGVmVsqIzW5",
-      description:
-        "মারায়ন তং বা মারায়ং তং বান্দরবানের আলীকদম উপজেলার মিরিঞ্জা রেঞ্জের একটি পাহাড়ের নাম। সমুদ্রপৃষ্ট থেকে এর উচ্চতা ১৬৫০ ফুট। এই পাহাড়ের একেবারে চূড়ায় আছে একটি বৌদ্ধ উপাসনালয়। যেখানে রয়েছে গৌতম বুদ্ধের একটি আবক্ষ মূর্তি। উপাসনালয়টি পুরো স্থানটিকে একটি বিশেষত্ব দিয়েছে। মারায়ন তং জাদী পাহাড় এর চূড়ার অংশটি পুরোপুরি সমতল। চূড়ায় দাঁড়িয়ে যতদূর চোখ যায় ততদূর শুধু পাহাড়ের সারি| এ যেন পাহাড়ের সমুদ্র। আর পাহাড়ের নিচে দিয়ে সাপের মতো এঁকেবেকে চলে গেছে মাতামুহুরি নদী।",
+      title: "মারায়ন তং পাহাড়",
+      location: "আলীকদম, বান্দরবান",
+      height: "১৬৫০ ফুট",
+      summary:
+        "বৌদ্ধ উপাসনালয় ও চূড়ার সমতল ভূমি থেকে দেখা যায় চারপাশের পাহাড় আর মাতামুহুরি নদী।",
     },
     {
-      videoUrl: "https://www.youtube.com/embed/EdHQq4QgUoI?si=olbMd8xsaKKhnt0m",
-      description:
-        "মারায়ন তং জাদী পাহাড় ও এর আশেপাশে রয়েছে বিভিন্ন আদিবাসী জাতিগোষ্ঠীর বসবাস। এরমধ্যে অন্যতম হলো ত্রিপুরা মারমা আর মুরং। পাহাড়ের নিচের দিকে মারমাদের বসবাস। আর মুরং জাতির পাড়াগুলো ছড়িয়ে আছে পাহাড়ের ভাঁজে ভাঁজে। পাহাড়িরা সাধারণত মাচাংয়ের উপর ঘর বানায়। উপরে পরিবারের সদস্যরা বসবাস করে। আর নিচে মুরগী শূকর ইত্যাদি গবাদিপশু থাকে। বৈচিত্র্যময় এই সংস্কৃতির সৌন্দর্য বান্দরবানকে আলাদা মাত্রা দিয়েছে। এখানকার অধীবাসীরা জীবিকার জন্য পাহাড়ের উপর নির্ভরশীল। এখানে ফলমূল, শস্য, তামাক ইত্যাদির চাষ হয়।",
+      title: "আদিবাসী সংস্কৃতি",
+      location: "মারায়ন তং অঞ্চল",
+      height: "উঁচু-নিচু পাহাড়",
+      summary:
+        "ত্রিপুরা, মারমা ও মুরং জাতিগোষ্ঠীর বৈচিত্র্যময় জীবনযাপন, পাহাড়ে চাষাবাদ ও সংস্কৃতি।",
     },
     {
-      videoUrl: "https://www.youtube.com/embed/EdHQq4QgUoI?si=olbMd8xsaKKhnt0m",
-      description:
-        "মারায়ন তং জাদী পাহাড় ও এর আশেপাশে রয়েছে বিভিন্ন আদিবাসী জাতিগোষ্ঠীর বসবাস। এরমধ্যে অন্যতম হলো ত্রিপুরা মারমা আর মুরং। পাহাড়ের নিচের দিকে মারমাদের বসবাস। আর মুরং জাতির পাড়াগুলো ছড়িয়ে আছে পাহাড়ের ভাঁজে ভাঁজে। পাহাড়িরা সাধারণত মাচাংয়ের উপর ঘর বানায়। উপরে পরিবারের সদস্যরা বসবাস করে। আর নিচে মুরগী শূকর ইত্যাদি গবাদিপশু থাকে। বৈচিত্র্যময় এই সংস্কৃতির সৌন্দর্য বান্দরবানকে আলাদা মাত্রা দিয়েছে। এখানকার অধীবাসীরা জীবিকার জন্য পাহাড়ের উপর নির্ভরশীল। এখানে ফলমূল, শস্য, তামাক ইত্যাদির চাষ হয়।",
+      title: "মাচাং ঘর সংস্কৃতি",
+      location: "পাহাড়ি পাড়া",
+      height: "চূড়ার নিচে",
+      summary:
+        "উপরে ঘর, নিচে গবাদি পশুর ঠাঁই — পাহাড়িদের চিরাচরিত মাচাং সংস্কৃতি।",
     },
     {
-      videoUrl: "https://www.youtube.com/embed/EdHQq4QgUoI?si=olbMd8xsaKKhnt0m",
-      description:
-        "মারায়ন তং জাদী পাহাড় ও এর আশেপাশে রয়েছে বিভিন্ন আদিবাসী জাতিগোষ্ঠীর বসবাস। এরমধ্যে অন্যতম হলো ত্রিপুরা মারমা আর মুরং। পাহাড়ের নিচের দিকে মারমাদের বসবাস। আর মুরং জাতির পাড়াগুলো ছড়িয়ে আছে পাহাড়ের ভাঁজে ভাঁজে। পাহাড়িরা সাধারণত মাচাংয়ের উপর ঘর বানায়। উপরে পরিবারের সদস্যরা বসবাস করে। আর নিচে মুরগী শূকর ইত্যাদি গবাদিপশু থাকে। বৈচিত্র্যময় এই সংস্কৃতির সৌন্দর্য বান্দরবানকে আলাদা মাত্রা দিয়েছে। এখানকার অধীবাসীরা জীবিকার জন্য পাহাড়ের উপর নির্ভরশীল। এখানে ফলমূল, শস্য, তামাক ইত্যাদির চাষ হয়।",
+      title: "পাহাড়ি কৃষি জীবন",
+      location: "বান্দরবান",
+      height: "পার্বত্য এলাকা",
+      summary:
+        "ফল, শস্য ও তামাক চাষ নির্ভরশীল — জীবন চলে পাহাড়ের ছায়ায়।",
     },
   ];
 
+  const footerTexts = [
+    "আরও জানুন...",
+    "পড়া চালিয়ে যান →",
+    "গুরুত্বপূর্ণ তথ্য দেখুন",
+    "অন্তর্ভুক্ত বিষয়াবলী",
+    "আরো তথ্যের জন্য ক্লিক করুন",
+    "Discover more →",
+  ];
+
+  // Optional: to cycle footer text dynamically per card index
+  // or randomly pick a footer text
+  const getFooterText = (index) => footerTexts[index % footerTexts.length];
+
   return (
-    <div>
-      <h2>
-        {/* <!-- Card Blog --> */}
-        <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-          {/* <!-- Grid --> */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
-            {cards.map((card, index) => (
-              <div
-                key={index}
-                className="group flex flex-col h-full bg-white border rounded dark:bg-slate-900 dark:text-white dark:border-gray-700"
-              >
-                <div className="h-64 flex flex-col justify-center items-center">
-                  <iframe
-                    className="w-full rounded-t"
-                    width=""
-                    height="315"
-                    src={card.videoUrl}
-                    title="YouTube video player"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                  ></iframe>
-                </div>
-                <div className="p-4 md:p-6 dark:bg-slate-900 dark:text-white">
-                  {card.description}
-                </div>
-              </div>
-            ))}
-          </div>
-          {/* <!-- End Grid --> */}
-        </div>
-        {/* <!-- End Card Blog --> */}
+    <div className="max-w-7xl py-10 lg:py-14 mx-auto">
+      <h2 className="text-3xl font-bold text-center mb-10 text-gray-900 dark:text-white">
+        ভ্রমণ সারাংশ
       </h2>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
+        {cards.map((card, index) => (
+          <div
+            key={index}
+            className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded p-6 shadow-sm dark:shadow-md hover:shadow-md dark:hover:shadow-lg transition duration-300 flex flex-col justify-between"
+          >
+            <div>
+              <div className="flex items-center mb-4">
+                <FaMapMarkedAlt className="text-gray-800 dark:text-gray-200 mr-2 text-lg" />
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{card.title}</h3>
+              </div>
+              <div className="flex justify-between text-sm text-gray-600 dark:text-gray-400 mb-2">
+                <span>
+                  <FaMountain className="inline mr-1" /> {card.height}
+                </span>
+                <span>
+                  <FaMapMarkedAlt className="inline mr-1" /> {card.location}
+                </span>
+              </div>
+              <p className="text-gray-700 dark:text-gray-300 text-sm flex items-start mt-2">
+                <FaInfoCircle className="text-gray-500 dark:text-gray-400 mr-2 mt-1" />
+                {card.summary}
+              </p>
+            </div>
+
+            <div className="border-t border-gray-300 dark:border-gray-700 mt-6"></div>
+
+            <p
+              className="mt-3 text-xs text-indigo-600 dark:text-indigo-400 text-center cursor-pointer select-none
+                         hover:text-indigo-800 dark:hover:text-indigo-300 transition duration-300"
+            >
+              {getFooterText(index)}
+            </p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
