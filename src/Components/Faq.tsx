@@ -1,117 +1,150 @@
 "use client";
 
-import { useState } from 'react';
-import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { useState } from "react";
+import { FaPlus } from "react-icons/fa6";
+import { AnimatePresence, motion } from "framer-motion";
+import { Reveal } from "@/lib/motion";
 
 interface FaqItem {
-    id: number;
-    question: string;
-    answer: string;
+  id: number;
+  question: string;
+  answer: string;
 }
 
 const faqdata: FaqItem[] = [
-    {
-        id: 1,
-        question: "ভ্রমণের জন্য সেরা সময় কখন?",
-        answer: "ভ্রমণের সেরা সময় আপনার গন্তব্যের উপর নির্ভর করে। গ্রীষ্মমন্ডলীয় দেশের জন্য শুষ্ক মৌসুম আদর্শ, আর ঠান্ডা অঞ্চলের জন্য গ্রীষ্মকাল উত্তম। পরিকল্পনার আগে আবহাওয়া ও ঋতু সম্পর্কে জেনে নিন।"
-    },
-    {
-        id: 2,
-        question: "আমার কি ট্রাভেল ইনস্যুরেন্স দরকার?",
-        answer: "হ্যাঁ, আমরা ট্রাভেল ইনস্যুরেন্স নেওয়ার পরামর্শ দিই, কারণ এটি হঠাৎ ট্রিপ বাতিল, চিকিৎসা জরুরি বা মালপত্র হারানোর ক্ষেত্রে সহায়তা করে। এটি আপনার ভ্রমণকে আরও নিশ্চিন্ত করে তোলে।"
-    },
-    {
-        id: 3,
-        question: "আমি কীভাবে একটি ট্যুর প্যাকেজ বুক করতে পারি?",
-        answer: "আমাদের ওয়েবসাইট থেকে সহজেই একটি ট্যুর প্যাকেজ বুক করতে পারেন। আপনার পছন্দের প্যাকেজ বেছে নিয়ে সহজ স্টেপ অনুসরণ করুন। সাহায্যের জন্য আমাদের কাস্টমার সার্ভিসে যোগাযোগ করুন।"
-    },
-    {
-        id: 4,
-        question: "আন্তর্জাতিক ভ্রমণের জন্য কী কী ডকুমেন্ট দরকার?",
-        answer: "আন্তর্জাতিক ভ্রমণের জন্য পাসপোর্ট এবং অনেক সময় ভিসার প্রয়োজন হয়। কিছু দেশে ভ্যাকসিন সার্টিফিকেট বা স্বাস্থ্য সংক্রান্ত প্রমাণপত্র চাওয়া হয়। গন্তব্যের প্রয়োজনীয়তা জেনে নিন।"
-    },
-    {
-        id: 5,
-        question: "ভ্রমণের সময় কী ধরনের পোশাক নেওয়া উচিত?",
-        answer: "আপনার গন্তব্যের আবহাওয়া অনুযায়ী পোশাক নেওয়া উচিত। শীতল স্থানে গরম কাপড় এবং উষ্ণ স্থানে হালকা, আরামদায়ক পোশাক নেওয়া ভালো।"
-    },
-    {
-        id: 6,
-        question: "ফ্লাইট মিস করলে আমি কী করতে পারি?",
-        answer: "ফ্লাইট মিস করলে দ্রুত এয়ারলাইন্সের কাস্টমার সার্ভিসে যোগাযোগ করুন। তারা পরবর্তী ফ্লাইটে আসন খালি থাকলে সাহায্য করতে পারে।"
-    },
-    {
-        id: 7,
-        question: "আমি কি আমার বুকিং বাতিল করতে পারবো?",
-        answer: "হ্যাঁ, আপনি নির্দিষ্ট সময়ের মধ্যে বুকিং বাতিল করতে পারবেন। তবে নির্ভর করে শর্ত ও প্যাকেজের উপর। বিস্তারিত জানতে আমাদের কাস্টমার কেয়ারে যোগাযোগ করুন।"
-    },
-    {
-        id: 8,
-        question: "আমি কি শিশু বা প্রবীণদের জন্য বিশেষ সুবিধা পাব?",
-        answer: "হ্যাঁ, আমাদের প্যাকেজে শিশু ও প্রবীণদের জন্য বিশেষ ডিসকাউন্ট ও সুবিধা প্রদান করা হয়। বুকিংয়ের সময় এটি নিশ্চিত করুন।"
-    }
+  {
+    id: 1,
+    question: "ভ্রমণের জন্য সেরা সময় কখন?",
+    answer:
+      "ভ্রমণের সেরা সময় আপনার গন্তব্যের উপর নির্ভর করে। গ্রীষ্মমন্ডলীয় দেশের জন্য শুষ্ক মৌসুম আদর্শ, আর ঠান্ডা অঞ্চলের জন্য গ্রীষ্মকাল উত্তম।",
+  },
+  {
+    id: 2,
+    question: "আমার কি ট্রাভেল ইনস্যুরেন্স দরকার?",
+    answer:
+      "হ্যাঁ, আমরা ট্রাভেল ইনস্যুরেন্স নেওয়ার পরামর্শ দিই, কারণ এটি হঠাৎ ট্রিপ বাতিল, চিকিৎসা জরুরি বা মালপত্র হারানোর ক্ষেত্রে সহায়তা করে।",
+  },
+  {
+    id: 3,
+    question: "আমি কীভাবে একটি ট্যুর প্যাকেজ বুক করতে পারি?",
+    answer:
+      "আমাদের ওয়েবসাইট থেকে সহজেই একটি ট্যুর প্যাকেজ বুক করতে পারেন। আপনার পছন্দের প্যাকেজ বেছে নিয়ে সহজ স্টেপ অনুসরণ করুন।",
+  },
+  {
+    id: 4,
+    question: "আন্তর্জাতিক ভ্রমণের জন্য কী কী ডকুমেন্ট দরকার?",
+    answer:
+      "আন্তর্জাতিক ভ্রমণের জন্য পাসপোর্ট এবং অনেক সময় ভিসার প্রয়োজন হয়। কিছু দেশে ভ্যাকসিন সার্টিফিকেট বা স্বাস্থ্য সংক্রান্ত প্রমাণপত্র চাওয়া হয়।",
+  },
+  {
+    id: 5,
+    question: "ভ্রমণের সময় কী ধরনের পোশাক নেওয়া উচিত?",
+    answer:
+      "আপনার গন্তব্যের আবহাওয়া অনুযায়ী পোশাক নেওয়া উচিত। শীতল স্থানে গরম কাপড় এবং উষ্ণ স্থানে হালকা, আরামদায়ক পোশাক নেওয়া ভালো।",
+  },
+  {
+    id: 6,
+    question: "ফ্লাইট মিস করলে আমি কী করতে পারি?",
+    answer:
+      "ফ্লাইট মিস করলে দ্রুত এয়ারলাইন্সের কাস্টমার সার্ভিসে যোগাযোগ করুন। তারা পরবর্তী ফ্লাইটে আসন খালি থাকলে সাহায্য করতে পারে।",
+  },
+  {
+    id: 7,
+    question: "আমি কি আমার বুকিং বাতিল করতে পারবো?",
+    answer:
+      "হ্যাঁ, আপনি নির্দিষ্ট সময়ের মধ্যে বুকিং বাতিল করতে পারবেন। তবে নির্ভর করে শর্ত ও প্যাকেজের উপর।",
+  },
+  {
+    id: 8,
+    question: "আমি কি শিশু বা প্রবীণদের জন্য বিশেষ সুবিধা পাব?",
+    answer:
+      "হ্যাঁ, আমাদের প্যাকেজে শিশু ও প্রবীণদের জন্য বিশেষ ডিসকাউন্ট ও সুবিধা প্রদান করা হয়। বুকিংয়ের সময় এটি নিশ্চিত করুন।",
+  },
 ];
 
-
 const Faq = () => {
-    const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-    const toggleCollapse = (index: number) => {
-        setOpenIndex(openIndex === index ? null : index);
-    };
+  const toggle = (index: number) =>
+    setOpenIndex(openIndex === index ? null : index);
 
-    return (
-        <div className="container mx-auto px-4 md:px-0 py-10 my-0 md:my-10">
-            <div className="flex flex-col lg:flex-row justify-center gap-12 lg:gap-36">
-                {/* Left Section */}
-                <div className="text-center lg:text-left">
-                    <h1 className="text-3xl md:text-5xl font-bold text-black dark:text-white">
-                        সাধারণ জিজ্ঞাসা
-                    </h1>
-                    <p className="mt-6 text-sm md:text-lg text-gray-700 dark:text-gray-300 max-w-md mx-auto lg:mx-0">
-                        আমাদের ই-লার্নিং প্ল্যাটফর্ম সম্পর্কিত সবচেয়ে সাধারণ প্রশ্নের উত্তর খুঁজে নিন, আপনার শেখার যাত্রা সহজ করতে।
-                    </p>
+  return (
+    <section className="mx-auto max-w-6xl px-4 py-20 lg:px-8">
+      <div className="grid gap-12 lg:grid-cols-[0.9fr_1.4fr] lg:gap-16">
+        {/* Left */}
+        <Reveal className="lg:sticky lg:top-24 lg:self-start">
+          <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-700 dark:border-blue-900/60 dark:bg-blue-950/40 dark:text-blue-300">
+            সহায়তা কেন্দ্র
+          </span>
+          <h2 className="bg-gradient-to-br from-slate-900 to-slate-600 bg-clip-text text-3xl font-extrabold tracking-tight text-transparent sm:text-4xl dark:from-white dark:to-slate-400">
+            সাধারণ জিজ্ঞাসা
+          </h2>
+          <p className="mt-5 max-w-md text-base leading-relaxed text-slate-600 dark:text-slate-400">
+            আমাদের প্ল্যাটফর্ম সম্পর্কিত সবচেয়ে সাধারণ প্রশ্নের উত্তর খুঁজে নিন, আপনার
+            ভ্রমণ যাত্রা সহজ করতে।
+          </p>
+          <span className="mt-5 block h-1 w-20 rounded-full bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-600" />
+        </Reveal>
+
+        {/* Right — accordion */}
+        <div className="space-y-3">
+          {faqdata.map((item, index) => {
+            const isOpen = openIndex === index;
+            return (
+              <Reveal key={item.id} delay={index * 0.04} y={16}>
+                <div
+                  className={`overflow-hidden rounded-2xl border transition-colors duration-300 ${
+                    isOpen
+                      ? "border-blue-300 bg-blue-50/40 shadow-md dark:border-blue-800 dark:bg-blue-950/20"
+                      : "border-slate-200 bg-white hover:border-slate-300 dark:border-slate-800 dark:bg-slate-900"
+                  }`}
+                >
+                  <button
+                    onClick={() => toggle(index)}
+                    className="flex w-full items-center justify-between gap-4 p-5 text-left"
+                  >
+                    <span className="flex items-center gap-3 text-base font-semibold text-slate-900 dark:text-white">
+                      <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 text-xs font-bold text-white">
+                        {item.id}
+                      </span>
+                      {item.question}
+                    </span>
+                    <motion.span
+                      animate={{ rotate: isOpen ? 45 : 0 }}
+                      transition={{ duration: 0.3 }}
+                      className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full transition-colors ${
+                        isOpen
+                          ? "bg-blue-600 text-white"
+                          : "bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300"
+                      }`}
+                    >
+                      <FaPlus className="text-xs" />
+                    </motion.span>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <p className="px-5 pb-5 pl-[3.75rem] text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                          {item.answer}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
-
-                {/* Right Section */}
-                <div className="w-full lg:w-[700px]">
-                    {faqdata.map((item: FaqItem, index: number) => (
-                        <div
-                            key={item.id}
-                            className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg my-3 transition-all duration-300"
-                        >
-                            <div
-                                className="flex justify-between items-center p-4 cursor-pointer"
-                                onClick={() => toggleCollapse(index)}
-                            >
-                                <span className="text-base md:text-lg font-medium text-black dark:text-white flex gap-2">
-                                    <strong>প্রঃ {item.id}</strong> {item.question}
-                                </span>
-                                {openIndex === index ? (
-                                    <FaChevronUp className="text-black dark:text-white" />
-                                ) : (
-                                    <FaChevronDown className="text-black dark:text-white" />
-                                )}
-                            </div>
-
-                            {/* Answer section */}
-                            <div
-                                className={`overflow-hidden transition-all duration-500 ${
-                                    openIndex === index ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
-                                }`}
-                            >
-                                {openIndex === index && (
-                                    <div className="p-4 pt-0 text-gray-700 dark:text-gray-300 text-sm md:text-base">
-                                        উত্তরঃ {item.answer}
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
+              </Reveal>
+            );
+          })}
         </div>
-    );
+      </div>
+    </section>
+  );
 };
 
 export default Faq;
