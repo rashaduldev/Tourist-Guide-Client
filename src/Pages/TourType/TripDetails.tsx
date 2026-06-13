@@ -1,21 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { getPackages } from "@/app/actions/data";
+import usePackages from "@/Hooks/usePackages";
 
 const TripDetails = () => {
-    const [datafil, setDatafil] = useState<any[]>([]);
+    const [datafil, loading] = usePackages();
     const params = useParams<{ id: string }>();
     const id = params?.id;
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        getPackages().then((data) => {
-            setDatafil(data);
-            setLoading(false);
-        });
-    }, []);
 
     if (loading) {
         return <div>Loading...</div>;

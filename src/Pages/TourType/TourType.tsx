@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -15,20 +14,12 @@ import {
 } from "react-icons/fa6";
 import Swipslider from "./Swipslider";
 import SectionHeading from "@/components/shared/SectionHeading";
-import { getPackages } from "@/app/actions/data";
+import usePackages from "@/Hooks/usePackages";
 
 const backgroundImg = "/assets/tourbgimg.jpg";
 
 const TourType = () => {
-  const [packages, setPackages] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    getPackages().then((data) => {
-      setPackages(data);
-      setLoading(false);
-    });
-  }, []);
+  const [packages, loading] = usePackages();
 
   const byType = (t: string) =>
     packages.filter((item: any) => item.tour_type === t);

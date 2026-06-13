@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SinglePageTourGuide from "./SinglePageTourGuide";
 import BookingForm from "../Form/TourBookingFrom";
-import { getGuides } from "@/app/actions/data";
+import useGuide from "../Hooks/useGuide";
 
 const img1 = "/assets/contact.jpg";
 const img2 = "/assets/about.jpg";
@@ -13,9 +13,8 @@ const img4 = "/assets/tourbgimg.jpg";
 const SingleCard = ({ data }: { data: any }) => {
   const { image, price, tour_type, trip_title } = data;
 
-  // State for packages and loading indicator
-  const [packages, setPackages] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+  // Guides via TanStack Query (server action)
+  const [packages, loading] = useGuide();
 
   // Dynamic tour details
   const tourDetails = [
@@ -30,14 +29,6 @@ const SingleCard = ({ data }: { data: any }) => {
   const toggleAccordion = (index: number) => {
     setActiveAccordion(activeAccordion === index ? null : index);
   };
-
-  // Fetch guides via Server Action
-  useEffect(() => {
-    getGuides().then((data) => {
-      setPackages(data);
-      setLoading(false);
-    });
-  }, []);
 
   return (
       <div className="max-w-[85rem] mx-auto">

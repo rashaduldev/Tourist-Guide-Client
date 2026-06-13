@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 import usePackages from "../../Hooks/usePackages";
 import MyWishList from "../MyWishList/MyWishList";
 import Link from "next/link";
@@ -9,15 +9,14 @@ import { StaggerGroup, StaggerItem } from "@/lib/motion";
 import SectionHeading from "@/components/shared/SectionHeading";
 
 const OurPopularPackages = () => {
-  const [packages] = usePackages();
-  const [loading, setLoading] = useState(true);
+  const [packages, loading] = usePackages();
 
-  useEffect(() => {
-    if (packages.length > 0) setLoading(false);
-  }, [packages]);
-
-  const popular = packages.filter(
-    (item: any) => item.tour_type?.toLowerCase() === "sports",
+  const popular = useMemo(
+    () =>
+      packages.filter(
+        (item: any) => item.tour_type?.toLowerCase() === "sports",
+      ),
+    [packages],
   );
 
   return (

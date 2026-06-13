@@ -1,37 +1,36 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useMemo, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { FaUsers, FaTrash } from "react-icons/fa";
 import { getUsers, updateUserRole, deleteUser } from "@/app/actions/secure";
 
 const Users = () => {
-  const [users, setUsers] = useState<any[]>([]);
-  const [filteredUsers, setFilteredUsers] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Fetch users on component mount (via Server Action)
-  useEffect(() => {
-    getUsers()
-      .then((data) => {
-        setUsers(data);
-        setFilteredUsers(data);
-      })
-      .finally(() => setLoading(false));
-  }, []);
+  const {
+    data: users = [],
+    isLoading: loading,
+    refetch,
+  } = useQuery({ queryKey: ["users"], queryFn: () => getUsers() });
+
+  const filteredUsers = useMemo(() => {
+    const value = searchTerm.toLowerCase();
+    if (!value) return users;
+    return users.filter(
+      (user: any) =>
+        user.name?.toLowerCase().includes(value) ||
+        user.email?.toLowerCase().includes(value),
+    );
+  }, [users, searchTerm]);
 
   // Promote a user to admin
   const handleMakeAdmin = (user: any) => {
     if (!user?._id) return;
     updateUserRole(user._id, "admin")
       .then(() => {
-        setUsers((prev) =>
-          prev.map((u: any) => (u._id === user._id ? { ...u, role: "admin" } : u)),
-        );
-        setFilteredUsers((prev) =>
-          prev.map((u: any) => (u._id === user._id ? { ...u, role: "admin" } : u)),
-        );
+        refetch();
         Swal.fire({
           position: "center",
           icon: "success",
@@ -60,10 +59,7 @@ const Users = () => {
         deleteUser(user._id)
           .then((res: any) => {
             if (res?.deletedCount > 0) {
-              setUsers((prev) => prev.filter((u: any) => u._id !== user._id));
-              setFilteredUsers((prev) =>
-                prev.filter((u: any) => u._id !== user._id),
-              );
+              refetch();
               Swal.fire({
                 title: "Deleted!",
                 text: `${user.name} has been deleted`,
@@ -78,14 +74,8 @@ const Users = () => {
     });
   };
 
-  // Function to handle search input
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value.toLowerCase();
-    setSearchTerm(value);
-    setFilteredUsers(users.filter((user: any) =>
-      user.name.toLowerCase().includes(value) ||
-      user.email.toLowerCase().includes(value)
-    ));
+    setSearchTerm(event.target.value);
   };
 
   if (loading) {

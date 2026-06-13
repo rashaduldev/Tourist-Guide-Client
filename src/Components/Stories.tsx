@@ -1,19 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { MdOutlineFavoriteBorder } from "react-icons/md";
 import { FaArrowRightLong } from "react-icons/fa6";
 import Link from "next/link";
 import { motion, StaggerGroup, fadeUp } from "@/lib/motion";
 import SectionHeading from "@/components/shared/SectionHeading";
-import { getStories } from "@/app/actions/data";
+import useStories from "@/Hooks/useStories";
 
 const Stories = () => {
-  const [stories, setStories] = useState<any[]>([]);
-
-  useEffect(() => {
-    getStories(6).then(setStories);
-  }, []);
+  const [stories] = useStories(6);
 
   return (
     <section className="mx-auto max-w-7xl px-4 py-20 lg:px-8">

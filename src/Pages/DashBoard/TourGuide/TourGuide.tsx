@@ -1,21 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { motion, StaggerGroup, fadeUp } from "@/lib/motion";
-import { getGuides } from "@/app/actions/data";
+import useGuide from "@/Hooks/useGuide";
 
 const TourGuide = () => {
-  const [guides, setGuides] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    getGuides().then((data) => {
-      setGuides(data);
-      setLoading(false);
-    });
-  }, []);
+  const [guides, loading] = useGuide();
 
   if (loading) {
     return (

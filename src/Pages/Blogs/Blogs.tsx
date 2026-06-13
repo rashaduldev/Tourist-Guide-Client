@@ -1,20 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Cover from "../../Components/Cover";
+import useBlogs from "../../Hooks/useBlogs";
 
 const coverImg = "/assets/bgimg.jpg";
 
 const Blogs = () => {
-  const [blogs, setBlogs] = useState<any[]>([]);
-
-  useEffect(() => {
-    fetch("https://tourist-guide-server-tawny.vercel.app/blogs")
-      .then((res) => res.json())
-      .then((data: any[]) => {
-        setBlogs(data);
-      });
-  }, []);
+  const [blogs] = useBlogs();
 
   return (
     <div className="">

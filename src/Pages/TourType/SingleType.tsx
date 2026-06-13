@@ -1,22 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Details from "./Details";
-import { getPackages } from "@/app/actions/data";
+import usePackages from "@/Hooks/usePackages";
 
 const SingleType = () => {
-  const [packages, setPackages] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [packages, loading] = usePackages();
   const params = useParams<{ name: string }>();
   const name = params?.name;
-
-  useEffect(() => {
-    getPackages().then((data) => {
-      setPackages(data);
-      setLoading(false);
-    });
-  }, []);
 
   const filteredPackages = packages.filter((item: any) => item.tour_type === (name ?? '').toLowerCase());
 

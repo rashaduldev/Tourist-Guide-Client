@@ -47,3 +47,12 @@ export async function getStories(limit?: number): Promise<any[]> {
     return [];
   }
 }
+
+// ---- Blogs ----
+export async function getBlogs(): Promise<any[]> {
+  try {
+    return await serverApi<any[]>("/blogs", { auth: false });
+  } catch {
+    return [];
+  }
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 import usePackages from "../../Hooks/usePackages";
 import AllPackages from "./AllPackages";
 import { FiSearch } from "react-icons/fi";
@@ -18,9 +18,8 @@ const Packages = () => {
   const [packages, loading] = usePackages();
   const [searchQuery, setSearchQuery] = useState("");
   const [filterQuery, setFilterQuery] = useState("all");
-  const [filteredPackages, setFilteredPackages] = useState<any[]>([]);
 
-  useEffect(() => {
+  const filteredPackages = useMemo(() => {
     let filtered: any[] = packages;
     if (filterQuery !== "all") {
       filtered = filtered.filter(
@@ -33,7 +32,7 @@ const Packages = () => {
         item.trip_title?.toLowerCase().includes(searchQuery.toLowerCase()),
       );
     }
-    setFilteredPackages(filtered);
+    return filtered;
   }, [packages, filterQuery, searchQuery]);
 
   return (

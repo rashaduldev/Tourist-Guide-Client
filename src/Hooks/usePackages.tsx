@@ -1,26 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import type { TourPackage } from "@/types";
 import { getPackages } from "@/app/actions/data";
 
 const usePackages = () => {
-  const [packages, setPackages] = useState<TourPackage[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    let active = true;
-    getPackages().then((data) => {
-      if (!active) return;
-      setPackages(data);
-      setLoading(false);
-    });
-    return () => {
-      active = false;
-    };
-  }, []);
-
-  return [packages, loading] as const;
+  const { data: packages = [], isLoading } = useQuery<TourPackage[]>({
+    queryKey: ["packages"],
+    queryFn: () => getPackages(),
+  });
+  return [packages, isLoading] as const;
 };
 
 export default usePackages;
