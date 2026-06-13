@@ -6,14 +6,13 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
+import { signIn } from "next-auth/react";
 import ExtraLogin from "../../Components/ExtraLogin";
-import useAuth from "../../Hooks/useAuth";
 import useAxiosPublick from "../../Hooks/useAxiosPublick";
 
 const img = "/assets/authentication2.png";
 
 const Signup = () => {
-  const { createUser, updateUserProfile } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
   const axiosPublic = useAxiosPublick();
@@ -23,47 +22,41 @@ const Signup = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data: any) => {
-    const email = data.email;
-    const password = data.password;
-    createUser(email, password)
-      .then((result) => {
-        const loggedUser = result.user;
-        console.log(loggedUser);
-        const name = data.name;
-        const photo = data.photoURL;
-        updateUserProfile(name, photo);
+  const onSubmit = async (data: any) => {
+    const { name, email, password } = data;
+    try {
+      // Register the user in the backend (creates the account + hashes password).
+      await axiosPublic.post("/auth/register", { name, email, password });
 
-        // create user and send to database
-        const userInfo = {
-          name,
-          email,
-          password,
-          photo,
-        };
-        axiosPublic.post("/users", userInfo).then((res) => {
-          if (res.data) {
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "User Signup",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-            router.push("/");
-          }
-        });
-      })
-      .catch((error) => {
-        console.log(error.message);
-        Swal.fire({
-          position: "center",
-          icon: "error",
-          title: "auth/email-already-in-use",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+      // Then sign in with NextAuth so a session cookie is established.
+      const result = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
       });
+      if (result?.error) {
+        router.push("/login");
+        return;
+      }
+
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "User Signup",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      router.push("/");
+      router.refresh();
+    } catch (error: any) {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: error?.response?.data?.message ?? "Signup failed",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
   };
   return (
     <div>

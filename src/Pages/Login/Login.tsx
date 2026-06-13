@@ -3,54 +3,53 @@
 import Swal from "sweetalert2";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
+import { signIn } from "next-auth/react";
 import ExtraLogin from "../../Components/ExtraLogin";
 import { useState } from "react";
-import useAuth from "../../Hooks/useAuth";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 
 const img = "/assets/authentication2.png";
 
 const Login = () => {
-  const { signIn } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const from = searchParams.get("from") || "/";
 
-  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     const email = (form.elements.namedItem("email") as HTMLInputElement).value;
     const password = (form.elements.namedItem("password") as HTMLInputElement)
       .value;
-    signIn(email, password)
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-        let timerInterval: ReturnType<typeof setInterval>;
-        Swal.fire({
-          title: "Login Successfully!",
-          html: "I will close in <b></b> milliseconds.",
-          timer: 2000,
-          timerProgressBar: true,
-          didOpen: () => {
-            Swal.showLoading();
-            const timer = Swal.getPopup()?.querySelector("b");
-            timerInterval = setInterval(() => {
-              if (timer) timer.textContent = `${Swal.getTimerLeft()}`;
-            }, 100);
-          },
-          willClose: () => {
-            clearInterval(timerInterval);
-          },
-        });
-        router.replace(from);
-      })
-      .catch((err) => {
-        console.log("email or password not match");
-        console.log(err.message);
+
+    const result = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    });
+
+    if (result?.error) {
+      Swal.fire({
+        icon: "error",
+        title: "Login failed",
+        text: "Email or password did not match.",
+        timer: 2000,
+        showConfirmButton: false,
       });
+      return;
+    }
+
+    Swal.fire({
+      title: "Login Successfully!",
+      icon: "success",
+      timer: 1500,
+      timerProgressBar: true,
+      showConfirmButton: false,
+    });
+    router.replace(from);
+    router.refresh();
   };
   return (
     <div>

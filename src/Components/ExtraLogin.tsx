@@ -1,36 +1,16 @@
 "use client";
 
 import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa6";
-import { useRouter, usePathname } from "next/navigation";
-import Swal from "sweetalert2";
-
-import useAxiosPublick from "../Hooks/useAxiosPublick";
-import useAuth from "../Hooks/useAuth";
+import { useSearchParams } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 const ExtraLogin = () => {
-    const { googleSignin } = useAuth();
-    const router = useRouter();
-    const pathname = usePathname();
-    const from = pathname || "/";
-    const axiosPublic = useAxiosPublick();
+    const searchParams = useSearchParams();
+    const from = searchParams.get("from") || "/";
 
+    // NextAuth handles the OAuth redirect; /auth/social creates the backend user.
     const handleGoogleSignin = () => {
-        googleSignin()
-        .then((res: any) => {
-            const userInfo = {
-              email: res.user?.email,
-              name: res.user?.displayName
-            };
-            axiosPublic.post('/users', userInfo);
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Login Successfully",
-            showConfirmButton: false,
-            timer: 1500
-          });
-          router.replace(from);
-        });
+        signIn("google", { callbackUrl: from });
     };
   return (
     <div className="px-4 flex flex-row gap-3 mb-3 mx-auto text-center mt-10 justify-center">
