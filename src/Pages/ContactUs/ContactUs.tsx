@@ -1,97 +1,126 @@
 "use client";
 
-import { FaLocationArrow, FaMessage, FaPhone, FaSeedling, FaSkype } from "react-icons/fa6";
+import { FaPaperPlane } from "react-icons/fa6";
+import { FiMapPin, FiPhone, FiMail, FiMessageSquare } from "react-icons/fi";
 import Cover from "../../Components/Cover";
+import SectionHeading from "@/components/shared/SectionHeading";
+import { motion, Reveal, StaggerGroup, fadeUp } from "@/lib/motion";
 
 const coverImg = "/assets/contact.jpg";
 
+const infos = [
+  { icon: <FiMapPin />, title: "ঠিকানা", value: "৭৭৭ ফ্র্যাঙ্কলিন স্ট্রিট, সান ফ্রান্সিসকো" },
+  { icon: <FiPhone />, title: "ফোন", value: "+১ ৪২০-২৪০-৬০০০" },
+  { icon: <FiMail />, title: "ইমেইল", value: "contact@adventuretours.com" },
+  { icon: <FiMessageSquare />, title: "স্কাইপ", value: "adventure.tours" },
+];
+
+const inputClass =
+  "w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition-colors placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-white";
+
 const ContactUs = () => {
   return (
-    <div className="bg-white dark:bg-gray-900 text-gray-800 dark:text-white">
+    <div>
       <Cover
         img={coverImg}
+        eyebrow="যোগাযোগ"
         title="যোগাযোগ করুন"
         subtitle="আমরা আপনার বার্তার অপেক্ষায় আছি!"
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {/* Contact Info */}
+      <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8">
+        {/* Left: info */}
         <div>
-          <p className="italic text-gray-600 dark:text-gray-400">আমাদের সাথে কথা বলতে চান?</p>
-          <h2 className="text-4xl font-semibold mt-4 mb-6">যোগাযোগের ঠিকানা</h2>
-          <p className="text-lg text-gray-700 dark:text-gray-300 mb-10">
-            আপনার কোনো প্রশ্ন বা পরামর্শ থাকলে, নিচের যোগাযোগের মাধ্যমগুলোতে আমাদের সাথে যোগাযোগ করুন বা পাশে থাকা ফর্মটি পূরণ করুন।
+          <SectionHeading
+            eyebrow="আমাদের সাথে কথা বলুন"
+            title="যোগাযোগের ঠিকানা"
+            align="left"
+          />
+          <p className="mt-6 max-w-md text-slate-600 dark:text-slate-400">
+            আপনার কোনো প্রশ্ন বা পরামর্শ থাকলে নিচের মাধ্যমগুলোতে যোগাযোগ করুন, অথবা
+            পাশের ফর্মটি পূরণ করুন।
           </p>
 
-          <div className="space-y-6 text-lg">
-            <div className="flex items-center gap-4">
-              <FaLocationArrow className="text-blue-500" />
-              <span>৭৭৭ ফ্র্যাঙ্কলিন স্ট্রিট, সান ফ্রান্সিসকো</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <FaPhone className="text-blue-500" />
-              <span>+১ ৪২০-২৪০-৬০০০</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <FaMessage className="text-blue-500" />
-              <span>contact@adventuretours.com</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <FaSkype className="text-blue-500" />
-              <span>adventure.tours</span>
-            </div>
-          </div>
+          <StaggerGroup className="mt-8 grid gap-4 sm:grid-cols-2">
+            {infos.map((info) => (
+              <motion.div
+                key={info.title}
+                variants={fadeUp}
+                whileHover={{ y: -4 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md dark:border-slate-800 dark:bg-slate-900"
+              >
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600 dark:bg-blue-950/40 dark:text-blue-400">
+                  {info.icon}
+                </span>
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold text-slate-900 dark:text-white">
+                    {info.title}
+                  </p>
+                  <p className="mt-0.5 break-words text-sm text-slate-600 dark:text-slate-400">
+                    {info.value}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </StaggerGroup>
         </div>
 
-        {/* Contact Form */}
-        <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 shadow-lg">
-          <form>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div>
-                <label className="block mb-2 text-sm font-medium">ইমেইল</label>
-                <input
-                  type="email"
-                  placeholder="আপনার ইমেইল"
-                  className="w-full p-3 rounded border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-gray-300"
-                />
+        {/* Right: form */}
+        <Reveal>
+          <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-lg dark:border-slate-800 dark:bg-slate-900">
+            <h3 className="mb-6 text-xl font-bold text-slate-900 dark:text-white">
+              বার্তা পাঠান
+            </h3>
+            <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                <div>
+                  <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                    নাম
+                  </label>
+                  <input type="text" placeholder="পুরো নাম" className={inputClass} />
+                </div>
+                <div>
+                  <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                    ইমেইল
+                  </label>
+                  <input
+                    type="email"
+                    placeholder="আপনার ইমেইল"
+                    className={inputClass}
+                  />
+                </div>
               </div>
               <div>
-                <label className="block mb-2 text-sm font-medium">আপনার নাম</label>
+                <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                  বিষয়
+                </label>
                 <input
                   type="text"
-                  placeholder="পুরো নাম / ফোন নাম্বার"
-                  className="w-full p-3 rounded-md border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-gray-300"
+                  placeholder="আপনার প্রশ্নের বিষয়"
+                  className={inputClass}
                 />
               </div>
-            </div>
-
-            <div className="mt-6">
-              <label className="block mb-2 text-sm font-medium">বিষয়</label>
-              <input
-                type="text"
-                placeholder="আপনার প্রশ্নের বিষয়"
-                className="w-full p-3 rounded-md border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-gray-300"
-              />
-            </div>
-
-            <div className="mt-6">
-              <label className="block mb-2 text-sm font-medium">বার্তা</label>
-              <textarea
-                rows={6}
-                placeholder="সম্পূর্ণ বার্তা লিখুন..."
-                className="w-full p-3 rounded-md border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-gray-300"
-              ></textarea>
-            </div>
-
-            <button
-              type="submit"
-              className="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold flex items-center justify-center gap-2"
-            >
-              পাঠান
-              <FaSeedling />
-            </button>
-          </form>
-        </div>
+              <div>
+                <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                  বার্তা
+                </label>
+                <textarea
+                  rows={6}
+                  placeholder="সম্পূর্ণ বার্তা লিখুন..."
+                  className={inputClass}
+                />
+              </div>
+              <button
+                type="submit"
+                className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-600/40"
+              >
+                পাঠান
+                <FaPaperPlane className="transition-transform duration-300 group-hover:translate-x-1" />
+              </button>
+            </form>
+          </div>
+        </Reveal>
       </div>
     </div>
   );

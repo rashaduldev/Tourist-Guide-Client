@@ -4,24 +4,9 @@ import { FaPhoneAlt, FaEnvelope, FaHeadset } from "react-icons/fa";
 import { motion, Reveal, StaggerGroup, fadeUp } from "@/lib/motion";
 
 const contacts = [
-  {
-    icon: <FaPhoneAlt />,
-    title: "কল করুন",
-    value: "+8801603010103",
-    gradient: "from-sky-500 to-blue-600",
-  },
-  {
-    icon: <FaEnvelope />,
-    title: "ইমেইল করুন",
-    value: "tour@gmail.com",
-    gradient: "from-emerald-500 to-teal-600",
-  },
-  {
-    icon: <FaHeadset />,
-    title: "হেল্পলাইন",
-    value: "+990564847621",
-    gradient: "from-violet-500 to-indigo-600",
-  },
+  { icon: <FaPhoneAlt />, title: "কল করুন", value: "+8801603010103" },
+  { icon: <FaEnvelope />, title: "ইমেইল করুন", value: "tour@gmail.com" },
+  { icon: <FaHeadset />, title: "হেল্পলাইন", value: "+990564847621" },
 ];
 
 const Needhelp = () => {
@@ -50,9 +35,7 @@ const Needhelp = () => {
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur transition-colors hover:bg-white/10"
                 >
-                  <div
-                    className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${c.gradient} text-white shadow-lg`}
-                  >
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-600 text-white shadow-lg shadow-blue-600/30">
                     {c.icon}
                   </div>
                   <div>

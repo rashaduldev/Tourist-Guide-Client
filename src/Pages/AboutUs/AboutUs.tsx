@@ -25,25 +25,21 @@ const values = [
     icon: <FaCompass />,
     title: "অভিযাত্রা",
     desc: "প্রতিটি ট্রিপ সাজানো হয় রোমাঞ্চ ও আবিষ্কারের কথা মাথায় রেখে।",
-    gradient: "from-sky-500 to-blue-600",
   },
   {
     icon: <FaHeart />,
     title: "যত্ন",
     desc: "আমরা ভ্রমণকারীদের আরাম ও আনন্দকে সর্বোচ্চ গুরুত্ব দিই।",
-    gradient: "from-rose-500 to-pink-600",
   },
   {
     icon: <FaShieldHalved />,
     title: "নিরাপত্তা",
     desc: "প্রতিটি যাত্রায় নিরাপত্তাই আমাদের প্রথম অগ্রাধিকার।",
-    gradient: "from-emerald-500 to-teal-600",
   },
   {
     icon: <FaLeaf />,
     title: "টেকসই ভ্রমণ",
     desc: "পরিবেশ ও স্থানীয় সংস্কৃতির প্রতি দায়বদ্ধ ভ্রমণ।",
-    gradient: "from-violet-500 to-indigo-600",
   },
 ];
 
@@ -204,9 +200,7 @@ export default function AboutUs() {
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
               className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition-shadow duration-300 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900"
             >
-              <div
-                className={`mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${v.gradient} text-xl text-white shadow-lg`}
-              >
+              <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-600 text-xl text-white shadow-lg shadow-blue-600/20">
                 {v.icon}
               </div>
               <h3 className="mb-2 text-lg font-bold text-slate-900 dark:text-white">
