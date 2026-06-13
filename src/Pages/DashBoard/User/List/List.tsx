@@ -4,39 +4,27 @@ import { FaNutritionix, FaTrash } from "react-icons/fa6";
 import Swal from "sweetalert2";
 import Link from "next/link";
 import useList from "../../../../Hooks/useList";
-import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
-import { useEffect, useState } from "react";
+import { removeWishlist } from "@/app/actions/secure";
 
 const List = () => {
-  const [ok, setOk] = useState<any>([]);
   const [list, refetch] = useList();
-  console.log(list);
-  console.log(ok);
-  useEffect(() => {
-    // When the 'list' changes, update 'ok' based on 'list' values
-    if (list && Array.isArray(list)) {
-      const newList = list.map((li: any) => li?._id);
-      setOk(newList[0]);
-    }
-  }, [list]);
-  const totatPrice = list.reduce((total: number, item: any) => total + item.price, 0);
-  const axiosSecure = useAxiosSecure();
+  const totatPrice = list.reduce(
+    (total: number, item: any) => total + item.price,
+    0,
+  );
 
   const handleDeleteCart = (id: any) => {
-    console.log(id);
-
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#2563eb",
+      cancelButtonColor: "#ef4444",
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.delete(`/carts/${id}`).then((res: any) => {
-          console.log(res);
+        removeWishlist(id).then(() => {
           Swal.fire({
             title: "Deleted!",
             text: "Your file has been deleted.",
@@ -132,7 +120,7 @@ const List = () => {
                         <td>{item.tour_type}</td>
                         <td>{item.price}</td>
                         <td>
-                          <Link href={`/details/${ok}`}>
+                          <Link href={`/details/${item.id ?? item.menuId}`}>
                             <button type="button" className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-blue-600 text-blue-600 hover:border-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 hover:bg-orange-400 hover:text-white">
                               Details Page
                             </button>

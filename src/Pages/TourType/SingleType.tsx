@@ -3,26 +3,20 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Details from "./Details";
-import useAxiosPublick from "../../Hooks/useAxiosPublick";
+import { getPackages } from "@/app/actions/data";
 
 const SingleType = () => {
   const [packages, setPackages] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const axiosPublick = useAxiosPublick();
   const params = useParams<{ name: string }>();
   const name = params?.name;
 
   useEffect(() => {
-    axiosPublick.get('/packages')
-      .then((res: any) => {
-        setPackages(res.data);
-        setLoading(false);
-      })
-      .catch((err: any) => {
-        console.error('Error fetching packages:', err);
-        setLoading(false);
-      });
-  }, [axiosPublick]);
+    getPackages().then((data) => {
+      setPackages(data);
+      setLoading(false);
+    });
+  }, []);
 
   const filteredPackages = packages.filter((item: any) => item.tour_type === (name ?? '').toLowerCase());
 

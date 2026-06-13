@@ -1,98 +1,79 @@
 "use client";
 
-import useAxiosPublick from "../../../../Hooks/useAxiosPublick";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { FaUsers, FaTrash } from "react-icons/fa";
+import { getUsers, updateUserRole, deleteUser } from "@/app/actions/secure";
 
 const Users = () => {
-  const axiosPublick = useAxiosPublick(); // Use your custom hook for Axios instance
   const [users, setUsers] = useState<any[]>([]);
   const [filteredUsers, setFilteredUsers] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Fetch users on component mount
+  // Fetch users on component mount (via Server Action)
   useEffect(() => {
-    axiosPublick.get('/users')
-      .then((res: any) => {
-        setUsers(res.data);
-        setFilteredUsers(res.data);
-        setLoading(false);
+    getUsers()
+      .then((data) => {
+        setUsers(data);
+        setFilteredUsers(data);
       })
-      .catch((err: any) => {
-        console.error('Error fetching users:', err);
-        setLoading(false);
-      });
-  }, [axiosPublick]);
+      .finally(() => setLoading(false));
+  }, []);
 
-  // Function to handle making a user an admin
+  // Promote a user to admin
   const handleMakeAdmin = (user: any) => {
-    if (!user || !user._id) {
-      console.error('Invalid user or user ID');
-      return;
-    }
-
-    axiosPublick.patch(`/users/admin/${user._id}`)
-      .then((res: any) => {
-        if (res.data.modifiedCount > 0) {
-          // Update the state to reflect changes
-          setUsers(users.map((u: any) => u._id === user._id ? { ...u, role: 'admin' } : u));
-          setFilteredUsers(filteredUsers.map((u: any) => u._id === user._id ? { ...u, role: 'admin' } : u));
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: `${user.name} is an admin now!`,
-            showConfirmButton: false,
-            timer: 1500
-          });
-        } else {
-          console.error('No modifications were made.');
-        }
-      })
-      .catch((err: any) => {
-        console.error('Error occurred:', err);
+    if (!user?._id) return;
+    updateUserRole(user._id, "admin")
+      .then(() => {
+        setUsers((prev) =>
+          prev.map((u: any) => (u._id === user._id ? { ...u, role: "admin" } : u)),
+        );
+        setFilteredUsers((prev) =>
+          prev.map((u: any) => (u._id === user._id ? { ...u, role: "admin" } : u)),
+        );
         Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!',
+          position: "center",
+          icon: "success",
+          title: `${user.name} is an admin now!`,
+          showConfirmButton: false,
+          timer: 1500,
         });
-      });
+      })
+      .catch(() =>
+        Swal.fire({ icon: "error", title: "Oops...", text: "Something went wrong!" }),
+      );
   };
 
-  // Function to handle deleting a user
+  // Delete a user
   const handleDeleteUser = (user: any) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
+      confirmButtonColor: "#2563eb",
+      cancelButtonColor: "#ef4444",
+      confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosPublick.delete(`/users/${user._id}`)
+        deleteUser(user._id)
           .then((res: any) => {
-            if (res.data.deletedCount > 0) {
-              // Update the state to reflect changes
-              setUsers(users.filter((u: any) => u._id !== user._id));
-              setFilteredUsers(filteredUsers.filter((u: any) => u._id !== user._id));
+            if (res?.deletedCount > 0) {
+              setUsers((prev) => prev.filter((u: any) => u._id !== user._id));
+              setFilteredUsers((prev) =>
+                prev.filter((u: any) => u._id !== user._id),
+              );
               Swal.fire({
                 title: "Deleted!",
                 text: `${user.name} has been deleted`,
-                icon: "success"
+                icon: "success",
               });
             }
           })
-          .catch((err: any) => {
-            console.error('Error occurred:', err);
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'Something went wrong!',
-            });
-          });
+          .catch(() =>
+            Swal.fire({ icon: "error", title: "Oops...", text: "Something went wrong!" }),
+          );
       }
     });
   };

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import SinglePageTourGuide from "./SinglePageTourGuide";
 import BookingForm from "../Form/TourBookingFrom";
-import useAxiosPublick from "../Hooks/useAxiosPublick";
+import { getGuides } from "@/app/actions/data";
 
 const img1 = "/assets/contact.jpg";
 const img2 = "/assets/about.jpg";
@@ -12,9 +12,6 @@ const img4 = "/assets/tourbgimg.jpg";
 
 const SingleCard = ({ data }: { data: any }) => {
   const { image, price, tour_type, trip_title } = data;
-
-  // Custom hook for axios instance
-  const axiosPublick = useAxiosPublick();
 
   // State for packages and loading indicator
   const [packages, setPackages] = useState<any[]>([]);
@@ -34,19 +31,13 @@ const SingleCard = ({ data }: { data: any }) => {
     setActiveAccordion(activeAccordion === index ? null : index);
   };
 
-  // Effect to fetch guides data using axios
+  // Fetch guides via Server Action
   useEffect(() => {
-    axiosPublick
-        .get("/guides")
-        .then((res: any) => {
-          setPackages(res.data);
-          setLoading(false);
-        })
-        .catch((err: any) => {
-          console.error("Error fetching packages:", err);
-          setLoading(false);
-        });
-  }, [axiosPublick]);
+    getGuides().then((data) => {
+      setPackages(data);
+      setLoading(false);
+    });
+  }, []);
 
   return (
       <div className="max-w-[85rem] mx-auto">

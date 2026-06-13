@@ -1,23 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import useAxiosPublick from "../Hooks/useAxiosPublick";
 import { MdOutlineFavoriteBorder } from "react-icons/md";
 import { FaArrowRightLong } from "react-icons/fa6";
 import Link from "next/link";
 import { motion, StaggerGroup, fadeUp } from "@/lib/motion";
 import SectionHeading from "@/components/shared/SectionHeading";
+import { getStories } from "@/app/actions/data";
 
 const Stories = () => {
   const [stories, setStories] = useState<any[]>([]);
-  const axiosPublick = useAxiosPublick();
 
   useEffect(() => {
-    axiosPublick
-      .get("/stories")
-      .then((res: any) => setStories(res.data.slice(0, 6)))
-      .catch((err: any) => console.error("তথ্য আনতে সমস্যা হয়েছে:", err));
-  }, [axiosPublick]);
+    getStories(6).then(setStories);
+  }, []);
 
   return (
     <section className="mx-auto max-w-7xl px-4 py-20 lg:px-8">

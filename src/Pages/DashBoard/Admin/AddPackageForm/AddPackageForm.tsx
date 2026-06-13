@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Swal from 'sweetalert2';
+import { addPackage } from '@/app/actions/secure';
 
 interface FormData {
   image: File | null;
@@ -25,39 +26,28 @@ const AddPackageForm = () => {
     setFormData({ ...formData, image: e.target.files ? e.target.files[0] : null });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    const form = new FormData();
-    if (formData.image) {
-      form.append('image', formData.image);
-    }
-    form.append('trip_title', formData.title);
-    form.append('tour_type', formData.tourType);
-
-    // Assuming you have a specific route for submitting the package
-    fetch('https://tourist-guide-server-tawny.vercel.app/packages', {
-      method: 'POST',
-      body: form,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          Swal.fire({
-            title: 'Package Added!',
-            text: 'Your package has been successfully added.',
-            icon: 'success',
-            confirmButtonText: 'OK',
-          });
-        } else {
-          Swal.fire({
-            title: 'Error',
-            text: 'There was a problem adding the package.',
-            icon: 'error',
-            confirmButtonText: 'OK',
-          });
-        }
+    try {
+      await addPackage({
+        trip_title: formData.title,
+        tour_type: formData.tourType,
       });
+      Swal.fire({
+        title: 'Package Added!',
+        text: 'Your package has been successfully added.',
+        icon: 'success',
+        confirmButtonText: 'OK',
+      });
+      setFormData({ image: null, title: '', tourType: '' });
+    } catch {
+      Swal.fire({
+        title: 'Error',
+        text: 'There was a problem adding the package.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
+    }
   };
 
   return (

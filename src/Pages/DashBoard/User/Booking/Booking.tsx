@@ -2,42 +2,31 @@
 
 import { FaNutritionix, FaTrash } from "react-icons/fa6";
 import Swal from "sweetalert2";
-import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useBooking from "../../../../Hooks/useBooking";
-import useAuth from "../../../../Hooks/useAuth";
-
+import { deleteBooking } from "@/app/actions/secure";
 
 const Booking = () => {
   const [booking, refetch] = useBooking();
-  console.log(booking);
-  const { user } = useAuth();
-  console.log(user);
-  // const totatPrice=booking.reduce((total,item)=>total+item.price,0)
-  const axiosSecure = useAxiosSecure();
 
   const handleDeleteCart = (id: any) => {
-    console.log(id);
-
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#2563eb",
+      cancelButtonColor: "#ef4444",
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.delete(`/bookings/${id}`)
-          .then((res: any) => {
-            console.log(res);
-            Swal.fire({
-              title: "Deleted!",
-              text: "Your file has been deleted.",
-              icon: "success"
-            });
-            refetch();
+        deleteBooking(id).then(() => {
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success"
           });
+          refetch();
+        });
       }
     });
   };

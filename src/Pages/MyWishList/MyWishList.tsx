@@ -5,8 +5,8 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import Swal from "sweetalert2";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
+import { addToWishlist } from "@/app/actions/secure";
 
 interface MyWishListProps {
   item?: any;
@@ -17,7 +17,6 @@ const MyWishList = ({ item = {} }: MyWishListProps) => {
   const { user } = useAuth();
   const router = useRouter();
   const pathname = usePathname();
-  const axiosSecure = useAxiosSecure();
 
   const handleAddToCart = () => {
     if (user && user.email) {
@@ -30,8 +29,8 @@ const MyWishList = ({ item = {} }: MyWishListProps) => {
         trip_title,
         price,
       };
-      axiosSecure.post("/wishlists", cartItem).then((res: any) => {
-        if (res.data.insertedId) {
+      addToWishlist(cartItem).then((res: any) => {
+        if (res?.insertedId) {
           Swal.fire({
             icon: "success",
             title: `${trip_title} আপনার ইচ্ছেতালিকায় যোগ হয়েছে`,

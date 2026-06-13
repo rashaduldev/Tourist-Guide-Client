@@ -14,28 +14,21 @@ import {
   FaWind,
 } from "react-icons/fa6";
 import Swipslider from "./Swipslider";
-import useAxiosPublick from "../../Hooks/useAxiosPublick";
 import SectionHeading from "@/components/shared/SectionHeading";
+import { getPackages } from "@/app/actions/data";
 
 const backgroundImg = "/assets/tourbgimg.jpg";
 
 const TourType = () => {
   const [packages, setPackages] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const axiosPublick = useAxiosPublick();
 
   useEffect(() => {
-    axiosPublick
-      .get("/packages")
-      .then((res: any) => {
-        setPackages(res.data);
-        setLoading(false);
-      })
-      .catch((err: any) => {
-        console.error("প্যাকেজ লোড করতে সমস্যা হয়েছে:", err);
-        setLoading(false);
-      });
-  }, [axiosPublick]);
+    getPackages().then((data) => {
+      setPackages(data);
+      setLoading(false);
+    });
+  }, []);
 
   const byType = (t: string) =>
     packages.filter((item: any) => item.tour_type === t);

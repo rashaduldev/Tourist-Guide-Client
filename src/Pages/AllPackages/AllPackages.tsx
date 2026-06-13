@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import useAuth from "../../Hooks/useAuth";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { FaHeart } from "react-icons/fa6";
+import { addToWishlist } from "@/app/actions/secure";
 
 interface PackProps {
   pack: {
@@ -21,8 +21,6 @@ const AllPackages = ({ pack }: PackProps) => {
   const { id, tour_type, image, trip_title, price } = pack;
   const { user } = useAuth();
   const router = useRouter();
-  const pathname = usePathname();
-  const axiosSecure = useAxiosSecure();
 
   const handleAddtoCart = () => {
     if (user && user.email) {
@@ -34,15 +32,14 @@ const AllPackages = ({ pack }: PackProps) => {
         price
       };
 
-      axiosSecure.post('/wishlists', cartItem)
-        .then((res: any) => {
-          Swal.fire({
-            icon: 'success',
-            title: `${trip_title} Added to wishlist`,
-            showConfirmButton: false,
-            timer: 1500
-          });
+      addToWishlist(cartItem).then(() => {
+        Swal.fire({
+          icon: 'success',
+          title: `${trip_title} Added to wishlist`,
+          showConfirmButton: false,
+          timer: 1500
         });
+      });
     } else {
       Swal.fire({
         title: "You are not logged in!",

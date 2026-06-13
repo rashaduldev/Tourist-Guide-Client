@@ -1,28 +1,21 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import useAxiosPublick from "../../../Hooks/useAxiosPublick";
 import Link from "next/link";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { motion, StaggerGroup, fadeUp } from "@/lib/motion";
+import { getGuides } from "@/app/actions/data";
 
 const TourGuide = () => {
   const [guides, setGuides] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const axiosPublick = useAxiosPublick();
 
   useEffect(() => {
-    axiosPublick
-      .get("/guides")
-      .then((res: any) => {
-        setGuides(res.data);
-        setLoading(false);
-      })
-      .catch((err: any) => {
-        console.error("Error fetching guides:", err);
-        setLoading(false);
-      });
-  }, [axiosPublick]);
+    getGuides().then((data) => {
+      setGuides(data);
+      setLoading(false);
+    });
+  }, []);
 
   if (loading) {
     return (

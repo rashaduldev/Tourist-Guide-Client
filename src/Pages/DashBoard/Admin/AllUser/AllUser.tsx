@@ -3,72 +3,51 @@
 import { useQuery } from "@tanstack/react-query";
 import { FaTrash, FaUsers } from "react-icons/fa6";
 import Swal from "sweetalert2";
-import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import { getUsers, updateUserRole, deleteUser } from "@/app/actions/secure";
 
 const AllUsers = () => {
-  const axiosSecure = useAxiosSecure();
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
-    queryFn: async () => {
-      const response = await axiosSecure.get("/users");
-      return response.data;
-    },
+    queryFn: () => getUsers(),
   });
 
   const handleMakeAdmin = (user: any) => {
-    if (!user || !user._id) {
-      console.error('Invalid user or user ID');
-      return;
-    }
-
-    axiosSecure.patch(`/users/admin/${user._id}`)
-      .then((res: any) => {
-        console.log(res.data);
-        if (res.data && res.data.modifiedCount > 0) {
-          refetch();
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: `${user.name} is an admin now!`,
-            showConfirmButton: false,
-            timer: 1500
-          });
-        } else {
-          console.error('No modifications were made.');
-        }
-      })
-      .catch((err: any) => {
-        console.error('Error occurred:', err);
+    if (!user?._id) return;
+    updateUserRole(user._id, "admin")
+      .then(() => {
+        refetch();
         Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!',
+          position: "center",
+          icon: "success",
+          title: `${user.name} is an admin now!`,
+          showConfirmButton: false,
+          timer: 1500,
         });
-      });
+      })
+      .catch(() =>
+        Swal.fire({ icon: "error", title: "Oops...", text: "Something went wrong!" }),
+      );
   };
 
   const handleDeleteUser = (user: any) => {
-    console.log('User deleted successfully', user.email);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
+      confirmButtonColor: "#2563eb",
+      cancelButtonColor: "#ef4444",
+      confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.delete(`/users/${user._id}`)
-          .then((res: any) => {
-            console.log(res);
-            Swal.fire({
-              title: "Deleted!",
-              text: `${user.name} has been deleted`,
-              icon: "success"
-            });
-            refetch();
+        deleteUser(user._id).then(() => {
+          Swal.fire({
+            title: "Deleted!",
+            text: `${user.name} has been deleted`,
+            icon: "success",
           });
+          refetch();
+        });
       }
     });
   };

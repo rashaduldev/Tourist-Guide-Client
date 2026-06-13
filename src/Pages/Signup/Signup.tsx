@@ -8,14 +8,13 @@ import Swal from "sweetalert2";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { signIn } from "next-auth/react";
 import ExtraLogin from "../../Components/ExtraLogin";
-import useAxiosPublick from "../../Hooks/useAxiosPublick";
+import { registerUser } from "@/app/actions/auth";
 
 const img = "/assets/authentication2.png";
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
-  const axiosPublic = useAxiosPublick();
   const {
     register,
     handleSubmit,
@@ -24,39 +23,40 @@ const Signup = () => {
 
   const onSubmit = async (data: any) => {
     const { name, email, password } = data;
-    try {
-      // Register the user in the backend (creates the account + hashes password).
-      await axiosPublic.post("/auth/register", { name, email, password });
 
-      // Then sign in with NextAuth so a session cookie is established.
-      const result = await signIn("credentials", {
-        email,
-        password,
-        redirect: false,
-      });
-      if (result?.error) {
-        router.push("/login");
-        return;
-      }
-
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "User Signup",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      router.push("/");
-      router.refresh();
-    } catch (error: any) {
+    // Register via Server Action (creates the account + hashes password server-side).
+    const result = await registerUser({ name, email, password });
+    if (!result.ok) {
       Swal.fire({
         position: "center",
         icon: "error",
-        title: error?.response?.data?.message ?? "Signup failed",
+        title: result.error ?? "Signup failed",
         showConfirmButton: false,
         timer: 1500,
       });
+      return;
     }
+
+    // Then sign in with NextAuth so a session cookie is established.
+    const signInResult = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    });
+    if (signInResult?.error) {
+      router.push("/login");
+      return;
+    }
+
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "User Signup",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    router.push("/");
+    router.refresh();
   };
   return (
     <div>

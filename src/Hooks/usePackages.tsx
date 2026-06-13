@@ -1,21 +1,25 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import type { TourPackage } from "@/types";
-
-const API_BASE =
-  process.env.NEXT_PUBLIC_API_BASE_URL ??
-  "https://tourist-guide-server-tawny.vercel.app";
+import { getPackages } from "@/app/actions/data";
 
 const usePackages = () => {
   const [packages, setPackages] = useState<TourPackage[]>([]);
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    fetch(`${API_BASE}/packages`)
-      .then((res) => res.json())
-      .then((data) => {
-        setPackages(data);
-        setLoading(false);
-      });
+    let active = true;
+    getPackages().then((data) => {
+      if (!active) return;
+      setPackages(data);
+      setLoading(false);
+    });
+    return () => {
+      active = false;
+    };
   }, []);
+
   return [packages, loading] as const;
 };
 
