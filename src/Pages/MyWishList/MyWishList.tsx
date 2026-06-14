@@ -1,11 +1,12 @@
 "use client";
 
 import { FaHeart } from "react-icons/fa6";
+import { FaArrowRightLong } from "react-icons/fa6";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import Swal from "sweetalert2";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
+import { addToWishlist } from "@/app/actions/secure";
 
 interface MyWishListProps {
   item?: any;
@@ -16,7 +17,6 @@ const MyWishList = ({ item = {} }: MyWishListProps) => {
   const { user } = useAuth();
   const router = useRouter();
   const pathname = usePathname();
-  const axiosSecure = useAxiosSecure();
 
   const handleAddToCart = () => {
     if (user && user.email) {
@@ -29,8 +29,8 @@ const MyWishList = ({ item = {} }: MyWishListProps) => {
         trip_title,
         price,
       };
-      axiosSecure.post("/wishlists", cartItem).then((res: any) => {
-        if (res.data.insertedId) {
+      addToWishlist(cartItem).then((res: any) => {
+        if (res?.insertedId) {
           Swal.fire({
             icon: "success",
             title: `${trip_title} আপনার ইচ্ছেতালিকায় যোগ হয়েছে`,
@@ -45,45 +45,57 @@ const MyWishList = ({ item = {} }: MyWishListProps) => {
         text: "দয়া করে আগে লগইন করুন।",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
+        confirmButtonColor: "#2563eb",
+        cancelButtonColor: "#ef4444",
         confirmButtonText: "লগইন করুন",
       }).then((result) => {
         if (result.isConfirmed) {
-          router.push(`/login?from=${encodeURIComponent(pathname ?? '/')}`);
+          router.push(`/login?from=${encodeURIComponent(pathname ?? "/")}`);
         }
       });
     }
   };
 
   return (
-    <div className="bg-white rounded shadow-md hover:shadow-lg transition duration-300 relative overflow-hidden group dark:bg-slate-900">
-      <div className="relative">
-        <img src={image} alt={trip_title} className="w-full h-52 object-cover" />
+    <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl dark:border-border dark:bg-card">
+      <div className="relative h-52 overflow-hidden">
+        <img
+          src={image}
+          alt={trip_title}
+          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+        {tour_type && (
+          <span className="absolute left-3 top-3 rounded-full bg-card/90 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-foreground backdrop-blur dark:bg-card/80 dark:text-slate-200">
+            {tour_type}
+          </span>
+        )}
         <button
           onClick={handleAddToCart}
-          className="absolute top-2 right-2 bg-white p-2 rounded-full text-pink-500 text-xl hover:bg-pink-100 transition"
+          aria-label="ইচ্ছেতালিকায় যোগ করুন"
+          className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-card/90 text-muted-foreground backdrop-blur transition-all hover:scale-110 hover:bg-card hover:text-rose-500 dark:bg-muted/90"
         >
           <FaHeart />
         </button>
       </div>
 
-      <div className="p-5 space-y-2">
-        <h3 className="text-gray-600 font-semibold text-sm uppercase tracking-wide">
-          {tour_type}
-        </h3>
-        <h2 className="text-xl font-bold text-gray-800 dark:text-white">
+      <div className="flex flex-grow flex-col p-5">
+        <h2 className="line-clamp-1 text-lg font-bold text-foreground dark:text-white">
           {trip_title}
         </h2>
-        <p className="text-gray-600 dark:text-gray-400">৳ {price}</p>
-      </div>
+        <p className="mt-1 text-sm text-muted-foreground dark:text-muted-foreground">
+          শুরু{" "}
+          <span className="text-lg font-extrabold text-primary dark:text-primary">
+            ৳{price}
+          </span>
+        </p>
 
-      <div className="flex items-center justify-between px-5 pb-4">
         <Link
           href={`/details/${id}`}
-          className="text-sm font-medium text-white bg-gray-700 hover:bg-gray-800 px-4 py-2 rounded-full transition"
+          className="group/btn mt-5 inline-flex items-center justify-center gap-2 rounded-xl border border-border px-4 py-2.5 text-sm font-semibold text-foreground transition-all duration-300 hover:border-transparent hover:bg-brand hover:text-white dark:border-border dark:text-slate-200"
         >
           বিস্তারিত দেখুন
+          <FaArrowRightLong className="transition-transform duration-300 group-hover/btn:translate-x-1" />
         </Link>
       </div>
     </div>

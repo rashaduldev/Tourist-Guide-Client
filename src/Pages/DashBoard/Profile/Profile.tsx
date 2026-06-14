@@ -2,120 +2,117 @@
 
 import { IoLocationSharp } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
-import { PiGenderFemaleFill } from "react-icons/pi";
-import { RiVerifiedBadgeFill } from "react-icons/ri";
-import { RiContactsFill } from "react-icons/ri";
+import { PiGenderMaleBold } from "react-icons/pi";
+import { RiVerifiedBadgeFill, RiContactsFill } from "react-icons/ri";
 import Link from "next/link";
 import Swal from "sweetalert2";
 import useAuth from "../../../Hooks/useAuth";
+import { Reveal } from "@/lib/motion";
 
 const Profile = () => {
   const user: any = useAuth().user;
-  const handleclick = () => {
+
+  const handleVerify = () => {
     Swal.fire({
-      title: "<p>To Verify, You've to pay the amount of<u> $25</u></p>",
+      title: "ভেরিফাই করতে ৳২৫ পরিশোধ করুন",
       icon: "info",
-      html: `
-                <div class='flex gap-5 items-center'>
-                    <div class="bg-[#CABDFF] w-3 h-8 rounded-lg"></div>
-                    <div>
-                        <p class="font-bold text-lg">General information</p>
-                    </div>
-                </div>
-            `,
       showCloseButton: true,
-      showCancelButton: false,
-      focusConfirm: false,
-      confirmButtonText: `
-                <i class="fa fa-thumbs-up"></i> Proceed to pay
-            `,
-      confirmButtonAriaLabel: "Thumbs up, great!",
-      cancelButtonAriaLabel: "Thumbs down"
+      confirmButtonText: "পেমেন্টে যান",
+      confirmButtonColor: "#2563eb",
     });
   };
 
+  const info = [
+    { icon: <RiContactsFill />, label: "নিকনেম", value: user?.displayName },
+    { icon: <PiGenderMaleBold />, label: "লিঙ্গ", value: "Male" },
+    { icon: <MdEmail />, label: "ইমেইল", value: user?.email },
+    { icon: <IoLocationSharp />, label: "অবস্থান", value: "ঢাকা, বাংলাদেশ" },
+    {
+      icon: <RiContactsFill />,
+      label: "যোগাযোগ নম্বর",
+      value: user?.phoneNumber || "যোগ করা হয়নি",
+    },
+  ];
+
   return (
-    <div className='relative'>
-      <div className='h-28 w-full'>
-        <img
-          src="https://i.ibb.co/HP28p9X/Cover-photo.png"
-          alt="Profile Image"
-          className="w-full "
-        />
-      </div>
-      <div className="lg:w-[90%] mx-auto absolute top-[90%] px-5 lg:left-20">
-        <div className="">
-          <div className='p-10 bg-white rounded-md -bottom-30 w-full shadow-xl'>
-            <div className='flex justify-between '>
-              <div className='flex gap-5'>
-                <div>
-                  <img
-                    src={user.photoURL}
-                    alt="Profile Image"
-                    className="rounded-full h-10 w-10"
-                  />
+    <div className="mx-auto max-w-5xl">
+      {/* Profile header card */}
+      <Reveal className="overflow-hidden rounded-3xl border border-border bg-card shadow-sm dark:border-border dark:bg-card">
+        <div className="h-32 bg-brand" />
+        <div className="px-6 pb-6 sm:px-8">
+          <div className="-mt-12 flex flex-col items-center gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-end">
+              <img
+                src={user?.photoURL || "https://i.ibb.co/5GzXkwq/user.png"}
+                alt="Profile"
+                className="h-24 w-24 rounded-2xl object-cover shadow-lg ring-4 ring-white dark:ring-slate-900"
+              />
+              <div className="pb-1 text-center sm:text-left">
+                <div className="flex items-center justify-center gap-2 sm:justify-start">
+                  <h1 className="text-2xl font-extrabold text-foreground dark:text-white">
+                    {user?.displayName || "ব্যবহারকারী"}
+                  </h1>
+                  <RiVerifiedBadgeFill className="text-xl text-emerald-500" />
                 </div>
-                <div>
-                  <div className='flex items-center lg:gap-2'>
-                    <h1 className='lg:text-3xl font-bold'>{user.displayName}</h1>
-                    <RiVerifiedBadgeFill className='text-2xl text-[#22CD5A]' />
-                  </div>
-                  <p>Dream big. Think different. Do great!</p>
-                </div>
-              </div>
-              <div>
-                <Link href={'/dashboard/edituser'}>
-                  <button className='py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none'>Edit Profile</button>
-                </Link>
+                <p className="text-sm text-muted-foreground dark:text-muted-foreground">
+                  Dream big. Think different. Do great!
+                </p>
               </div>
             </div>
-            <hr className='my-10' />
-            <button className='btn'>Basic Info</button>
+            <Link
+              href="/dashboard/edituser"
+              className="rounded-xl bg-brand px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:-translate-y-0.5"
+            >
+              এডিট প্রোফাইল
+            </Link>
           </div>
         </div>
-        <div className="py-8">
-          <div className='p-10 bg-white rounded-md -bottom-30 w-full shadow-xl'>
-            <div className='flex gap-5 items-center'>
-              <div className="bg-[#CABDFF] w-3 h-8 rounded-lg" />
-              <div>
-                <p className="font-bold text-lg">General information</p>
-              </div>
-            </div>
-            <div className='flex flex-col lg:flex-row justify-between mt-10'>
-              <div className="mt-9">
-                <div className="flex items-center gap-3">
-                  <p className="text-[#2F7889] text-xl"><RiContactsFill /></p>
-                  <p className="font-bold">Nickname: <b>{user?.displayName}</b></p>
-                </div>
-                <div className="flex items-center gap-3 my-3">
-                  <p className="text-[#2F7889] text-xl"><PiGenderFemaleFill /></p>
-                  <p className="font-bold">Gender: <b>Male</b></p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <p className="text-[#2F7889] text-xl"><MdEmail /></p>
-                  <p className="font-bold">Email address: <b>{user?.email}</b></p>
-                </div>
-                <div className="flex items-center gap-3 my-3">
-                  <p className="text-[#2F7889] text-xl"><IoLocationSharp /></p>
-                  <p className="font-bold">Location: <b>Dhaka, Bangladesh</b></p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <p className="text-[#2F7889] text-xl"><RiContactsFill /></p>
-                  <p className="font-bold">Contact number : <b>{
-                    user ? user.phoneNumber :
-                      "...."
-                  }</b>....</p>
-                </div>
-              </div>
-              <div className="text-center">
-                <RiVerifiedBadgeFill className='text-9xl text-[#22CD5A] mx-auto' />
-                <button onClick={handleclick} className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-gray-500 text-white hover:bg-gray-600 disabled:opacity-50 disabled:pointer-events-none">Apply for verification</button>
-                <p className="py-5">If you verify, There is a huge chance of <br /> investor who&apos;ll love to invest in your pitch</p>
-              </div>
-            </div>
+      </Reveal>
+
+      {/* General info */}
+      <Reveal delay={0.1} className="mt-6 grid gap-6 lg:grid-cols-[1.6fr_1fr]">
+        <div className="rounded-3xl border border-border bg-card p-6 shadow-sm sm:p-8 dark:border-border dark:bg-card">
+          <div className="mb-6 flex items-center gap-3">
+            <span className="h-7 w-1.5 rounded-full bg-brand" />
+            <h2 className="text-lg font-bold text-foreground dark:text-white">
+              সাধারণ তথ্য
+            </h2>
           </div>
+          <dl className="space-y-4">
+            {info.map((i) => (
+              <div
+                key={i.label}
+                className="flex items-center gap-3 border-b border-border pb-4 last:border-0 last:pb-0 dark:border-border"
+              >
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent text-primary dark:bg-accent/40 dark:text-primary">
+                  {i.icon}
+                </span>
+                <div>
+                  <dt className="text-xs text-muted-foreground dark:text-muted-foreground">
+                    {i.label}
+                  </dt>
+                  <dd className="font-semibold text-foreground dark:text-white">
+                    {i.value}
+                  </dd>
+                </div>
+              </div>
+            ))}
+          </dl>
         </div>
-      </div>
+
+        <div className="flex flex-col items-center justify-center rounded-3xl border border-border bg-card p-8 text-center shadow-sm dark:border-border dark:bg-card">
+          <RiVerifiedBadgeFill className="text-7xl text-emerald-500" />
+          <p className="mt-4 text-sm text-muted-foreground dark:text-muted-foreground">
+            ভেরিফাই করলে বিনিয়োগকারীদের কাছে আপনার আস্থা বাড়বে।
+          </p>
+          <button
+            onClick={handleVerify}
+            className="mt-5 rounded-xl border border-border px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:text-primary dark:border-border dark:text-slate-200"
+          >
+            ভেরিফিকেশনের আবেদন
+          </button>
+        </div>
+      </Reveal>
     </div>
   );
 };

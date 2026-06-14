@@ -1,22 +1,15 @@
-import { useEffect, useState } from "react";
-import type { TourPackage } from "@/types";
+"use client";
 
-const API_BASE =
-  process.env.NEXT_PUBLIC_API_BASE_URL ??
-  "https://tourist-guide-server-tawny.vercel.app";
+import { useQuery } from "@tanstack/react-query";
+import type { TourPackage } from "@/types";
+import { getPackages } from "@/app/actions/data";
 
 const usePackages = () => {
-  const [packages, setPackages] = useState<TourPackage[]>([]);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    fetch(`${API_BASE}/packages`)
-      .then((res) => res.json())
-      .then((data) => {
-        setPackages(data);
-        setLoading(false);
-      });
-  }, []);
-  return [packages, loading] as const;
+  const { data: packages = [], isLoading } = useQuery<TourPackage[]>({
+    queryKey: ["packages"],
+    queryFn: () => getPackages(),
+  });
+  return [packages, isLoading] as const;
 };
 
 export default usePackages;

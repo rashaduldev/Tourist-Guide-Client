@@ -19,11 +19,11 @@ export default function Error({
         <div className="flex gap-4 justify-center">
           <button
             onClick={() => reset()}
-            className="text-blue-500 hover:underline"
+            className="text-primary hover:underline"
           >
             Try again
           </button>
-          <Link href="/" className="text-blue-500 hover:underline">
+          <Link href="/" className="text-primary hover:underline">
             Go back to the homepage
           </Link>
         </div>

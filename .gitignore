@@ -37,3 +37,6 @@ dist-ssr
 # Vercel / TS
 .vercel
 *.tsbuildinfo
+
+# Generated theme (from theme.json)
+src/app/theme.generated.css

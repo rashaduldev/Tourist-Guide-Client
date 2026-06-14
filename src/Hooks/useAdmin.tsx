@@ -1,19 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
-import useAuth from "./useAuth";
-import useAxiosSecure from "./useAxiosSecure";
+"use client";
 
-const useAdmin = (): [boolean | undefined, boolean] => {
-  const { user } = useAuth();
-  const axiosSecure = useAxiosSecure();
-  const { data: isAdmin, isPending: isAdminLoading } = useQuery({
-    queryKey: [user?.email, "isAdmin"],
-    enabled: !!user?.email,
-    queryFn: async () => {
-      const response = await axiosSecure.get(`/users/admin/${user?.email}`);
-      return response.data?.admin as boolean;
-    },
-  });
-  return [isAdmin, isAdminLoading];
+import useAuth from "./useAuth";
+
+// Admin status now comes from the NextAuth session (set at sign-in), so no
+// extra request is needed. Returns [isAdmin, isLoading] to match the old API.
+const useAdmin = (): [boolean, boolean] => {
+  const { isAdmin, loading } = useAuth();
+  return [isAdmin, loading];
 };
 
 export default useAdmin;

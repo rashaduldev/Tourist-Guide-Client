@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { FaArrowRightLong } from "react-icons/fa6";
+import { AnimatePresence, motion } from "framer-motion";
+import SectionHeading from "@/components/shared/SectionHeading";
 
 interface TourAuthor {
   name: string;
@@ -12,6 +15,7 @@ interface Tour {
   id: string;
   title: string;
   description: string;
+  image: string;
   author: TourAuthor;
   status: string;
 }
@@ -20,132 +24,141 @@ const toursData: Tour[] = [
   {
     id: "1",
     title: "সুন্দরবন বন্যপ্রাণী ভ্রমণ",
-    description: "বাংলাদেশের সবচেয়ে বড় ম্যানগ্রোভ ফরেস্ট সুন্দরবনে বন্যপ্রাণী ও প্রকৃতির অভিজ্ঞতা।",
-    author: {
-      name: "আব্দুল করিম",
-      img: "https://randomuser.me/api/portraits/men/32.jpg",
-    },
+    description:
+      "বাংলাদেশের সবচেয়ে বড় ম্যানগ্রোভ ফরেস্ট সুন্দরবনে বন্যপ্রাণী ও প্রকৃতির অভিজ্ঞতা।",
+    image: "https://i.ibb.co/gR20XrV/coxs.jpg",
+    author: { name: "আব্দুল করিম", img: "https://randomuser.me/api/portraits/men/32.jpg" },
     status: "available",
   },
   {
     id: "2",
     title: "চট্টগ্রাম পাহাড়ি টুর",
-    description: "চট্টগ্রামের পাহাড়ি অঞ্চলে এক অনন্য অভিজ্ঞতা ও ঐতিহ্যবাহী গ্রাম পরিদর্শন।",
-    author: {
-      name: "মাহমুদা খাতুন",
-      img: "https://randomuser.me/api/portraits/women/44.jpg",
-    },
+    description:
+      "চট্টগ্রামের পাহাড়ি অঞ্চলে এক অনন্য অভিজ্ঞতা ও ঐতিহ্যবাহী গ্রাম পরিদর্শন।",
+    image: "https://i.ibb.co/YWGNtBg/mixphoto.jpg",
+    author: { name: "মাহমুদা খাতুন", img: "https://randomuser.me/api/portraits/women/44.jpg" },
     status: "coming_soon",
   },
   {
     id: "3",
     title: "সেন্ট মার্টিন দ্বীপ ভ্রমণ",
-    description: "বাংলাদেশের একমাত্র প্রবাল দ্বীপ সেন্ট মার্টিনে সাগর ও প্রাকৃতিক সৌন্দর্যের আনন্দ।",
-    author: {
-      name: "রফিকুল ইসলাম",
-      img: "https://randomuser.me/api/portraits/men/56.jpg",
-    },
+    description:
+      "বাংলাদেশের একমাত্র প্রবাল দ্বীপ সেন্ট মার্টিনে সাগর ও প্রাকৃতিক সৌন্দর্যের আনন্দ।",
+    image: "https://i.ibb.co/7SqD1Gb/help-desk-right.png",
+    author: { name: "রফিকুল ইসলাম", img: "https://randomuser.me/api/portraits/men/56.jpg" },
     status: "available",
   },
   {
     id: "4",
     title: "রাজশাহী ঐতিহাসিক দর্শন",
-    description: "রাজশাহীর ঐতিহাসিক স্থাপনা ও সাংস্কৃতিক ভ্রমণ, ইতিহাসের স্বাদ নিন।",
-    author: {
-      name: "নাসরিন আক্তার",
-      img: "https://randomuser.me/api/portraits/women/22.jpg",
-    },
+    description:
+      "রাজশাহীর ঐতিহাসিক স্থাপনা ও সাংস্কৃতিক ভ্রমণ, ইতিহাসের স্বাদ নিন।",
+    image: "https://i.ibb.co/YWGNtBg/mixphoto.jpg",
+    author: { name: "নাসরিন আক্তার", img: "https://randomuser.me/api/portraits/women/22.jpg" },
     status: "coming_soon",
   },
 ];
 
+const tabs = [
+  { key: "available", label: "উপলব্ধ" },
+  { key: "coming_soon", label: "শীঘ্রই আসছে" },
+];
+
 const ToursSection = () => {
   const [activeTab, setActiveTab] = useState("available");
-
-  const filteredTours = toursData.filter((tour: Tour) => tour.status === activeTab);
+  const filteredTours = toursData.filter((tour) => tour.status === activeTab);
 
   return (
-    <section className="max-w-7xl mx-auto px-4 md:px-0 my-20">
-      <h2 className="text-4xl font-extrabold text-center text-gray-900 dark:text-white mb-10">
-        ট্যুরের অবস্থা
-      </h2>
+    <section className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
+      <SectionHeading eyebrow="ট্যুর স্ট্যাটাস" title="ট্যুরের অবস্থা" />
 
-      {/* Tabs */}
-      <div className="flex justify-center gap-6 mb-12">
-        <button
-          onClick={() => setActiveTab("available")}
-          className={`py-2 px-6 rounded-full font-semibold transition ${
-            activeTab === "available"
-              ? "bg-gray-800 text-white shadow-lg"
-              : "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-800 hover:text-white"
-          }`}
-        >
-          উপলব্ধ (Available)
-        </button>
-        <button
-          onClick={() => setActiveTab("coming_soon")}
-          className={`py-2 px-6 rounded-full font-semibold transition ${
-            activeTab === "coming_soon"
-              ? "bg-gray-800 text-white shadow-lg"
-              : "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-800 hover:text-white"
-          }`}
-        >
-          শীঘ্রই আসছে (Coming Soon)
-        </button>
+      {/* Segmented filter */}
+      <div className="mx-auto mt-10 flex w-fit gap-1 rounded-full border border-border bg-muted p-1 dark:border-border dark:bg-muted">
+        {tabs.map((tab) => (
+          <button
+            key={tab.key}
+            onClick={() => setActiveTab(tab.key)}
+            className={`relative rounded-full px-6 py-2.5 text-sm font-semibold transition-colors ${
+              activeTab === tab.key
+                ? "text-white"
+                : "text-muted-foreground hover:text-foreground dark:text-muted-foreground dark:hover:text-white"
+            }`}
+          >
+            {activeTab === tab.key && (
+              <motion.span
+                layoutId="tourTab"
+                className="absolute inset-0 rounded-full bg-brand shadow"
+                transition={{ type: "spring", stiffness: 350, damping: 30 }}
+              />
+            )}
+            <span className="relative z-10">{tab.label}</span>
+          </button>
+        ))}
       </div>
 
-      {/* Tours Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filteredTours.map((tour: Tour) => (
-          <div
-            key={tour.id}
-            className="bg-white dark:bg-slate-900 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-200 dark:border-gray-700 flex flex-col"
-          >
-            <div className="p-6 flex flex-col flex-grow">
-              <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white line-clamp-2">
-                {tour.title}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-6 flex-grow line-clamp-3">
-                {tour.description}
-              </p>
-
-              {/* Author info */}
-              <div className="flex items-center gap-3 mb-4">
+      {/* Grid */}
+      <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <AnimatePresence mode="popLayout">
+          {filteredTours.map((tour) => (
+            <motion.article
+              layout
+              key={tour.id}
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ y: -8 }}
+              className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-shadow duration-300 hover:shadow-xl dark:border-border dark:bg-card"
+            >
+              <div className="relative h-48 overflow-hidden">
                 <img
-                  src={tour.author.img}
-                  alt={tour.author.name}
-                  className="w-10 h-10 rounded-full object-cover"
+                  src={tour.image}
+                  alt={tour.title}
+                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                 />
-                <p className="text-gray-800 dark:text-gray-200 font-medium">
-                  {tour.author.name}
-                </p>
+                <span
+                  className={`absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-semibold backdrop-blur ${
+                    tour.status === "available"
+                      ? "bg-emerald-500/90 text-white"
+                      : "bg-amber-500/90 text-white"
+                  }`}
+                >
+                  {tour.status === "available" ? "উপলব্ধ" : "শীঘ্রই আসছে"}
+                </span>
               </div>
 
-              {/* Status Badge */}
-              <span
-                className={`inline-block px-3 w-32 text-center py-1 rounded-full text-sm font-semibold border
-                    ${
-                    tour.status === "available"
-                        ? "bg-gray-800 text-white border-black"
-                        : "bg-white text-black border-gray-400 dark:bg-gray-800 dark:text-white dark:border-gray-500"
-                    }`}
-                >
-                {tour.status === "available" ? "উপলব্ধ" : "শীঘ্রই আসছে"}
-                </span>
-            </div>
+              <div className="flex flex-grow flex-col p-6">
+                <h3 className="mb-2 line-clamp-2 text-xl font-bold text-foreground dark:text-white">
+                  {tour.title}
+                </h3>
+                <p className="mb-6 line-clamp-3 flex-grow text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground">
+                  {tour.description}
+                </p>
 
-            {/* Details button */}
-            <div className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">
-              <Link
-                href={`/tour/${tour.id}`}
-                className="block text-center font-semibold transition"
-                aria-label={`${tour.title} এর বিস্তারিত দেখুন`}
-              >
-                বিস্তারিত দেখুন
-              </Link>
-            </div>
-          </div>
-        ))}
+                <div className="flex items-center justify-between border-t border-border pt-4 dark:border-border">
+                  <div className="flex items-center gap-3">
+                    <img
+                      src={tour.author.img}
+                      alt={tour.author.name}
+                      className="h-9 w-9 rounded-full object-cover ring-2 ring-white dark:ring-border"
+                    />
+                    <span className="text-sm font-medium text-foreground dark:text-muted-foreground">
+                      {tour.author.name}
+                    </span>
+                  </div>
+                  <Link
+                    href={`/tour/${tour.id}`}
+                    className="inline-flex items-center gap-1 text-sm font-semibold text-primary transition-colors hover:text-indigo-600 dark:text-primary"
+                    aria-label={`${tour.title} এর বিস্তারিত দেখুন`}
+                  >
+                    বিস্তারিত
+                    <FaArrowRightLong className="transition-transform duration-300 group-hover:translate-x-1" />
+                  </Link>
+                </div>
+              </div>
+            </motion.article>
+          ))}
+        </AnimatePresence>
       </div>
     </section>
   );

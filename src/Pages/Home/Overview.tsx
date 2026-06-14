@@ -1,6 +1,9 @@
 "use client";
 
 import { FaMapMarkedAlt, FaMountain, FaInfoCircle } from "react-icons/fa";
+import { FaArrowRightLong } from "react-icons/fa6";
+import { motion, StaggerGroup, fadeUp } from "@/lib/motion";
+import SectionHeading from "@/components/shared/SectionHeading";
 
 const Overview = () => {
   const cards = [
@@ -29,63 +32,53 @@ const Overview = () => {
       title: "পাহাড়ি কৃষি জীবন",
       location: "বান্দরবান",
       height: "পার্বত্য এলাকা",
-      summary:
-        "ফল, শস্য ও তামাক চাষ নির্ভরশীল — জীবন চলে পাহাড়ের ছায়ায়।",
+      summary: "ফল, শস্য ও তামাক চাষ নির্ভরশীল — জীবন চলে পাহাড়ের ছায়ায়।",
     },
   ];
 
-  const footerTexts = [
-    "আরও জানুন...",
-    "পড়া চালিয়ে যান →",
-    "গুরুত্বপূর্ণ তথ্য দেখুন",
-    "অন্তর্ভুক্ত বিষয়াবলী",
-    "আরো তথ্যের জন্য ক্লিক করুন",
-    "Discover more →",
-  ];
-
-  const getFooterText = (index: number) => footerTexts[index % footerTexts.length];
-
   return (
-    <div className="max-w-7xl py-10 lg:py-14 mx-auto">
-      <h2 className="text-3xl font-bold text-center mb-10 text-gray-900 dark:text-white">
-        ভ্রমণ সারাংশ
-      </h2>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
+    <div className="mx-auto max-w-7xl py-12 lg:py-16">
+      <SectionHeading eyebrow="ওভারভিউ" title="ভ্রমণ সারাংশ" />
+
+      <StaggerGroup className="mt-12 grid gap-6 sm:grid-cols-2">
         {cards.map((card, index) => (
-          <div
+          <motion.div
             key={index}
-            className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded p-6 shadow-sm dark:shadow-md hover:shadow-md dark:hover:shadow-lg transition duration-300 flex flex-col justify-between"
+            variants={fadeUp}
+            whileHover={{ y: -6 }}
+            transition={{ type: "spring", stiffness: 300, damping: 22 }}
+            className="group flex flex-col rounded-2xl border border-border bg-card p-6 text-left shadow-sm transition-shadow duration-300 hover:shadow-xl dark:border-border dark:bg-card"
           >
-            <div>
-              <div className="flex items-center mb-4">
-                <FaMapMarkedAlt className="text-gray-800 dark:text-gray-200 mr-2 text-lg" />
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{card.title}</h3>
-              </div>
-              <div className="flex justify-between text-sm text-gray-600 dark:text-gray-400 mb-2">
-                <span>
-                  <FaMountain className="inline mr-1" /> {card.height}
-                </span>
-                <span>
-                  <FaMapMarkedAlt className="inline mr-1" /> {card.location}
-                </span>
-              </div>
-              <p className="text-gray-700 dark:text-gray-300 text-sm flex items-start mt-2">
-                <FaInfoCircle className="text-gray-500 dark:text-gray-400 mr-2 mt-1" />
-                {card.summary}
-              </p>
+            <div className="mb-4 flex items-center gap-3">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand text-white shadow-lg">
+                <FaMapMarkedAlt />
+              </span>
+              <h3 className="text-lg font-bold text-foreground dark:text-white">
+                {card.title}
+              </h3>
             </div>
 
-            <div className="border-t border-gray-300 dark:border-gray-700 mt-6"></div>
+            <div className="mb-3 flex flex-wrap gap-2">
+              <span className="inline-flex items-center gap-1 rounded-full bg-muted px-3 py-1 text-xs font-medium text-foreground dark:bg-muted dark:text-muted-foreground">
+                <FaMountain /> {card.height}
+              </span>
+              <span className="inline-flex items-center gap-1 rounded-full bg-muted px-3 py-1 text-xs font-medium text-foreground dark:bg-muted dark:text-muted-foreground">
+                <FaMapMarkedAlt /> {card.location}
+              </span>
+            </div>
 
-            <p
-              className="mt-3 text-xs text-indigo-600 dark:text-indigo-400 text-center cursor-pointer select-none
-                         hover:text-indigo-800 dark:hover:text-indigo-300 transition duration-300"
-            >
-              {getFooterText(index)}
+            <p className="flex items-start gap-2 text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground">
+              <FaInfoCircle className="mt-1 flex-shrink-0 text-primary" />
+              {card.summary}
             </p>
-          </div>
+
+            <span className="mt-5 inline-flex items-center gap-1 border-t border-border pt-4 text-sm font-semibold text-primary dark:border-border dark:text-primary">
+              আরও জানুন
+              <FaArrowRightLong className="transition-transform duration-300 group-hover:translate-x-1" />
+            </span>
+          </motion.div>
         ))}
-      </div>
+      </StaggerGroup>
     </div>
   );
 };

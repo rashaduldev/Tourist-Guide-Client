@@ -1,114 +1,106 @@
 "use client";
 
-import { FaNutritionix, FaTrash } from "react-icons/fa6";
+import { FaTrash } from "react-icons/fa6";
 import Swal from "sweetalert2";
-import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useBooking from "../../../../Hooks/useBooking";
-import useAuth from "../../../../Hooks/useAuth";
-
+import { deleteBooking } from "@/app/actions/secure";
 
 const Booking = () => {
   const [booking, refetch] = useBooking();
-  console.log(booking);
-  const { user } = useAuth();
-  console.log(user);
-  // const totatPrice=booking.reduce((total,item)=>total+item.price,0)
-  const axiosSecure = useAxiosSecure();
 
   const handleDeleteCart = (id: any) => {
-    console.log(id);
-
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#2563eb",
+      cancelButtonColor: "#ef4444",
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.delete(`/bookings/${id}`)
-          .then((res: any) => {
-            console.log(res);
-            Swal.fire({
-              title: "Deleted!",
-              text: "Your file has been deleted.",
-              icon: "success"
-            });
-            refetch();
+        deleteBooking(id).then(() => {
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success"
           });
+          refetch();
+        });
       }
     });
   };
 
   return (
-    <div>
-      <div className="flex gap-3 justify-evenly bg-orange-200 py-2 mx-2 rounded mb-6">
-        <h2 className="uppercase lg:text-3xl text-center">Total Booking: {booking.length}</h2>
-        {/* <h2 className="uppercase lg:text-3xl text-center">Total Price: {totatPrice}</h2>
-       {booking.length? <Link href={'/dashboard/payment'}>
-        <button className="btn btn-primary">Pay</button>
-        </Link>:
-         <button disabled className="btn btn-primary">Pay</button>
-      } */}
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-extrabold tracking-tight text-foreground dark:text-white">
+          আমার বুকিং
+        </h1>
+        <span className="rounded-full bg-accent px-4 py-1.5 text-sm font-semibold text-primary dark:bg-accent/40 dark:text-primary">
+          মোট: {booking.length}
+        </span>
       </div>
-      <div className="flex flex-col">
-        <div className="-m-1.5 overflow-x-auto">
-          <div className="p-1.5 min-w-full inline-block align-middle">
-            <div className="overflow-hidden">
-              <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                <thead>
-                  <tr>
-                    <th scope="col" className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">
-                      <FaNutritionix></FaNutritionix>
-                    </th>
-                    <th scope="col" className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">ITEM IMAGE</th>
-                    <th scope="col" className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">tourGuide</th>
-                    <th scope="col" className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Date</th>
-                    <th scope="col" className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">PRICE</th>
-                    <th scope="col" className="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">ACTION</th>
+
+      <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm dark:border-border dark:bg-card">
+        <div className="overflow-x-auto">
+          <table className="min-w-full text-sm">
+            <thead className="bg-muted text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground dark:bg-muted/60 dark:text-muted-foreground">
+              <tr>
+                <th className="px-6 py-4">#</th>
+                <th className="px-6 py-4">ছবি</th>
+                <th className="px-6 py-4">গাইড</th>
+                <th className="px-6 py-4">তারিখ</th>
+                <th className="px-6 py-4">মূল্য</th>
+                <th className="px-6 py-4 text-right">অ্যাকশন</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border dark:divide-border">
+              {booking.length === 0 ? (
+                <tr>
+                  <td colSpan={6} className="px-6 py-16 text-center text-muted-foreground">
+                    কোনো বুকিং নেই।
+                  </td>
+                </tr>
+              ) : (
+                booking.map((item: any, index: number) => (
+                  <tr
+                    key={item._id}
+                    className="transition-colors hover:bg-muted dark:hover:bg-muted/40"
+                  >
+                    <td className="px-6 py-4 font-medium text-muted-foreground">
+                      {index + 1}
+                    </td>
+                    <td className="px-6 py-4">
+                      <img
+                        className="h-12 w-12 rounded-xl object-cover"
+                        src={item?.touristImage}
+                        alt=""
+                      />
+                    </td>
+                    <td className="px-6 py-4 font-medium text-foreground dark:text-white">
+                      {item.tourGuide}
+                    </td>
+                    <td className="px-6 py-4 text-muted-foreground dark:text-muted-foreground">
+                      {item.tourDate}
+                    </td>
+                    <td className="px-6 py-4 font-semibold text-primary">
+                      ৳{item.prices}
+                    </td>
+                    <td className="px-6 py-4 text-right">
+                      <button
+                        onClick={() => handleDeleteCart(item._id)}
+                        className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-rose-50 hover:text-rose-600 dark:hover:bg-rose-950/30"
+                        aria-label="মুছে ফেলুন"
+                      >
+                        <FaTrash />
+                      </button>
+                    </td>
                   </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                  {
-                    booking.map((item: any, index: number) => <tr
-                      key={item._id}
-                    >
-                      <th>
-                        {index + 1}
-                      </th>
-                      <td>
-                        <div className="flex items-center gap-3">
-                          <div className="avatar">
-                            <div className="mask mask-squircle w-12 h-12">
-                              <img
-                                className="rounded-full h-12"
-                                src={item?.touristImage}
-                                alt="Avatar Tailwind CSS Component"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        {item.tourGuide}
-                      </td>
-                      <td>{item.tourDate}</td>
-                      <td>${item.prices}</td>
-                      <th>
-                        <button
-                          onClick={() => handleDeleteCart(item._id)}
-                          className="btn btn-ghost btn-xs text-lg">
-                          <FaTrash></FaTrash>
-                        </button>
-                      </th>
-                    </tr>)
-                  }
-                </tbody>
-              </table>
-            </div>
-          </div>
+                ))
+              )}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

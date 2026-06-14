@@ -4,10 +4,10 @@ import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import useAuth from '../Hooks/useAuth';
-import useAxiosSecure from '../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import useList from '../Hooks/useList';
 import { useRouter, usePathname } from 'next/navigation';
+import { addBooking } from '@/app/actions/secure';
 
 interface BookingFormProps {
   price: any;
@@ -19,7 +19,6 @@ const BookingForm = ({ price, packages }: BookingFormProps) => {
   const [touristImage, setTouristImage] = useState('');
   const [tourDate, setTourDate] = useState<Date | null>(null);
   const [tourGuide, setTourGuide] = useState('');
-  const axiosSecure = useAxiosSecure();
   const [, refetch] = useList();
   const router = useRouter();
   const pathname = usePathname();
@@ -40,19 +39,15 @@ const BookingForm = ({ price, packages }: BookingFormProps) => {
         tourDate,
         tourGuide,
       };
-      console.log('Form data:', formData);
-      axiosSecure.post('/bookings', formData)
-        .then((res: any) => {
-          console.log(res.data);
-          Swal.fire({
-            icon: 'success',
-            title: `${name} Added to cart`,
-            showConfirmButton: false,
-            timer: 1500
-          });
-          // refetch the data
-          refetch();
+      addBooking(formData).then(() => {
+        Swal.fire({
+          icon: 'success',
+          title: `${name} Added to cart`,
+          showConfirmButton: false,
+          timer: 1500
         });
+        refetch();
+      });
     } else {
       Swal.fire({
         title: "You are not Login!",
@@ -171,7 +166,7 @@ const BookingForm = ({ price, packages }: BookingFormProps) => {
 
             <div className="text-center">
               <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-primary hover:bg-primary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
               >
                 Book Now

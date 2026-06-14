@@ -1,42 +1,30 @@
 "use client";
 
-import { FaNutritionix, FaTrash } from "react-icons/fa6";
+import { FaTrash } from "react-icons/fa6";
 import Swal from "sweetalert2";
 import Link from "next/link";
 import useList from "../../../../Hooks/useList";
-import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
-import { useEffect, useState } from "react";
+import { removeWishlist } from "@/app/actions/secure";
 
 const List = () => {
-  const [ok, setOk] = useState<any>([]);
   const [list, refetch] = useList();
-  console.log(list);
-  console.log(ok);
-  useEffect(() => {
-    // When the 'list' changes, update 'ok' based on 'list' values
-    if (list && Array.isArray(list)) {
-      const newList = list.map((li: any) => li?._id);
-      setOk(newList[0]);
-    }
-  }, [list]);
-  const totatPrice = list.reduce((total: number, item: any) => total + item.price, 0);
-  const axiosSecure = useAxiosSecure();
+  const totatPrice = list.reduce(
+    (total: number, item: any) => total + item.price,
+    0,
+  );
 
   const handleDeleteCart = (id: any) => {
-    console.log(id);
-
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#2563eb",
+      cancelButtonColor: "#ef4444",
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.delete(`/carts/${id}`).then((res: any) => {
-          console.log(res);
+        removeWishlist(id).then(() => {
           Swal.fire({
             title: "Deleted!",
             text: "Your file has been deleted.",
@@ -50,109 +38,92 @@ const List = () => {
 
   return (
     <div className="mt-10">
-      <div className="">
-        <div className="flex gap-3 justify-evenly bg-orange-200 py-2 mx-2 rounded mb-6">
-          <h2 className="uppercase lg:text-3xl text-center">
-            Total Order: {list.length}
-          </h2>
-          <h2 className="uppercase lg:text-3xl text-center">
-            Total Price: {totatPrice}
-          </h2>
-          {list.length ? (
-            <Link href={"/dashboard/payment"}>
-              <button className="btn btn-primary">Pay</button>
-            </Link>
-          ) : (
-            <button disabled className="btn btn-primary">
-              Pay
-            </button>
-          )}
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
+        <h1 className="text-2xl font-extrabold tracking-tight text-foreground dark:text-white">
+          আমার উইশলিস্ট
+        </h1>
+        <div className="flex items-center gap-3">
+          <span className="rounded-full bg-accent px-4 py-1.5 text-sm font-semibold text-primary dark:bg-accent/40 dark:text-primary">
+            মোট: {list.length} · ৳{totatPrice}
+          </span>
+          <Link
+            href="/dashboard/payment"
+            aria-disabled={!list.length}
+            className={`rounded-xl px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all ${
+              list.length
+                ? "bg-brand hover:-translate-y-0.5"
+                : "pointer-events-none bg-slate-300 dark:bg-slate-700"
+            }`}
+          >
+            পেমেন্ট
+          </Link>
         </div>
-        <div className="flex flex-col">
-          <div className="-m-1.5 overflow-x-auto">
-            <div className="p-1.5 min-w-full inline-block align-middle">
-              <div className="overflow-hidden">
-                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                  <thead>
-                    <tr>
-                      <th
-                        scope="col"
-                        className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
+      </div>
+
+      <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm dark:border-border dark:bg-card">
+        <div className="overflow-x-auto">
+          <table className="min-w-full text-sm">
+            <thead className="bg-muted text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground dark:bg-muted/60 dark:text-muted-foreground">
+              <tr>
+                <th className="px-6 py-4">#</th>
+                <th className="px-6 py-4">ছবি</th>
+                <th className="px-6 py-4">ধরন</th>
+                <th className="px-6 py-4">মূল্য</th>
+                <th className="px-6 py-4">ডিটেইলস</th>
+                <th className="px-6 py-4 text-right">অ্যাকশন</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border dark:divide-border">
+              {list.length === 0 ? (
+                <tr>
+                  <td colSpan={6} className="px-6 py-16 text-center text-muted-foreground">
+                    উইশলিস্ট খালি।
+                  </td>
+                </tr>
+              ) : (
+                list.map((item: any, index: number) => (
+                  <tr
+                    key={item._id}
+                    className="transition-colors hover:bg-muted dark:hover:bg-muted/40"
+                  >
+                    <td className="px-6 py-4 font-medium text-muted-foreground">
+                      {index + 1}
+                    </td>
+                    <td className="px-6 py-4">
+                      <img
+                        src={item.image}
+                        alt=""
+                        className="h-12 w-12 rounded-xl object-cover"
+                      />
+                    </td>
+                    <td className="px-6 py-4 capitalize text-muted-foreground dark:text-muted-foreground">
+                      {item.tour_type}
+                    </td>
+                    <td className="px-6 py-4 font-semibold text-primary">
+                      ৳{item.price}
+                    </td>
+                    <td className="px-6 py-4">
+                      <Link
+                        href={`/details/${item.id ?? item.menuId}`}
+                        className="inline-flex items-center rounded-lg border border-border px-3 py-1.5 text-xs font-semibold text-foreground transition-colors hover:border-primary hover:text-primary dark:border-border dark:text-muted-foreground"
                       >
-                        <FaNutritionix></FaNutritionix>
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
+                        ডিটেইলস
+                      </Link>
+                    </td>
+                    <td className="px-6 py-4 text-right">
+                      <button
+                        onClick={() => handleDeleteCart(item._id)}
+                        className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-rose-50 hover:text-rose-600 dark:hover:bg-rose-950/30"
+                        aria-label="মুছে ফেলুন"
                       >
-                        ITEM IMAGE
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-                      >
-                        ITEM NAME
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-                      >
-                        PRICE
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase"
-                      >
-                        DETAILS
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase"
-                      >
-                        ACTION
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                    {list.map((item: any, index: number) => (
-                      <tr key={item._id}>
-                        <th>{index + 1}</th>
-                        <td>
-                          <div className="flex items-center gap-3">
-                            <div className="avatar">
-                              <div className="mask mask-squircle w-12 h-12">
-                                <img
-                                  src={item.image}
-                                  alt="Avatar Tailwind CSS Component"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                        <td>{item.tour_type}</td>
-                        <td>{item.price}</td>
-                        <td>
-                          <Link href={`/details/${ok}`}>
-                            <button type="button" className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-blue-600 text-blue-600 hover:border-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 hover:bg-orange-400 hover:text-white">
-                              Details Page
-                            </button>
-                          </Link>
-                        </td>
-                        <th>
-                          <button
-                            onClick={() => handleDeleteCart(item._id)}
-                            className="btn btn-ghost btn-xs text-lg"
-                          >
-                            <FaTrash></FaTrash>
-                          </button>
-                        </th>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+                        <FaTrash />
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

@@ -1,23 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 import { useParams } from "next/navigation";
 import SingleCard from "./SingleCard";
 import usePackages from "../Hooks/usePackages";
 import type { TourPackage } from "@/types";
 
 const DetailsCard = () => {
-  const [data, setData] = useState<TourPackage>({});
   const [packages] = usePackages();
   const params = useParams<{ id: string }>();
   const id = params?.id;
 
-  useEffect(() => {
-    const findcard = packages.find(
-      (daata: any) => daata.id == id || daata._id == id,
-    );
-    setData(findcard ?? {});
-  }, [id, packages]);
+  const data = useMemo<TourPackage>(
+    () =>
+      packages.find((p: any) => p.id == id || p._id == id) ?? ({} as TourPackage),
+    [id, packages],
+  );
 
   return (
     <div>

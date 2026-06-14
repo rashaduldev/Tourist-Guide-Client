@@ -1,90 +1,134 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 import usePackages from "../../Hooks/usePackages";
 import AllPackages from "./AllPackages";
+import { FiSearch } from "react-icons/fi";
+import { LuSlidersHorizontal } from "react-icons/lu";
+import { StaggerGroup, StaggerItem, Reveal } from "@/lib/motion";
+
+const filters = [
+  { value: "all", label: "সব ট্যুর" },
+  { value: "adventure", label: "অ্যাডভেঞ্চার" },
+  { value: "leisure", label: "বিনোদন" },
+  { value: "cultural", label: "সাংস্কৃতিক" },
+];
 
 const Packages = () => {
-    const [packages, loading] = usePackages();
-    const [searchQuery, setSearchQuery] = useState("");
-    const [filterQuery, setFilterQuery] = useState("all");
-    const [filteredPackages, setFilteredPackages] = useState<any[]>([]);
+  const [packages, loading] = usePackages();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filterQuery, setFilterQuery] = useState("all");
 
-    useEffect(() => {
-        let filtered: any[] = packages;
+  const filteredPackages = useMemo(() => {
+    let filtered: any[] = packages;
+    if (filterQuery !== "all") {
+      filtered = filtered.filter(
+        (item: any) =>
+          item.trip_category?.toLowerCase() === filterQuery.toLowerCase(),
+      );
+    }
+    if (searchQuery.trim() !== "") {
+      filtered = filtered.filter((item: any) =>
+        item.trip_title?.toLowerCase().includes(searchQuery.toLowerCase()),
+      );
+    }
+    return filtered;
+  }, [packages, filterQuery, searchQuery]);
 
-        if (filterQuery !== "all") {
-            filtered = filtered.filter((item: any) =>
-                item.trip_category?.toLowerCase() === filterQuery.toLowerCase()
-            );
-        }
-
-        if (searchQuery.trim() !== "") {
-            filtered = filtered.filter((item: any) =>
-                item.trip_title?.toLowerCase().includes(searchQuery.toLowerCase())
-            );
-        }
-
-        setFilteredPackages(filtered);
-    }, [packages, filterQuery, searchQuery]);
-
-    const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchQuery(e.target.value);
-    };
-
-    const handleFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setFilterQuery(e.target.value);
-    };
-
-    return (
-        <div className="max-w-[85rem] mx-auto">
-            <h1 className="text-5xl font-bold text-center my-10 text-black">সকল প্যাকেজ</h1>
-
-            {/* ফিল্টার এবং সার্চ */}
-            <div className="flex flex-row mx-auto items-center justify-between px-4">
-                <div className="flex flex-row items-center text-center w-full lg:w-1/3">
-                    <select
-                        className="flex h-[48px] w-1/2 md:w-full lg:w-64 rounded-md border border-neutral-400 font-light bg-primary px-4 py-3 text-base outline-none"
-                        value={filterQuery}
-                        onChange={handleFilter}
-                    >
-                        <option value="all">আপনার ট্যুর ফিল্টার করুন...</option>
-                        <option value="adventure">অ্যাডভেঞ্চার</option>
-                        <option value="leisure">বিনোদন</option>
-                        <option value="cultural">সাংস্কৃতিক</option>
-                    </select>
-                </div>
-
-                <div className="flex flex-row-reverse md:flex-row items-center text-center w-full lg:w-1/3 lg:justify-end">
-                    <input
-                        className="flex h-[48px] w-1/2 md:w-full lg:w-64 rounded-md border border-neutral-400 focus:border-accent font-light bg-primary px-4 py-3 text-base placeholder:text-black/60 outline-none"
-                        type="text"
-                        placeholder="এখানে খুঁজুন..."
-                        value={searchQuery}
-                        onChange={handleSearchInputChange}
-                    />
-                </div>
-            </div>
-
-            {/* ডেটা প্রদর্শন */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mx-5 my-10 rounded-t-md">
-                {loading ? (
-                    <div className="col-span-full flex justify-center items-center text-lg font-medium text-blue-600">
-                        <div className="animate-spin rounded-full h-10 w-10 border-t-4 border-blue-500"></div>
-                        <span className="ml-4">লোড হচ্ছে...</span>
-                    </div>
-                ) : filteredPackages.length > 0 ? (
-                    filteredPackages.map((pack: any) => (
-                        <AllPackages pack={pack} key={pack.id} />
-                    ))
-                ) : (
-                    <div className="col-span-full text-center text-xl font-semibold text-red-500">
-                        কোন তথ্য পাওয়া যায়নি
-                    </div>
-                )}
-            </div>
+  return (
+    <div>
+      {/* Hero band */}
+      <section className="relative overflow-hidden border-b border-border bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:border-border dark:from-slate-900 dark:via-slate-950 dark:to-blue-950/40">
+        <div className="pointer-events-none absolute -top-20 right-0 h-72 w-72 rounded-full bg-blue-400/20 blur-3xl" />
+        <div className="mx-auto max-w-[85rem] px-4 py-16 text-center sm:px-6 lg:px-8 lg:py-20">
+          <Reveal>
+            <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-accent bg-card/70 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary backdrop-blur dark:border-accent/60 dark:bg-accent/40 dark:text-primary">
+              ট্যুর প্যাকেজ
+            </span>
+            <h1 className="text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl dark:text-white">
+              সকল{" "}
+              <span className="text-brand-gradient">
+                প্যাকেজ
+              </span>
+            </h1>
+            <p className="mx-auto mt-4 max-w-xl text-muted-foreground dark:text-muted-foreground">
+              আপনার স্বপ্নের গন্তব্য খুঁজে নিন — সার্চ করুন বা ধরন অনুযায়ী ফিল্টার করুন।
+            </p>
+          </Reveal>
         </div>
-    );
+      </section>
+
+      <div className="mx-auto max-w-[85rem] px-4 sm:px-6 lg:px-8">
+        {/* Toolbar */}
+        <div className="-mt-8 mb-10 flex flex-col gap-3 rounded-2xl border border-border bg-card p-4 shadow-lg sm:flex-row sm:items-center dark:border-border dark:bg-card">
+          <div className="relative flex-1">
+            <FiSearch className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
+            <input
+              type="text"
+              placeholder="এখানে খুঁজুন..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="h-12 w-full rounded-xl border border-border bg-muted pl-11 pr-4 text-sm outline-none transition-colors focus:border-ring focus:bg-card focus:ring-2 focus:ring-ring/20 dark:border-border dark:bg-muted dark:text-white"
+            />
+          </div>
+          <div className="relative sm:w-64">
+            <LuSlidersHorizontal className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
+            <select
+              value={filterQuery}
+              onChange={(e) => setFilterQuery(e.target.value)}
+              className="h-12 w-full appearance-none rounded-xl border border-border bg-muted pl-11 pr-8 text-sm outline-none transition-colors focus:border-ring focus:bg-card focus:ring-2 focus:ring-ring/20 dark:border-border dark:bg-muted dark:text-white"
+            >
+              {filters.map((f) => (
+                <option key={f.value} value={f.value}>
+                  {f.label}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        {/* Results */}
+        {loading ? (
+          <div className="mb-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <div
+                key={i}
+                className="h-80 animate-pulse rounded-2xl border border-border bg-muted dark:border-border dark:bg-muted"
+              />
+            ))}
+          </div>
+        ) : filteredPackages.length > 0 ? (
+          <>
+            <p className="mb-6 text-sm text-muted-foreground dark:text-muted-foreground">
+              <span className="font-semibold text-foreground dark:text-white">
+                {filteredPackages.length}
+              </span>{" "}
+              টি প্যাকেজ পাওয়া গেছে
+            </p>
+            <StaggerGroup className="mb-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {filteredPackages.map((pack: any) => (
+                <StaggerItem key={pack.id ?? pack._id}>
+                  <AllPackages pack={pack} />
+                </StaggerItem>
+              ))}
+            </StaggerGroup>
+          </>
+        ) : (
+          <div className="my-24 text-center">
+            <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-muted text-3xl dark:bg-muted">
+              🔍
+            </div>
+            <p className="text-lg font-semibold text-foreground dark:text-white">
+              কোন তথ্য পাওয়া যায়নি
+            </p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              অন্য কীওয়ার্ড বা ফিল্টার চেষ্টা করুন।
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default Packages;

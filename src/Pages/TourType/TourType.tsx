@@ -1,90 +1,83 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import { FaBagShopping, FaCat, FaPersonWalking, FaShapes, FaWheelchair, FaWind } from "react-icons/fa6";
+import {
+  FaBagShopping,
+  FaCat,
+  FaPersonWalking,
+  FaShapes,
+  FaWheelchair,
+  FaWind,
+} from "react-icons/fa6";
 import Swipslider from "./Swipslider";
-import useAxiosPublick from "../../Hooks/useAxiosPublick";
+import SectionHeading from "@/components/shared/SectionHeading";
+import usePackages from "@/Hooks/usePackages";
 
 const backgroundImg = "/assets/tourbgimg.jpg";
 
 const TourType = () => {
-  const [packages, setPackages] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-  const axiosPublick = useAxiosPublick();
+  const [packages, loading] = usePackages();
 
-  useEffect(() => {
-    axiosPublick.get('/packages')
-      .then((res: any) => {
-        setPackages(res.data);
-        setLoading(false);
-      })
-      .catch((err: any) => {
-        console.error('প্যাকেজ লোড করতে সমস্যা হয়েছে:', err);
-        setLoading(false);
-      });
-  }, [axiosPublick]);
+  const byType = (t: string) =>
+    packages.filter((item: any) => item.tour_type === t);
 
-  const cruises = packages.filter((item: any) => item.tour_type === "cruises");
-  const wildlife = packages.filter((item: any) => item.tour_type === "wildlife");
-  const walking = packages.filter((item: any) => item.tour_type === "walking");
-  const sports = packages.filter((item: any) => item.tour_type === "sports");
-  const hiking = packages.filter((item: any) => item.tour_type === "hiking");
-  const airrides = packages.filter((item: any) => item.tour_type === "airrides");
+  const slides = [
+    { items: byType("sports"), heading: "Sports", icon: <FaWheelchair /> },
+    { items: byType("walking"), heading: "Walking", icon: <FaPersonWalking /> },
+    { items: byType("wildlife"), heading: "wildlife", icon: <FaCat /> },
+    { items: byType("airrides"), heading: "এয়ার রাইডস", icon: <FaWind /> },
+    { items: byType("cruises"), heading: "ক্রুজেস", icon: <FaShapes /> },
+    { items: byType("hiking"), heading: "হাইকিং", icon: <FaBagShopping /> },
+  ];
 
   return (
-    <div className="relative lg:h-[450px] max-w-7xl mx-auto py-10 my-10">
+    <section className="relative my-16 overflow-hidden rounded-3xl">
+      {/* Background image + overlay */}
       <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: `url(${backgroundImg})`,
-          backgroundSize: "cover",
-          opacity: 0.3,
-          backgroundColor: "rgb(0, 0, 0)",
-        }}
+        className="absolute inset-0 -z-10 bg-cover bg-center"
+        style={{ backgroundImage: `url(${backgroundImg})` }}
       />
-      <div className="relative text-center z-20">
-        <h2 className="text-gray-900 dark:text-gray-100 font-bold pt-7 text-lg md:text-xl italic">এখানে আপনার জন্য ট্যুর খুঁজুন</h2>
-        <h2 className="text-3xl md:text-5xl my-5 text-gray-900 dark:text-gray-100 font-bold">ট্যুরের ধরন</h2>
-      </div>
-      {loading ? (
-        <div className="text-center text-gray-900 dark:text-gray-100">লোড হচ্ছে...</div>
-      ) : (
-        <>
-          <br />
-          <div className="md:mx-16">
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-white/85 via-white/80 to-blue-50/80 dark:from-slate-950/90 dark:via-slate-900/85 dark:to-blue-950/80" />
+
+      <div className="mx-auto max-w-7xl px-4 py-16 lg:px-8">
+        <SectionHeading
+          eyebrow="ট্যুরের ধরন"
+          title="এখানে আপনার জন্য ট্যুর খুঁজুন"
+          subtitle="আপনার পছন্দের ধরন বেছে নিন — প্রতিটি ধরনে রয়েছে নানা রকম রোমাঞ্চকর প্যাকেজ।"
+        />
+
+        {loading ? (
+          <div className="mt-12 flex justify-center gap-6">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <div
+                key={i}
+                className="h-28 w-28 animate-pulse rounded-full bg-slate-200 lg:h-40 lg:w-40 dark:bg-muted"
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="mt-8 px-4 lg:px-12">
             <Swiper
-              watchSlidesProgress={true}
-              slidesPerView={3}
+              watchSlidesProgress
+              slidesPerView={2}
+              breakpoints={{ 640: { slidesPerView: 3 }, 1024: { slidesPerView: 4 } }}
+              autoplay={{ delay: 2500, disableOnInteraction: false }}
+              modules={[Autoplay]}
               className="mySwiper"
             >
-              <SwiperSlide>
-                <div>
-                  <Swipslider itemsss={sports} heading={'Sports'} icon={<FaWheelchair />} />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <Swipslider itemsss={walking} heading={'Walking'} icon={<FaPersonWalking />} />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Swipslider itemsss={wildlife} heading={'wildlife'} icon={<FaCat />} />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Swipslider itemsss={airrides} heading={'এয়ার রাইডস'} icon={<FaWind />} />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Swipslider itemsss={cruises} heading={'ক্রুজেস'} icon={<FaShapes />} />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Swipslider itemsss={hiking} heading={'হাইকিং'} icon={<FaBagShopping />} />
-              </SwiperSlide>
+              {slides.map((s) => (
+                <SwiperSlide key={s.heading}>
+                  <Swipslider itemsss={s.items} heading={s.heading} icon={s.icon} />
+                </SwiperSlide>
+              ))}
             </Swiper>
           </div>
-        </>
-      )}
-    </div>
+        )}
+      </div>
+    </section>
   );
 };
 

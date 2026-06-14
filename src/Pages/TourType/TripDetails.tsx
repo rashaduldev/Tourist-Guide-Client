@@ -1,27 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import useAxiosPublick from "../../Hooks/useAxiosPublick";
+import usePackages from "@/Hooks/usePackages";
 
 const TripDetails = () => {
-    const [datafil, setDatafil] = useState<any[]>([]);
-    const axiosPublick = useAxiosPublick();
+    const [datafil, loading] = usePackages();
     const params = useParams<{ id: string }>();
     const id = params?.id;
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        axiosPublick.get('/packages')
-            .then((res: any) => {
-                setDatafil(res.data);
-                setLoading(false);
-            })
-            .catch((err: any) => {
-                console.error('Error fetching packages:', err);
-                setLoading(false);
-            });
-    }, [axiosPublick]);
 
     if (loading) {
         return <div>Loading...</div>;

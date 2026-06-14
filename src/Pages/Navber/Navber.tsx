@@ -1,235 +1,294 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
-import useAdmin from "../../Hooks/useAdmin";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import { FiUser, FiLogOut, FiGrid, FiEdit } from "react-icons/fi";
+import { AnimatePresence, motion } from "framer-motion";
+
+const links = [
+  { name: "হোম", path: "/" },
+  { name: "সমস্ত প্যাকেজ", path: "/allpackage" },
+  { name: "ব্লগসমূহ", path: "/blogs" },
+  { name: "আমাদের সম্পর্কে", path: "/about" },
+  { name: "যোগাযোগ", path: "/contact" },
+];
 
 const Navber = () => {
-  const [isDrawerOpen, setDrawerOpen] = useState(false);
-  const [showUserOptions, setShowUserOptions] = useState(false);
-  const { user, logOut } = useAuth();
-  const [isAdmin] = useAdmin();
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const { user, logOut, isAdmin } = useAuth();
   const pathname = usePathname();
 
-  const toggleDrawer = () => setDrawerOpen(!isDrawerOpen);
-  const toggleUserOptions = () => setShowUserOptions(!showUserOptions);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    setDrawerOpen(false);
+    setShowUserMenu(false);
+  }, [pathname]);
 
   const handleLogout = () => {
-    logOut()
-      .then(() => {
-        Swal.fire({
-          title: "সফলভাবে লগ আউট হয়েছ!",
-          text: "অনুগ্রহ করে আবার লগইন করো।",
-          icon: "success",
-          timer: 2000,
-          timerProgressBar: true,
-          showConfirmButton: false,
-        });
-      })
-      .catch((err) => console.log(err));
+    logOut().then(() => {
+      Swal.fire({
+        title: "সফলভাবে লগ আউট হয়েছ!",
+        text: "অনুগ্রহ করে আবার লগইন করো।",
+        icon: "success",
+        timer: 2000,
+        timerProgressBar: true,
+        showConfirmButton: false,
+      });
+    });
   };
 
-  const links = [
-    { name: "ব্লগসমূহ", path: "/blogs" },
-    { name: "আমাদের সম্পর্কে", path: "/about" },
-    { name: "যোগাযোগ", path: "/contact" },
-    { name: "সমস্ত প্যাকেজ", path: "/allpackage" },
+  const userLinks = [
+    ...(isAdmin
+      ? [{ name: "ড্যাশবোর্ড", path: "/dashboard", icon: <FiGrid /> }]
+      : []),
+    { name: "প্রোফাইল", path: "/dashboard/profile", icon: <FiUser /> },
+    { name: "প্রোফাইল সম্পাদনা", path: "/dashboard/edituser", icon: <FiEdit /> },
   ];
 
   return (
-    <header className="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 border-b text-sm py-3 sm:py-0 bg-white dark:bg-gray-900 text-black dark:text-white border-neutral-700 dark:border-gray-600 my-5 lg:mx-36">
-      <nav
-        className="relative lg:max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8"
-        aria-label="Global"
-      >
-        {/* Logo + Mobile Menu Button */}
-        <div className="flex items-center justify-between w-full sm:w-auto">
-          <Link href="/">
-            <img
-              className="h-20 w-20"
-              src="https://i.ibb.co/YWWPShY/travel-tourism.jpg"
-              alt="Logo"
-            />
-          </Link>
-          <button
-            type="button"
-            onClick={toggleDrawer}
-            className="p-4 text-black dark:text-white sm:hidden"
-          >
-            <AiOutlineMenu size={24} />
-          </button>
+    <header
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "border-b border-border/70 bg-card/80 shadow-sm backdrop-blur-lg dark:border-border/70 dark:bg-card/80"
+          : "border-b border-transparent bg-card dark:bg-card"
+      }`}
+    >
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2.5">
+          <img
+            src="https://i.ibb.co/YWWPShY/travel-tourism.jpg"
+            alt="Logo"
+            className="h-11 w-11 rounded-xl object-cover ring-2 ring-accent dark:ring-border"
+          />
+          <span className="hidden text-lg font-extrabold tracking-tight text-foreground sm:block dark:text-white">
+            ট্রাভেল<span className="text-primary"> কো.</span>
+          </span>
+        </Link>
+
+        {/* Desktop nav */}
+        <div className="hidden items-center gap-1 lg:flex">
+          {links.map((link) => {
+            const active = pathname === link.path;
+            return (
+              <Link
+                key={link.path}
+                href={link.path}
+                className={`relative rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
+                  active
+                    ? "text-primary dark:text-primary"
+                    : "text-muted-foreground hover:text-foreground dark:text-muted-foreground dark:hover:text-white"
+                }`}
+              >
+                {link.name}
+                {active && (
+                  <motion.span
+                    layoutId="navUnderline"
+                    className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-brand"
+                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                  />
+                )}
+              </Link>
+            );
+          })}
         </div>
 
-        {/* Desktop Navigation */}
-        <div className="hidden sm:flex items-center space-x-7">
-          {links.map((link, index) => (
-            <Link
-              href={link.path}
-              key={index}
-              className={`capitalize font-medium hover:text-blue-400 transition-all dark:hover:text-gray-400 ${
-                pathname === link.path
-                  ? "text-blue-300 dark:text-blue-400 border-b-2 border-accent"
-                  : ""
-              }`}
-            >
-              {link.name}
-            </Link>
-          ))}
-
-          {/* User Section */}
+        {/* Right */}
+        <div className="flex items-center gap-3">
           {user?.email ? (
-            <div className="relative">
-              <div
-                className="cursor-pointer flex items-center gap-2"
-                onClick={toggleUserOptions}
+            <div className="relative hidden lg:block">
+              <button
+                onClick={() => setShowUserMenu((v) => !v)}
+                className="flex items-center gap-2 rounded-full border border-border py-1 pl-1 pr-3 transition-colors hover:border-primary dark:border-border"
               >
                 <img
-                  src={user?.photoURL ?? undefined}
+                  src={user?.photoURL || "https://i.ibb.co/5GzXkwq/user.png"}
                   alt="Profile"
-                  className="rounded-full h-10 w-10"
+                  className="h-9 w-9 rounded-full object-cover"
                 />
-                <div>
-                  <p className="font-bold">{user?.displayName}</p>
-                  <p className="text-gray-400 dark:text-gray-500">
-                    নতুন ব্যবহারকারী
-                  </p>
-                </div>
-              </div>
+                <span className="max-w-[8rem] truncate text-sm font-medium text-foreground dark:text-slate-200">
+                  {user?.displayName || "ব্যবহারকারী"}
+                </span>
+              </button>
 
-              {/* Dropdown Menu */}
-              {showUserOptions && (
-                <div className="absolute right-0 mt-2 w-56 bg-neutral-700 dark:bg-gray-800 shadow-md rounded-md">
-                  {isAdmin && (
-                    <Link href="/dashboard">
-                      <button className="w-full px-4 py-2 text-left hover:bg-neutral-600 dark:hover:bg-gray-700 text-white">
-                        ড্যাশবোর্ড
+              <AnimatePresence>
+                {showUserMenu && (
+                  <>
+                    <div
+                      className="fixed inset-0 z-10"
+                      onClick={() => setShowUserMenu(false)}
+                    />
+                    <motion.div
+                      initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 8, scale: 0.96 }}
+                      transition={{ duration: 0.18 }}
+                      className="absolute right-0 z-20 mt-2 w-56 overflow-hidden rounded-2xl border border-border bg-card shadow-xl dark:border-border dark:bg-muted"
+                    >
+                      <div className="border-b border-border px-4 py-3 dark:border-border">
+                        <p className="truncate text-sm font-semibold text-foreground dark:text-white">
+                          {user?.displayName}
+                        </p>
+                        <p className="truncate text-xs text-muted-foreground">
+                          {user?.email}
+                        </p>
+                      </div>
+                      {userLinks.map((l) => (
+                        <Link
+                          key={l.path}
+                          href={l.path}
+                          className="flex items-center gap-3 px-4 py-2.5 text-sm text-foreground transition-colors hover:bg-accent hover:text-primary dark:text-slate-200 dark:hover:bg-slate-700"
+                        >
+                          <span className="text-muted-foreground">{l.icon}</span>
+                          {l.name}
+                        </Link>
+                      ))}
+                      <button
+                        onClick={handleLogout}
+                        className="flex w-full items-center gap-3 border-t border-border px-4 py-2.5 text-sm text-rose-600 transition-colors hover:bg-rose-50 dark:border-border dark:hover:bg-slate-700"
+                      >
+                        <FiLogOut />
+                        লগআউট
                       </button>
-                    </Link>
-                  )}
-                  <Link href="/dashboard/profile">
-                    <button className="w-full px-4 py-2 text-left hover:bg-neutral-600 dark:hover:bg-gray-700 text-white">
-                      প্রোফাইল
-                    </button>
-                  </Link>
-                  <Link href="/dashboard/edituser">
-                    <button className="w-full px-4 py-2 text-left hover:bg-neutral-600 dark:hover:bg-gray-700 text-white">
-                      প্রোফাইল সম্পাদনা
-                    </button>
-                  </Link>
-                  <button
-                    onClick={handleLogout}
-                    className="w-full px-4 py-2 text-left hover:bg-neutral-600 dark:hover:bg-gray-700 text-white"
-                  >
-                    লগআউট
-                  </button>
-                </div>
-              )}
+                    </motion.div>
+                  </>
+                )}
+              </AnimatePresence>
             </div>
           ) : (
             <Link
               href="/login"
-              className={`capitalize font-medium hover:text-accent transition-all dark:hover:text-gray-400 ${
-                pathname === "/login" || pathname === "/signup"
-                  ? "text-blue-300 dark:text-blue-400 border-b-2 border-accent"
-                  : ""
-              }`}
+              className="hidden rounded-xl bg-brand px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/40 lg:block"
             >
               লগইন
             </Link>
           )}
-        </div>
 
-        {/* Mobile Drawer */}
-        <div
-          className={`fixed top-0 left-0 w-3/4 h-full bg-white dark:bg-gray-900 shadow-lg transform ${
-            isDrawerOpen ? "translate-x-0" : "-translate-x-full"
-          } transition-transform duration-300 sm:hidden z-50`}
-        >
-          {/* Drawer Header */}
-          <div className="flex items-center justify-between p-4 border-b border-gray-300 dark:border-gray-700">
-            <Link href="/">
-              <img
-                className="h-16 w-16"
-                src="https://i.ibb.co/YWWPShY/travel-tourism.jpg"
-                alt="Logo"
-              />
-            </Link>
-            <button
-              onClick={toggleDrawer}
-              className="p-2 text-black dark:text-white"
-            >
-              <AiOutlineClose size={24} />
-            </button>
-          </div>
-
-          {/* User Profile Section */}
-          {user?.email && (
-            <div className="flex flex-col items-center py-6 border-b border-gray-300 dark:border-gray-700">
-              <div
-                className="cursor-pointer flex flex-col items-center"
-                onClick={toggleUserOptions}
-              >
-                <img
-                  src={user?.photoURL ?? undefined}
-                  alt="Profile"
-                  className="rounded-full h-16 w-16"
-                />
-                <p className="font-bold mt-2">{user?.displayName}</p>
-                <p className="text-gray-400 dark:text-gray-500">
-                  নতুন ব্যবহারকারী
-                </p>
-              </div>
-
-              {/* User Options */}
-              {showUserOptions && (
-                <div className="mt-4 flex flex-col w-full text-center">
-                  {isAdmin && (
-                    <Link href="/dashboard">
-                      <button className="w-full px-4 py-2 text-left hover:bg-gray-300 dark:hover:bg-gray-700">
-                        ড্যাশবোর্ড
-                      </button>
-                    </Link>
-                  )}
-                  <Link href="/dashboard/profile">
-                    <button className="w-full px-4 py-2 text-left hover:bg-gray-300 dark:hover:bg-gray-700">
-                      প্রোফাইল
-                    </button>
-                  </Link>
-                  <Link href="/dashboard/edituser">
-                    <button className="w-full px-4 py-2 text-left hover:bg-gray-300 dark:hover:bg-gray-700">
-                      প্রোফাইল সম্পাদনা
-                    </button>
-                  </Link>
-                  <button
-                    onClick={handleLogout}
-                    className="w-full px-4 py-2 text-left hover:bg-gray-300 dark:hover:bg-gray-700"
-                  >
-                    লগআউট
-                  </button>
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Drawer Links */}
-          <div className="flex flex-col space-y-4 mt-4 px-6">
-            {links.map((link, index) => (
-              <Link
-                href={link.path}
-                key={index}
-                onClick={toggleDrawer}
-                className="text-lg font-medium hover:text-accent dark:hover:text-gray-400"
-              >
-                {link.name}
-              </Link>
-            ))}
-          </div>
+          {/* Mobile toggle */}
+          <button
+            onClick={() => setDrawerOpen(true)}
+            className="rounded-lg p-2 text-foreground transition-colors hover:bg-muted lg:hidden dark:text-slate-200 dark:hover:bg-muted"
+            aria-label="মেনু খুলুন"
+          >
+            <AiOutlineMenu size={24} />
+          </button>
         </div>
       </nav>
+
+      {/* Mobile drawer */}
+      <AnimatePresence>
+        {drawerOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setDrawerOpen(false)}
+              className="fixed inset-0 z-50 bg-card/50 backdrop-blur-sm lg:hidden"
+            />
+            <motion.aside
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ type: "spring", stiffness: 300, damping: 32 }}
+              className="fixed inset-y-0 left-0 z-50 flex w-80 max-w-[85%] flex-col bg-card shadow-2xl lg:hidden dark:bg-card"
+            >
+              <div className="flex items-center justify-between border-b border-border p-4 dark:border-border">
+                <div className="flex items-center gap-2.5">
+                  <img
+                    src="https://i.ibb.co/YWWPShY/travel-tourism.jpg"
+                    alt="Logo"
+                    className="h-10 w-10 rounded-xl object-cover"
+                  />
+                  <span className="font-extrabold text-foreground dark:text-white">
+                    ট্রাভেল কো.
+                  </span>
+                </div>
+                <button
+                  onClick={() => setDrawerOpen(false)}
+                  className="rounded-lg p-2 text-muted-foreground hover:bg-muted dark:text-muted-foreground dark:hover:bg-muted"
+                  aria-label="মেনু বন্ধ করুন"
+                >
+                  <AiOutlineClose size={22} />
+                </button>
+              </div>
+
+              {user?.email && (
+                <div className="flex items-center gap-3 border-b border-border p-4 dark:border-border">
+                  <img
+                    src={user?.photoURL || "https://i.ibb.co/5GzXkwq/user.png"}
+                    alt="Profile"
+                    className="h-11 w-11 rounded-full object-cover"
+                  />
+                  <div className="min-w-0">
+                    <p className="truncate font-semibold text-foreground dark:text-white">
+                      {user?.displayName}
+                    </p>
+                    <p className="truncate text-xs text-muted-foreground">{user?.email}</p>
+                  </div>
+                </div>
+              )}
+
+              <nav className="flex flex-1 flex-col gap-1 overflow-y-auto p-4">
+                {links.map((link) => (
+                  <Link
+                    key={link.path}
+                    href={link.path}
+                    className={`rounded-lg px-4 py-3 text-base font-medium transition-colors ${
+                      pathname === link.path
+                        ? "bg-accent text-primary dark:bg-accent/40 dark:text-primary"
+                        : "text-foreground hover:bg-muted dark:text-slate-200 dark:hover:bg-muted"
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+                {user?.email &&
+                  userLinks.map((l) => (
+                    <Link
+                      key={l.path}
+                      href={l.path}
+                      className="flex items-center gap-3 rounded-lg px-4 py-3 text-base font-medium text-foreground hover:bg-muted dark:text-slate-200 dark:hover:bg-muted"
+                    >
+                      {l.icon}
+                      {l.name}
+                    </Link>
+                  ))}
+              </nav>
+
+              <div className="border-t border-border p-4 dark:border-border">
+                {user?.email ? (
+                  <button
+                    onClick={handleLogout}
+                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-rose-50 px-4 py-3 font-semibold text-rose-600 transition-colors hover:bg-rose-100 dark:bg-rose-950/30"
+                  >
+                    <FiLogOut /> লগআউট
+                  </button>
+                ) : (
+                  <Link
+                    href="/login"
+                    className="block rounded-xl bg-brand px-4 py-3 text-center font-semibold text-white shadow-lg"
+                  >
+                    লগইন
+                  </Link>
+                )}
+              </div>
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
     </header>
   );
 };

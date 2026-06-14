@@ -1,9 +1,9 @@
 import axios from "axios";
 
+// All backend calls go through the Next.js proxy (/api/proxy), which routes to
+// the correct upstream and attaches the auth token server-side.
 const axiosPublic = axios.create({
-  baseURL:
-    process.env.NEXT_PUBLIC_API_BASE_URL ??
-    "https://tourist-guide-server-tawny.vercel.app",
+  baseURL: "/api/proxy",
 });
 
 const useAxiosPublick = () => {

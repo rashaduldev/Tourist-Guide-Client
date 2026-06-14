@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 interface SwipsliderProps {
   heading: string;
@@ -8,23 +9,27 @@ interface SwipsliderProps {
   itemsss: any;
 }
 
-const Swipslider = ({ heading, icon, itemsss }: SwipsliderProps) => {
+const Swipslider = ({ heading, icon }: SwipsliderProps) => {
   const router = useRouter();
-  const handleClick = (itemsss: any) => {
-    router.push(`/single/${heading}`);
-  };
+  const handleClick = () => router.push(`/single/${heading}`);
 
-    return (
-        <div
-       onClick={() => handleClick(itemsss)}
-        style={{ border: "1px solid white" }}
-        className="border-spacing-3 border-white h-24 w-24 lg:h-40 rounded-full lg:w-40 text-center items-center lg:text-4xl mx-auto text-black cursor-pointer hover:text-black hover:bg-white my-10">
-        <p className="text-center mx-auto flex justify-center pt-4">
-          {icon}
-        </p>
-        <p className="lg:pt-4">{heading}</p>
-      </div>
-    );
+  return (
+    <motion.button
+      type="button"
+      onClick={handleClick}
+      whileHover={{ y: -6 }}
+      whileTap={{ scale: 0.96 }}
+      transition={{ type: "spring", stiffness: 300, damping: 18 }}
+      className="group mx-auto my-8 flex h-28 w-28 flex-col items-center justify-center gap-2 rounded-full border border-white/40 bg-card/10 text-foreground shadow-lg backdrop-blur-md transition-colors duration-300 hover:border-transparent hover:bg-card hover:shadow-xl lg:h-40 lg:w-40 dark:text-white dark:hover:text-foreground"
+    >
+      <span className="text-2xl text-primary transition-transform duration-300 group-hover:scale-125 lg:text-4xl">
+        {icon}
+      </span>
+      <span className="text-sm font-semibold capitalize lg:text-base">
+        {heading}
+      </span>
+    </motion.button>
+  );
 };
 
 export default Swipslider;

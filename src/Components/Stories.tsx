@@ -1,80 +1,79 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import useAxiosPublick from "../Hooks/useAxiosPublick";
 import { MdOutlineFavoriteBorder } from "react-icons/md";
+import { FaArrowRightLong } from "react-icons/fa6";
 import Link from "next/link";
+import { motion, StaggerGroup, fadeUp } from "@/lib/motion";
+import SectionHeading from "@/components/shared/SectionHeading";
+import useStories from "@/Hooks/useStories";
 
 const Stories = () => {
-    const [stories, setStories] = useState<any[]>([]);
-    const axiosPublick = useAxiosPublick();
+  const [stories] = useStories(6);
 
-    useEffect(() => {
-        axiosPublick.get('/stories')
-            .then((res: any) => {
-                setStories(res.data.slice(0, 6));
-            })
-            .catch((err: any) => {
-                console.error('তথ্য আনতে সমস্যা হয়েছে:', err);
-            });
-    }, [axiosPublick]);
+  return (
+    <section className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
+      <SectionHeading
+        eyebrow="গল্পসমূহ"
+        title="আমাদের ট্যুর গল্পসমূহ"
+        subtitle="ভ্রমণকারীদের চোখে দেখা সত্যিকারের অভিজ্ঞতা ও স্মৃতিময় মুহূর্তগুলো।"
+      />
 
-    return (
-        <div className="max-w-7xl mx-auto px-4 md:px-0 lg:px-8 mb-16">
-            <h1 className="text-3xl md:text-5xl font-extrabold text-center my-12 text-gray-900 dark:text-white">
-                আমাদের ট্যুর গল্পসমূহ
-            </h1>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {stories.map((story: any) => (
-                    <div
-                        key={story._id}
-                        className="bg-white dark:bg-slate-900 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-200 dark:border-gray-700 flex flex-col"
-                    >
-                        <img
-                            src={story.image || "https://i.ibb.co/gR20XrV/coxs.jpg"}
-                            alt={story.title || "ট্যুর ছবি"}
-                            className="w-full h-56 object-cover rounded-t-lg"
-                        />
-                        <div className="p-6 flex flex-col flex-grow">
-                            <h3 className="text-xl md:text-2xl font-semibold text-gray-900 dark:text-white mb-2 line-clamp-2">
-                                {story.title || "অজানা গল্প"}
-                            </h3>
-                            <p className="text-gray-600 dark:text-gray-400 flex-grow line-clamp-3">
-                                {story.description || "এটি একটি সুন্দর ভ্রমণ অভিজ্ঞতা যা আমাদের মনে দাগ কেটে গেছে।"}
-                            </p>
-                        </div>
-                        <div className="flex justify-between items-center px-6 py-4 border-t border-gray-200 dark:border-gray-700">
-                            <button
-                                className="text-sm text-blue-600 hover:underline font-medium transition"
-                                onClick={() => window.location.href = `/story/${story._id}`}
-                                aria-label={`বিস্তারিত দেখুন: ${story.title}`}
-                            >
-                                বিস্তারিত দেখুন
-                            </button>
-                            <button
-                                className="text-2xl text-gray-500 hover:text-red-500 transition"
-                                aria-label="প্রিয় চিহ্ন"
-                            >
-                                <MdOutlineFavoriteBorder />
-                            </button>
-                        </div>
-                    </div>
-                ))}
+      <StaggerGroup className="mt-14 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {stories.map((story: any) => (
+          <motion.article
+            key={story._id}
+            variants={fadeUp}
+            whileHover={{ y: -8 }}
+            transition={{ type: "spring", stiffness: 300, damping: 22 }}
+            className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-shadow duration-300 hover:shadow-xl dark:border-border dark:bg-card"
+          >
+            <div className="relative h-56 overflow-hidden">
+              <img
+                src={story.image || "https://i.ibb.co/gR20XrV/coxs.jpg"}
+                alt={story.title || "ট্যুর ছবি"}
+                className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             </div>
-
-            <div className="flex justify-center mt-12">
-                <Link href="/blogs">
-                    <button
-                        type="button"
-                        className="py-3 px-8 text-sm font-semibold rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition duration-200"
-                    >
-                        সব গল্প দেখুন
-                    </button>
+            <div className="flex flex-grow flex-col p-6">
+              <h3 className="mb-2 line-clamp-2 text-xl font-bold text-foreground dark:text-white">
+                {story.title || "অজানা গল্প"}
+              </h3>
+              <p className="line-clamp-3 flex-grow text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground">
+                {story.description ||
+                  "এটি একটি সুন্দর ভ্রমণ অভিজ্ঞতা যা আমাদের মনে দাগ কেটে গেছে।"}
+              </p>
+              <div className="mt-5 flex items-center justify-between border-t border-border pt-4 dark:border-border">
+                <Link
+                  href={`/blogs`}
+                  className="inline-flex items-center gap-1 text-sm font-semibold text-primary transition-colors hover:text-indigo-600 dark:text-primary"
+                >
+                  বিস্তারিত দেখুন
+                  <FaArrowRightLong className="transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
+                <button
+                  className="text-xl text-muted-foreground transition-colors hover:text-rose-500"
+                  aria-label="প্রিয় চিহ্ন"
+                >
+                  <MdOutlineFavoriteBorder />
+                </button>
+              </div>
             </div>
-        </div>
-    );
+          </motion.article>
+        ))}
+      </StaggerGroup>
+
+      <div className="mt-14 flex justify-center">
+        <Link
+          href="/blogs"
+          className="group inline-flex items-center gap-2 rounded-xl bg-brand px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/40"
+        >
+          সব গল্প দেখুন
+          <FaArrowRightLong className="transition-transform duration-300 group-hover:translate-x-1" />
+        </Link>
+      </div>
+    </section>
+  );
 };
 
 export default Stories;

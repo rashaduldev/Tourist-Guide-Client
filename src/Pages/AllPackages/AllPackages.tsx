@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import useAuth from "../../Hooks/useAuth";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-import { FaHeart } from "react-icons/fa6";
+import { FaHeart, FaArrowRightLong } from "react-icons/fa6";
+import { addToWishlist } from "@/app/actions/secure";
 
 interface PackProps {
   pack: {
@@ -21,8 +21,6 @@ const AllPackages = ({ pack }: PackProps) => {
   const { id, tour_type, image, trip_title, price } = pack;
   const { user } = useAuth();
   const router = useRouter();
-  const pathname = usePathname();
-  const axiosSecure = useAxiosSecure();
 
   const handleAddtoCart = () => {
     if (user && user.email) {
@@ -34,15 +32,14 @@ const AllPackages = ({ pack }: PackProps) => {
         price
       };
 
-      axiosSecure.post('/wishlists', cartItem)
-        .then((res: any) => {
-          Swal.fire({
-            icon: 'success',
-            title: `${trip_title} Added to wishlist`,
-            showConfirmButton: false,
-            timer: 1500
-          });
+      addToWishlist(cartItem).then(() => {
+        Swal.fire({
+          icon: 'success',
+          title: `${trip_title} Added to wishlist`,
+          showConfirmButton: false,
+          timer: 1500
         });
+      });
     } else {
       Swal.fire({
         title: "You are not logged in!",
@@ -61,22 +58,41 @@ const AllPackages = ({ pack }: PackProps) => {
   };
 
   return (
-    <div className="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7] relative">
-      <img className="h-48 w-full object-cover rounded-t-md" src={image} alt={trip_title} />
-      <div onClick={handleAddtoCart} className="text-4xl absolute top-0 bottom-0 text-blue-700 cursor-pointer">
-        <FaHeart />
+    <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl dark:border-border dark:bg-card">
+      <div className="relative h-48 overflow-hidden">
+        <img
+          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+          src={image}
+          alt={trip_title}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+        {tour_type && (
+          <span className="absolute left-3 top-3 rounded-full bg-card/90 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-foreground backdrop-blur dark:bg-card/80 dark:text-slate-200">
+            {tour_type}
+          </span>
+        )}
+        <button
+          onClick={handleAddtoCart}
+          aria-label="ইচ্ছেতালিকায় যোগ করুন"
+          className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-card/90 text-muted-foreground backdrop-blur transition-all hover:scale-110 hover:bg-card hover:text-rose-500 dark:bg-muted/90"
+        >
+          <FaHeart />
+        </button>
       </div>
-      <div className="p-4 md:p-6">
-        <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-300 dark:hover:text-white">
+
+      <div className="flex flex-grow flex-col p-5">
+        <h3 className="line-clamp-1 text-lg font-bold text-foreground dark:text-white">
           {trip_title}
         </h3>
-        <p className="mt-3 text-gray-500">
+        <p className="mt-1 text-sm text-muted-foreground dark:text-muted-foreground">
           {tour_type}
         </p>
-      </div>
-      <div className="mt-auto flex border-t border-gray-200 divide-x divide-gray-200 dark:border-gray-700 dark:divide-gray-700">
-        <Link href={`/details/${id}`} className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-es-xl bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 text-end">
+        <Link
+          href={`/details/${id}`}
+          className="group/btn mt-5 inline-flex items-center justify-center gap-2 rounded-xl border border-border px-4 py-2.5 text-sm font-semibold text-foreground transition-all duration-300 hover:border-transparent hover:bg-brand hover:text-white dark:border-border dark:text-slate-200"
+        >
           View Package
+          <FaArrowRightLong className="transition-transform duration-300 group-hover/btn:translate-x-1" />
         </Link>
       </div>
     </div>
