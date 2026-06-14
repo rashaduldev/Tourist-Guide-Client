@@ -6,14 +6,18 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
+import { FiUser, FiMail, FiLock, FiImage } from "react-icons/fi";
 import { signIn } from "next-auth/react";
 import ExtraLogin from "../../Components/ExtraLogin";
 import { registerUser } from "@/app/actions/auth";
+import AuthShell from "@/components/shared/AuthShell";
 
-const img = "/assets/authentication2.png";
+const inputClass =
+  "h-12 w-full rounded-xl border border-slate-200 bg-slate-50 pl-11 pr-4 text-sm text-slate-900 outline-none transition-colors placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-white";
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const {
     register,
@@ -23,10 +27,10 @@ const Signup = () => {
 
   const onSubmit = async (data: any) => {
     const { name, email, password } = data;
-
-    // Register via Server Action (creates the account + hashes password server-side).
+    setLoading(true);
     const result = await registerUser({ name, email, password });
     if (!result.ok) {
+      setLoading(false);
       Swal.fire({
         position: "center",
         icon: "error",
@@ -37,12 +41,12 @@ const Signup = () => {
       return;
     }
 
-    // Then sign in with NextAuth so a session cookie is established.
     const signInResult = await signIn("credentials", {
       email,
       password,
       redirect: false,
     });
+    setLoading(false);
     if (signInResult?.error) {
       router.push("/login");
       return;
@@ -58,142 +62,136 @@ const Signup = () => {
     router.push("/");
     router.refresh();
   };
+
   return (
-    <div>
-      <div className="mt-10 my-8">
-        <div className="flex flex-col lg:flex-row-reverse lg:gap-20 justify-center lg:mx-36">
-          <div className="text-center lg:text-center">
-            <h1 className="text-2xl lg:text-5xl font-bold mb-9">Signup Here</h1>
-            <img src={img} alt="" />
+    <AuthShell
+      title="অ্যাকাউন্ট তৈরি করুন"
+      subtitle="কয়েক সেকেন্ডে রেজিস্টার করে যাত্রা শুরু করুন।"
+    >
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <div>
+            <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+              নাম
+            </label>
+            <div className="relative">
+              <FiUser className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+              <input
+                type="text"
+                placeholder="পুরো নাম"
+                {...register("name", { required: true })}
+                className={inputClass}
+              />
+            </div>
+            {errors.name && (
+              <span className="mt-1.5 block text-xs text-rose-600">
+                নাম আবশ্যক
+              </span>
+            )}
           </div>
-          <div className=" w-full max-w-lg bg-base-300 rounded pt-8 p-4">
-            <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text font-bold text-black/60">
-                      Name
-                    </span>
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="name"
-                    {...register("name", { required: true })}
-                    className="flex h-[48px] w-full rounded-md border border-neutral-400 focus:border-accent font-light bg-primary px-4 py-5 text-base placeholder:text-black/60 outline-none"
-                  />
-                  {errors.name && (
-                    <span className="text-red-600 mt-2">Name is required !</span>
-                  )}
-                </div>
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text font-bold text-black/60">
-                      Photo
-                    </span>
-                  </label>
-                  <input
-                    type="file"
-                    placeholder="Photo Url"
-                    className="flex h-[48px] w-full rounded-md border border-neutral-400 focus:border-accent font-light bg-primary px-4 py-2 text-base placeholder:text-black/60 outline-none"
-                    {...register("photourl", { required: true })}
-                  />
-                  {errors.photourl && (
-                    <span className="text-red-600 mt-2">
-                      photourl is required !
-                    </span>
-                  )}
-                </div>
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text font-bold text-black/60">
-                      Email
-                    </span>
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="email"
-                    className="flex h-[48px] w-full rounded-md border border-neutral-400 focus:border-accent font-light bg-primary px-4 py-5 text-base placeholder:text-black/60 outline-none"
-                    {...register("email", { required: true })}
-                  />
-                  {errors.email && (
-                    <span className="text-red-600 mt-2">
-                      Email is required !
-                    </span>
-                  )}
-                </div>
-                <div className="form-control relative">
-                  <label className="label">
-                    <span className="label-text font-bold text-black/60">
-                      Password
-                    </span>
-                  </label>
-                  <input
-                    type={!showPassword ? "password" : "text"}
-                    {...register("password", {
-                      required: true,
-                      minLength: 6,
-                      maxLength: 99,
-                      pattern:
-                        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/,
-                    })}
-                    placeholder="password"
-                    className="flex h-[48px] w-full rounded-md border border-neutral-400 focus:border-accent font-light bg-primary px-4 py-5 text-base placeholder:text-black/60 outline-none"
-                  />
-                  {errors.password?.type === "required" && (
-                    <p className="text-red-600 mt-2">Password is required</p>
-                  )}
-                  {errors.password?.type === "minLength" && (
-                    <p className="text-red-600 mt-2">
-                      Please minimum enter 6 charecter
-                    </p>
-                  )}
-                  {errors.password?.type === "max" && (
-                    <p className="text-red-600">
-                      Please maximum enter 20 charecter
-                    </p>
-                  )}
-                  {errors.password?.type === "pattern" && (
-                    <p className="text-red-600">
-                      Please enter at least a symbol, upper and lower case
-                      letters and a number
-                    </p>
-                  )}
-                  <div
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute top-[37px] right-3"
-                  >
-                    {showPassword ? (
-                      <button type="button">
-                        <FaEye />
-                      </button>
-                    ) : (
-                      <button type="button">
-                        <FaEyeSlash />
-                      </button>
-                    )}
-                  </div>
-                </div>
-              </div>
-              <div className="form-control">
-                <button
-                  type="submit"
-                  className="w-full py-3 px-4 my-7 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                >
-                  SignUp
-                </button>
-              </div>
-            </form>
-            <p className="text-center italic">
-              Already Have an Account ?{" "}
-              <Link className="text-blue-400 underline" href="/login">
-                Please Login
-              </Link>{" "}
-            </p>
-            <ExtraLogin />
+
+          <div>
+            <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+              ছবি
+            </label>
+            <div className="relative">
+              <FiImage className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+              <input
+                type="file"
+                {...register("photourl")}
+                className="h-12 w-full rounded-xl border border-slate-200 bg-slate-50 pl-11 pr-4 pt-2.5 text-sm text-slate-600 outline-none transition-colors file:hidden focus:border-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
+              />
+            </div>
           </div>
         </div>
+
+        <div>
+          <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+            ইমেইল
+          </label>
+          <div className="relative">
+            <FiMail className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+            <input
+              type="email"
+              placeholder="you@example.com"
+              {...register("email", { required: true })}
+              className={inputClass}
+            />
+          </div>
+          {errors.email && (
+            <span className="mt-1.5 block text-xs text-rose-600">
+              ইমেইল আবশ্যক
+            </span>
+          )}
+        </div>
+
+        <div>
+          <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+            পাসওয়ার্ড
+          </label>
+          <div className="relative">
+            <FiLock className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="••••••••"
+              {...register("password", {
+                required: true,
+                minLength: 6,
+                maxLength: 99,
+                pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/,
+              })}
+              className={inputClass}
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword((v) => !v)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+              aria-label="পাসওয়ার্ড দেখান"
+            >
+              {showPassword ? <FaEye /> : <FaEyeSlash />}
+            </button>
+          </div>
+          {errors.password?.type === "required" && (
+            <p className="mt-1.5 text-xs text-rose-600">পাসওয়ার্ড আবশ্যক</p>
+          )}
+          {errors.password?.type === "minLength" && (
+            <p className="mt-1.5 text-xs text-rose-600">
+              কমপক্ষে ৬ অক্ষর দিন
+            </p>
+          )}
+          {errors.password?.type === "pattern" && (
+            <p className="mt-1.5 text-xs text-rose-600">
+              একটি বড় হাতের, ছোট হাতের অক্ষর, সংখ্যা ও প্রতীক ব্যবহার করুন
+            </p>
+          )}
+        </div>
+
+        <button
+          type="submit"
+          disabled={loading}
+          className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-600/40 disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {loading ? "তৈরি হচ্ছে..." : "সাইন আপ"}
+        </button>
+      </form>
+
+      <div className="my-6 flex items-center gap-4">
+        <span className="h-px flex-1 bg-slate-200 dark:bg-slate-700" />
+        <span className="text-xs uppercase tracking-wider text-slate-400">
+          অথবা
+        </span>
+        <span className="h-px flex-1 bg-slate-200 dark:bg-slate-700" />
       </div>
-    </div>
+
+      <ExtraLogin />
+
+      <p className="mt-7 text-center text-sm text-slate-500 dark:text-slate-400">
+        আগে থেকেই অ্যাকাউন্ট আছে?{" "}
+        <Link href="/login" className="font-semibold text-blue-600 hover:underline">
+          লগ ইন করুন
+        </Link>
+      </p>
+    </AuthShell>
   );
 };
 

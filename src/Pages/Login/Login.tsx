@@ -7,14 +7,17 @@ import { signIn } from "next-auth/react";
 import ExtraLogin from "../../Components/ExtraLogin";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
+import { FiMail, FiLock } from "react-icons/fi";
+import AuthShell from "@/components/shared/AuthShell";
 
-const img = "/assets/authentication2.png";
+const inputClass =
+  "h-12 w-full rounded-xl border border-slate-200 bg-slate-50 pl-11 pr-4 text-sm text-slate-900 outline-none transition-colors placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-white";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
-
   const from = searchParams.get("from") || "/";
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -24,11 +27,13 @@ const Login = () => {
     const password = (form.elements.namedItem("password") as HTMLInputElement)
       .value;
 
+    setLoading(true);
     const result = await signIn("credentials", {
       email,
       password,
       redirect: false,
     });
+    setLoading(false);
 
     if (result?.error) {
       Swal.fire({
@@ -51,119 +56,92 @@ const Login = () => {
     router.replace(from);
     router.refresh();
   };
+
   return (
-    <div>
-      <div className="w-full my-20">
-        <div className="flex flex-col lg:flex-row justify-center container mx-auto">
-          <div className="text-center flex-1  md:max-w-lg lg:text-left mx-auto">
-            <h1 className="text-5xl text-black font-bold text-center mb-9">
-              Login now!
-            </h1>
-            <img src={img} alt="" />
-          </div>
-          <div className="md:max-w-md w-full flex-1 md:p-10 bg-base-300 mx-auto">
-            {/* <!-- Form --> */}
-            <form className="mx-4" onSubmit={handleLogin}>
-              <div className="grid gap-y-4">
-                {/* <!-- Form Group --> */}
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm mb-2 dark:text-white font-bold text-black/60"
-                  >
-                    Email
-                  </label>
-                  <div className="relative">
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      placeholder="email"
-                      className="flex h-[48px] w-full rounded-md border border-neutral-400 focus:border-accent font-light bg-primary px-4 py-5 text-base placeholder:text-black/60 outline-none"
-                      required
-                      aria-describedby="email-error"
-                    />
-                  </div>
-                  <p
-                    className="hidden text-xs text-red-600 mt-2"
-                    id="email-error"
-                  >
-                    Please include a valid email address so we can get back to
-                    you
-                  </p>
-                </div>
-                {/* <!-- End Form Group --> */}
-
-                {/* <!-- Form Group --> */}
-                <div>
-                  <div className="flex justify-between items-center">
-                    <label
-                      htmlFor="password"
-                      className="block text-sm mb-2 dark:text-white font-bold text-black/60"
-                    >
-                      Password
-                    </label>
-                    <a
-                      className="text-sm text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                      href="#"
-                    >
-                      Forgot password?
-                    </a>
-                  </div>
-                  <div className="relative">
-                    <input
-                      type={!showPassword ? "password" : "text"}
-                      id="password"
-                      name="password"
-                      placeholder="password"
-                      className="flex h-[48px] w-full rounded-md border border-neutral-400 focus:border-accent font-light bg-primary px-4 py-5 text-base placeholder:text-black/60 outline-none"
-                      required
-                      aria-describedby="password-error"
-                    />
-                    <div
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute top-[10px] right-3"
-                    >
-                      {showPassword ? (
-                        <button type="button">
-                          <FaEye />
-                        </button>
-                      ) : (
-                        <button type="button">
-                          <FaEyeSlash />
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                  <p
-                    className="hidden text-xs text-red-600 mt-2"
-                    id="password-error"
-                  >
-                    8+ characters required
-                  </p>
-                </div>
-                {/* <!-- End Form Group --> */}
-
-                <button
-                  type="submit"
-                  className="w-full mt-5 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                >
-                  Log in
-                </button>
-              </div>
-            </form>
-            {/* <!-- End Form --> */}
-            <p className="text-center italic mt-7">
-              New hare ?{" "}
-              <Link className="text-blue-400 underline" href="/signup">
-                Please signup
-              </Link>{" "}
-            </p>
-            <ExtraLogin />
+    <AuthShell
+      title="স্বাগতম 👋"
+      subtitle="আপনার অ্যাকাউন্টে লগইন করে যাত্রা শুরু করুন।"
+    >
+      <form onSubmit={handleLogin} className="space-y-5">
+        <div>
+          <label
+            htmlFor="email"
+            className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300"
+          >
+            ইমেইল
+          </label>
+          <div className="relative">
+            <FiMail className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="you@example.com"
+              required
+              className={inputClass}
+            />
           </div>
         </div>
+
+        <div>
+          <div className="mb-2 flex items-center justify-between">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-slate-700 dark:text-slate-300"
+            >
+              পাসওয়ার্ড
+            </label>
+            <a href="#" className="text-sm font-medium text-blue-600 hover:underline">
+              ভুলে গেছেন?
+            </a>
+          </div>
+          <div className="relative">
+            <FiLock className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+            <input
+              type={showPassword ? "text" : "password"}
+              id="password"
+              name="password"
+              placeholder="••••••••"
+              required
+              className={inputClass}
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword((v) => !v)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+              aria-label="পাসওয়ার্ড দেখান"
+            >
+              {showPassword ? <FaEye /> : <FaEyeSlash />}
+            </button>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          disabled={loading}
+          className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-600/40 disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {loading ? "লগইন হচ্ছে..." : "লগ ইন"}
+        </button>
+      </form>
+
+      <div className="my-6 flex items-center gap-4">
+        <span className="h-px flex-1 bg-slate-200 dark:bg-slate-700" />
+        <span className="text-xs uppercase tracking-wider text-slate-400">
+          অথবা
+        </span>
+        <span className="h-px flex-1 bg-slate-200 dark:bg-slate-700" />
       </div>
-    </div>
+
+      <ExtraLogin />
+
+      <p className="mt-7 text-center text-sm text-slate-500 dark:text-slate-400">
+        নতুন ব্যবহারকারী?{" "}
+        <Link href="/signup" className="font-semibold text-blue-600 hover:underline">
+          সাইন আপ করুন
+        </Link>
+      </p>
+    </AuthShell>
   );
 };
 
