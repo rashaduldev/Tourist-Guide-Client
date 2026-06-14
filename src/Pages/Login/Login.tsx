@@ -11,7 +11,7 @@ import { FiMail, FiLock } from "react-icons/fi";
 import AuthShell from "@/components/shared/AuthShell";
 
 const inputClass =
-  "h-12 w-full rounded-xl border border-slate-200 bg-slate-50 pl-11 pr-4 text-sm text-slate-900 outline-none transition-colors placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-white";
+  "h-12 w-full rounded-xl border border-border bg-muted pl-11 pr-4 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-ring focus:bg-card focus:ring-2 focus:ring-ring/20 dark:border-border dark:bg-muted dark:text-white";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -66,12 +66,12 @@ const Login = () => {
         <div>
           <label
             htmlFor="email"
-            className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300"
+            className="mb-2 block text-sm font-medium text-foreground dark:text-muted-foreground"
           >
             ইমেইল
           </label>
           <div className="relative">
-            <FiMail className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+            <FiMail className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
             <input
               type="email"
               id="email"
@@ -87,16 +87,16 @@ const Login = () => {
           <div className="mb-2 flex items-center justify-between">
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-slate-700 dark:text-slate-300"
+              className="block text-sm font-medium text-foreground dark:text-muted-foreground"
             >
               পাসওয়ার্ড
             </label>
-            <a href="#" className="text-sm font-medium text-blue-600 hover:underline">
+            <a href="#" className="text-sm font-medium text-primary hover:underline">
               ভুলে গেছেন?
             </a>
           </div>
           <div className="relative">
-            <FiLock className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+            <FiLock className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
             <input
               type={showPassword ? "text" : "password"}
               id="password"
@@ -108,7 +108,7 @@ const Login = () => {
             <button
               type="button"
               onClick={() => setShowPassword((v) => !v)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-muted-foreground dark:hover:text-slate-200"
               aria-label="পাসওয়ার্ড দেখান"
             >
               {showPassword ? <FaEye /> : <FaEyeSlash />}
@@ -119,7 +119,7 @@ const Login = () => {
         <button
           type="submit"
           disabled={loading}
-          className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-600/40 disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/40 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {loading ? "লগইন হচ্ছে..." : "লগ ইন"}
         </button>
@@ -127,7 +127,7 @@ const Login = () => {
 
       <div className="my-6 flex items-center gap-4">
         <span className="h-px flex-1 bg-slate-200 dark:bg-slate-700" />
-        <span className="text-xs uppercase tracking-wider text-slate-400">
+        <span className="text-xs uppercase tracking-wider text-muted-foreground">
           অথবা
         </span>
         <span className="h-px flex-1 bg-slate-200 dark:bg-slate-700" />
@@ -135,9 +135,9 @@ const Login = () => {
 
       <ExtraLogin />
 
-      <p className="mt-7 text-center text-sm text-slate-500 dark:text-slate-400">
+      <p className="mt-7 text-center text-sm text-muted-foreground dark:text-muted-foreground">
         নতুন ব্যবহারকারী?{" "}
-        <Link href="/signup" className="font-semibold text-blue-600 hover:underline">
+        <Link href="/signup" className="font-semibold text-primary hover:underline">
           সাইন আপ করুন
         </Link>
       </p>

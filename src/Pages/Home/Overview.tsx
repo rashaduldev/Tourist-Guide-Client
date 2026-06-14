@@ -47,32 +47,32 @@ const Overview = () => {
             variants={fadeUp}
             whileHover={{ y: -6 }}
             transition={{ type: "spring", stiffness: 300, damping: 22 }}
-            className="group flex flex-col rounded-2xl border border-slate-200 bg-white p-6 text-left shadow-sm transition-shadow duration-300 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900"
+            className="group flex flex-col rounded-2xl border border-border bg-card p-6 text-left shadow-sm transition-shadow duration-300 hover:shadow-xl dark:border-border dark:bg-card"
           >
             <div className="mb-4 flex items-center gap-3">
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 text-white shadow-lg">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand text-white shadow-lg">
                 <FaMapMarkedAlt />
               </span>
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white">
+              <h3 className="text-lg font-bold text-foreground dark:text-white">
                 {card.title}
               </h3>
             </div>
 
             <div className="mb-3 flex flex-wrap gap-2">
-              <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+              <span className="inline-flex items-center gap-1 rounded-full bg-muted px-3 py-1 text-xs font-medium text-foreground dark:bg-muted dark:text-muted-foreground">
                 <FaMountain /> {card.height}
               </span>
-              <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+              <span className="inline-flex items-center gap-1 rounded-full bg-muted px-3 py-1 text-xs font-medium text-foreground dark:bg-muted dark:text-muted-foreground">
                 <FaMapMarkedAlt /> {card.location}
               </span>
             </div>
 
-            <p className="flex items-start gap-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-              <FaInfoCircle className="mt-1 flex-shrink-0 text-blue-500" />
+            <p className="flex items-start gap-2 text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground">
+              <FaInfoCircle className="mt-1 flex-shrink-0 text-primary" />
               {card.summary}
             </p>
 
-            <span className="mt-5 inline-flex items-center gap-1 border-t border-slate-100 pt-4 text-sm font-semibold text-blue-600 dark:border-slate-800 dark:text-blue-400">
+            <span className="mt-5 inline-flex items-center gap-1 border-t border-border pt-4 text-sm font-semibold text-primary dark:border-border dark:text-primary">
               আরও জানুন
               <FaArrowRightLong className="transition-transform duration-300 group-hover:translate-x-1" />
             </span>

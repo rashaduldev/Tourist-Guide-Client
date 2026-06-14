@@ -29,9 +29,9 @@ const Footer = () => {
   return (
     <footer className="relative mt-20 overflow-hidden bg-slate-950 text-slate-300">
       {/* top gradient accent */}
-      <div className="h-1 w-full bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-600" />
+      <div className="h-1 w-full bg-brand" />
       {/* glow */}
-      <div className="pointer-events-none absolute -top-24 left-1/4 h-72 w-72 rounded-full bg-blue-600/10 blur-3xl" />
+      <div className="pointer-events-none absolute -top-24 left-1/4 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
 
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <Reveal className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
@@ -57,7 +57,7 @@ const Footer = () => {
                   key={s.label}
                   href={s.href}
                   aria-label={s.label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-slate-300 transition-all duration-300 hover:-translate-y-1 hover:bg-gradient-to-br hover:from-blue-600 hover:to-indigo-600 hover:text-white"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-slate-300 transition-all duration-300 hover:-translate-y-1 hover:bg-brand hover:text-white"
                 >
                   {s.icon}
                 </a>
@@ -77,7 +77,7 @@ const Footer = () => {
                     href={l.href}
                     className="group inline-flex items-center gap-2 text-slate-400 transition-colors hover:text-white"
                   >
-                    <span className="h-px w-3 bg-blue-500 transition-all duration-300 group-hover:w-5" />
+                    <span className="h-px w-3 bg-primary transition-all duration-300 group-hover:w-5" />
                     {l.label}
                   </Link>
                 </li>
@@ -92,17 +92,17 @@ const Footer = () => {
             </h3>
             <ul className="space-y-4 text-sm text-slate-400">
               <li className="flex items-start gap-3">
-                <FaLocationDot className="mt-1 flex-shrink-0 text-blue-500" />
+                <FaLocationDot className="mt-1 flex-shrink-0 text-primary" />
                 ১২৩ ট্রাভেল রোড, অ্যাডভেঞ্চার সিটি
               </li>
               <li className="flex items-center gap-3">
-                <FaPhone className="flex-shrink-0 text-blue-500" />
+                <FaPhone className="flex-shrink-0 text-primary" />
                 <a href="tel:+8801603010103" className="hover:text-white">
                   +৮৮০১৬০৩০১০১০৩
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <FaEnvelope className="flex-shrink-0 text-blue-500" />
+                <FaEnvelope className="flex-shrink-0 text-primary" />
                 <a href="mailto:info@travel.com" className="hover:text-white">
                   info@travel.com
                 </a>
@@ -120,7 +120,7 @@ const Footer = () => {
             </p>
             <form
               onSubmit={(e) => e.preventDefault()}
-              className="flex overflow-hidden rounded-xl border border-white/10 bg-white/5 focus-within:border-blue-500"
+              className="flex overflow-hidden rounded-xl border border-white/10 bg-white/5 focus-within:border-ring"
             >
               <input
                 type="email"
@@ -130,7 +130,7 @@ const Footer = () => {
               <button
                 type="submit"
                 aria-label="সাবস্ক্রাইব"
-                className="flex items-center justify-center bg-gradient-to-r from-blue-600 to-indigo-600 px-4 text-white transition-opacity hover:opacity-90"
+                className="flex items-center justify-center bg-brand px-4 text-white transition-opacity hover:opacity-90"
               >
                 <FaPaperPlane />
               </button>

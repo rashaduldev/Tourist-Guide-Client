@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "theme": "node scripts/generate-theme.mjs",
+    "predev": "node scripts/generate-theme.mjs",
+    "prebuild": "node scripts/generate-theme.mjs"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.101.0",

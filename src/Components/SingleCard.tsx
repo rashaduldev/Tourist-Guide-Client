@@ -33,18 +33,18 @@ const SingleCard = ({ data }: { data: any }) => {
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       {/* Title row */}
       <Reveal className="mb-6">
-        <span className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-blue-700 dark:bg-blue-950/40 dark:text-blue-300">
+        <span className="inline-flex items-center gap-2 rounded-full bg-accent px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary dark:bg-accent/40 dark:text-primary">
           {tour_type}
         </span>
-        <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl dark:text-white">
+        <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl dark:text-white">
           {trip_title}
         </h1>
-        <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
+        <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-muted-foreground dark:text-muted-foreground">
           <span className="inline-flex items-center gap-1.5">
-            <FaLocationDot className="text-blue-500" /> বাংলাদেশ
+            <FaLocationDot className="text-primary" /> বাংলাদেশ
           </span>
           <span className="inline-flex items-center gap-1.5">
-            <FaClock className="text-blue-500" /> ৩ দিন / ২ রাত
+            <FaClock className="text-primary" /> ৩ দিন / ২ রাত
           </span>
           <span className="inline-flex items-center gap-1.5 text-amber-500">
             <FaStar /> ৪.৯ (১২০ রিভিউ)
@@ -76,7 +76,7 @@ const SingleCard = ({ data }: { data: any }) => {
       <div className="mt-10 grid gap-8 lg:grid-cols-[1.6fr_1fr]">
         <div>
           {/* Itinerary accordion */}
-          <h2 className="mb-4 text-2xl font-bold text-slate-900 dark:text-white">
+          <h2 className="mb-4 text-2xl font-bold text-foreground dark:text-white">
             ভ্রমণ পরিকল্পনা
           </h2>
           <div className="space-y-3">
@@ -87,21 +87,21 @@ const SingleCard = ({ data }: { data: any }) => {
                   key={index}
                   className={`overflow-hidden rounded-2xl border transition-colors ${
                     open
-                      ? "border-blue-300 bg-blue-50/40 dark:border-blue-800 dark:bg-blue-950/20"
-                      : "border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900"
+                      ? "border-primary bg-accent/40 dark:border-blue-800 dark:bg-accent/20"
+                      : "border-border bg-card dark:border-border dark:bg-card"
                   }`}
                 >
                   <button
                     onClick={() => toggle(index)}
-                    className="flex w-full items-center justify-between gap-4 p-5 text-left font-semibold text-slate-900 dark:text-white"
+                    className="flex w-full items-center justify-between gap-4 p-5 text-left font-semibold text-foreground dark:text-white"
                   >
                     <span className="flex items-center gap-3">
-                      <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 text-xs font-bold text-white">
+                      <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-brand text-xs font-bold text-white">
                         {index + 1}
                       </span>
                       {detail.day}
                     </span>
-                    <motion.span animate={{ rotate: open ? 45 : 0 }} className="text-blue-600">
+                    <motion.span animate={{ rotate: open ? 45 : 0 }} className="text-primary">
                       <FaPlus />
                     </motion.span>
                   </button>
@@ -114,7 +114,7 @@ const SingleCard = ({ data }: { data: any }) => {
                         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                         className="overflow-hidden"
                       >
-                        <p className="px-5 pb-5 pl-[3.75rem] text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                        <p className="px-5 pb-5 pl-[3.75rem] text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground">
                           {detail.description}
                         </p>
                       </motion.div>
@@ -128,25 +128,25 @@ const SingleCard = ({ data }: { data: any }) => {
 
         {/* Sticky booking summary */}
         <div className="lg:sticky lg:top-24 lg:self-start">
-          <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg dark:border-slate-800 dark:bg-slate-900">
+          <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-lg dark:border-border dark:bg-card">
             <img src={image || img1} alt={trip_title} className="h-40 w-full object-cover" />
             <div className="p-6">
-              <p className="text-sm text-slate-500 dark:text-slate-400">শুরু মাত্র</p>
-              <p className="mt-1 text-3xl font-extrabold text-blue-600">৳{price}</p>
-              <ul className="mt-5 space-y-3 text-sm text-slate-600 dark:text-slate-300">
+              <p className="text-sm text-muted-foreground dark:text-muted-foreground">শুরু মাত্র</p>
+              <p className="mt-1 text-3xl font-extrabold text-primary">৳{price}</p>
+              <ul className="mt-5 space-y-3 text-sm text-muted-foreground dark:text-muted-foreground">
                 <li className="flex items-center gap-2">
-                  <FaClock className="text-blue-500" /> মেয়াদ: ৩ দিন
+                  <FaClock className="text-primary" /> মেয়াদ: ৩ দিন
                 </li>
                 <li className="flex items-center gap-2">
-                  <FaUserGroup className="text-blue-500" /> গ্রুপ সাইজ: ১৫ জন
+                  <FaUserGroup className="text-primary" /> গ্রুপ সাইজ: ১৫ জন
                 </li>
                 <li className="flex items-center gap-2">
-                  <FaLocationDot className="text-blue-500" /> ধরন: {tour_type}
+                  <FaLocationDot className="text-primary" /> ধরন: {tour_type}
                 </li>
               </ul>
               <a
                 href="#booking"
-                className="mt-6 block rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3.5 text-center text-sm font-semibold text-white shadow-lg shadow-blue-600/25 transition-all hover:-translate-y-0.5"
+                className="mt-6 block rounded-xl bg-brand px-6 py-3.5 text-center text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:-translate-y-0.5"
               >
                 এখনই বুক করুন
               </a>

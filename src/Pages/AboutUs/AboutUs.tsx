@@ -142,7 +142,7 @@ export default function AboutUs() {
                 className="aspect-[4/3] w-full object-cover"
               />
             </div>
-            <div className="absolute -bottom-6 -right-4 rounded-2xl border border-white/60 bg-gradient-to-br from-blue-600 to-indigo-600 px-6 py-4 text-white shadow-xl">
+            <div className="absolute -bottom-6 -right-4 rounded-2xl border border-white/60 bg-brand px-6 py-4 text-white shadow-xl">
               <p className="text-3xl font-extrabold">১০+</p>
               <p className="text-sm text-blue-100">বছরের অভিজ্ঞতা</p>
             </div>
@@ -154,7 +154,7 @@ export default function AboutUs() {
               title="ভ্রমণকে সহজ ও স্মরণীয় করাই আমাদের লক্ষ্য"
               align="left"
             />
-            <div className="mt-6 space-y-4 text-slate-600 dark:text-slate-400">
+            <div className="mt-6 space-y-4 text-muted-foreground dark:text-muted-foreground">
               <p>
                 ট্রাভেল কো. একটি অভিজ্ঞ টিম, যারা বিশ্বাস করে — ভ্রমণ শুধু গন্তব্যে
                 পৌঁছানো নয়, বরং পথের প্রতিটি মুহূর্ত উপভোগ করা। আমরা প্রতিটি ট্রিপ
@@ -170,14 +170,14 @@ export default function AboutUs() {
       </section>
 
       {/* Stats band */}
-      <section className="border-y border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/50">
+      <section className="border-y border-border bg-muted dark:border-border dark:bg-card/50">
         <StaggerGroup className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-12 lg:grid-cols-4 lg:px-8">
           {stats.map((s) => (
             <motion.div key={s.label} variants={fadeUp} className="text-center">
-              <p className="bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-600 bg-clip-text text-4xl font-extrabold text-transparent">
+              <p className="bg-brand bg-clip-text text-4xl font-extrabold text-transparent">
                 {s.value}
               </p>
-              <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
+              <p className="mt-1 text-sm text-muted-foreground dark:text-muted-foreground">
                 {s.label}
               </p>
             </motion.div>
@@ -198,15 +198,15 @@ export default function AboutUs() {
               variants={fadeUp}
               whileHover={{ y: -8 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition-shadow duration-300 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900"
+              className="rounded-2xl border border-border bg-card p-7 shadow-sm transition-shadow duration-300 hover:shadow-xl dark:border-border dark:bg-card"
             >
-              <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-600 text-xl text-white shadow-lg shadow-blue-600/20">
+              <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-xl text-white shadow-lg shadow-primary/20">
                 {v.icon}
               </div>
-              <h3 className="mb-2 text-lg font-bold text-slate-900 dark:text-white">
+              <h3 className="mb-2 text-lg font-bold text-foreground dark:text-white">
                 {v.title}
               </h3>
-              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+              <p className="text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground">
                 {v.desc}
               </p>
             </motion.div>
@@ -227,20 +227,20 @@ export default function AboutUs() {
               variants={fadeUp}
               whileHover={{ y: -6 }}
               transition={{ type: "spring", stiffness: 300, damping: 22 }}
-              className="group rounded-2xl border border-slate-200 bg-white p-5 text-center shadow-sm transition-shadow duration-300 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900"
+              className="group rounded-2xl border border-border bg-card p-5 text-center shadow-sm transition-shadow duration-300 hover:shadow-xl dark:border-border dark:bg-card"
             >
               <div className="relative mx-auto h-24 w-24">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 opacity-0 blur transition-opacity duration-300 group-hover:opacity-60" />
+                <div className="absolute inset-0 rounded-full bg-brand opacity-0 blur transition-opacity duration-300 group-hover:opacity-60" />
                 <img
-                  className="relative h-24 w-24 rounded-full object-cover ring-2 ring-white dark:ring-slate-800"
+                  className="relative h-24 w-24 rounded-full object-cover ring-2 ring-white dark:ring-border"
                   src={member.img}
                   alt={member.name}
                 />
               </div>
-              <h3 className="mt-4 font-semibold text-slate-900 dark:text-white">
+              <h3 className="mt-4 font-semibold text-foreground dark:text-white">
                 {member.name}
               </h3>
-              <p className="text-sm text-blue-600 dark:text-blue-400">
+              <p className="text-sm text-primary dark:text-primary">
                 {member.role}
               </p>
             </motion.div>

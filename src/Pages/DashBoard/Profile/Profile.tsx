@@ -37,8 +37,8 @@ const Profile = () => {
   return (
     <div className="mx-auto max-w-5xl">
       {/* Profile header card */}
-      <Reveal className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
-        <div className="h-32 bg-gradient-to-r from-blue-600 to-indigo-600" />
+      <Reveal className="overflow-hidden rounded-3xl border border-border bg-card shadow-sm dark:border-border dark:bg-card">
+        <div className="h-32 bg-brand" />
         <div className="px-6 pb-6 sm:px-8">
           <div className="-mt-12 flex flex-col items-center gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-end">
@@ -49,19 +49,19 @@ const Profile = () => {
               />
               <div className="pb-1 text-center sm:text-left">
                 <div className="flex items-center justify-center gap-2 sm:justify-start">
-                  <h1 className="text-2xl font-extrabold text-slate-900 dark:text-white">
+                  <h1 className="text-2xl font-extrabold text-foreground dark:text-white">
                     {user?.displayName || "ব্যবহারকারী"}
                   </h1>
                   <RiVerifiedBadgeFill className="text-xl text-emerald-500" />
                 </div>
-                <p className="text-sm text-slate-500 dark:text-slate-400">
+                <p className="text-sm text-muted-foreground dark:text-muted-foreground">
                   Dream big. Think different. Do great!
                 </p>
               </div>
             </div>
             <Link
               href="/dashboard/edituser"
-              className="rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/25 transition-all hover:-translate-y-0.5"
+              className="rounded-xl bg-brand px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:-translate-y-0.5"
             >
               এডিট প্রোফাইল
             </Link>
@@ -71,10 +71,10 @@ const Profile = () => {
 
       {/* General info */}
       <Reveal delay={0.1} className="mt-6 grid gap-6 lg:grid-cols-[1.6fr_1fr]">
-        <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 dark:border-slate-800 dark:bg-slate-900">
+        <div className="rounded-3xl border border-border bg-card p-6 shadow-sm sm:p-8 dark:border-border dark:bg-card">
           <div className="mb-6 flex items-center gap-3">
-            <span className="h-7 w-1.5 rounded-full bg-gradient-to-b from-blue-600 to-indigo-600" />
-            <h2 className="text-lg font-bold text-slate-900 dark:text-white">
+            <span className="h-7 w-1.5 rounded-full bg-brand" />
+            <h2 className="text-lg font-bold text-foreground dark:text-white">
               সাধারণ তথ্য
             </h2>
           </div>
@@ -82,16 +82,16 @@ const Profile = () => {
             {info.map((i) => (
               <div
                 key={i.label}
-                className="flex items-center gap-3 border-b border-slate-100 pb-4 last:border-0 last:pb-0 dark:border-slate-800"
+                className="flex items-center gap-3 border-b border-border pb-4 last:border-0 last:pb-0 dark:border-border"
               >
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600 dark:bg-blue-950/40 dark:text-blue-400">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent text-primary dark:bg-accent/40 dark:text-primary">
                   {i.icon}
                 </span>
                 <div>
-                  <dt className="text-xs text-slate-500 dark:text-slate-400">
+                  <dt className="text-xs text-muted-foreground dark:text-muted-foreground">
                     {i.label}
                   </dt>
-                  <dd className="font-semibold text-slate-900 dark:text-white">
+                  <dd className="font-semibold text-foreground dark:text-white">
                     {i.value}
                   </dd>
                 </div>
@@ -100,14 +100,14 @@ const Profile = () => {
           </dl>
         </div>
 
-        <div className="flex flex-col items-center justify-center rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-sm dark:border-slate-800 dark:bg-slate-900">
+        <div className="flex flex-col items-center justify-center rounded-3xl border border-border bg-card p-8 text-center shadow-sm dark:border-border dark:bg-card">
           <RiVerifiedBadgeFill className="text-7xl text-emerald-500" />
-          <p className="mt-4 text-sm text-slate-500 dark:text-slate-400">
+          <p className="mt-4 text-sm text-muted-foreground dark:text-muted-foreground">
             ভেরিফাই করলে বিনিয়োগকারীদের কাছে আপনার আস্থা বাড়বে।
           </p>
           <button
             onClick={handleVerify}
-            className="mt-5 rounded-xl border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-800 transition-colors hover:border-blue-400 hover:text-blue-600 dark:border-slate-700 dark:text-slate-200"
+            className="mt-5 rounded-xl border border-border px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:text-primary dark:border-border dark:text-slate-200"
           >
             ভেরিফিকেশনের আবেদন
           </button>

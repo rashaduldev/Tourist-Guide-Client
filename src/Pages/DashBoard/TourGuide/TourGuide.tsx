@@ -14,7 +14,7 @@ const TourGuide = () => {
         {Array.from({ length: 4 }).map((_, i) => (
           <div
             key={i}
-            className="h-80 animate-pulse rounded-2xl border border-slate-200 bg-slate-100 dark:border-slate-800 dark:bg-slate-800"
+            className="h-80 animate-pulse rounded-2xl border border-border bg-muted dark:border-border dark:bg-muted"
           />
         ))}
       </div>
@@ -29,7 +29,7 @@ const TourGuide = () => {
           variants={fadeUp}
           whileHover={{ y: -8 }}
           transition={{ type: "spring", stiffness: 300, damping: 22 }}
-          className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-shadow duration-300 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900"
+          className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-shadow duration-300 hover:shadow-xl dark:border-border dark:bg-card"
         >
           <div className="relative h-48 overflow-hidden">
             <img
@@ -39,20 +39,20 @@ const TourGuide = () => {
             />
           </div>
           <div className="flex flex-grow flex-col p-6">
-            <span className="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            <span className="text-xs font-semibold uppercase tracking-wider text-primary dark:text-primary">
               {pack.title}
             </span>
-            <h3 className="mt-1 text-lg font-bold text-slate-900 dark:text-white">
+            <h3 className="mt-1 text-lg font-bold text-foreground dark:text-white">
               {pack.name}
             </h3>
-            <p className="mt-2 flex-grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+            <p className="mt-2 flex-grow text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground">
               {pack.description?.length > 100
                 ? pack.description.slice(0, 100) + "..."
                 : pack.description}
             </p>
             <Link
               href={`/guidedetails/${pack._id}`}
-              className="group/btn mt-5 inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-800 transition-all duration-300 hover:border-transparent hover:bg-gradient-to-r hover:from-blue-600 hover:to-indigo-600 hover:text-white dark:border-slate-700 dark:text-slate-200"
+              className="group/btn mt-5 inline-flex items-center justify-center gap-2 rounded-xl border border-border px-4 py-2.5 text-sm font-semibold text-foreground transition-all duration-300 hover:border-transparent hover:bg-brand hover:text-white dark:border-border dark:text-slate-200"
             >
               বিস্তারিত
               <FaArrowRightLong className="transition-transform duration-300 group-hover/btn:translate-x-1" />

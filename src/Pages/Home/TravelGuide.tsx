@@ -19,7 +19,7 @@ const TravelGuide = () => {
     <section className="mx-auto max-w-7xl px-4 lg:px-8">
       {/* Segmented tab control */}
       <div className="flex justify-center">
-        <div className="flex flex-wrap justify-center gap-1 rounded-2xl border border-slate-200 bg-slate-100 p-1.5 dark:border-slate-700 dark:bg-slate-800">
+        <div className="flex flex-wrap justify-center gap-1 rounded-2xl border border-border bg-muted p-1.5 dark:border-border dark:bg-muted">
           {tabs.map((tab, i) => (
             <button
               key={tab.label}
@@ -27,13 +27,13 @@ const TravelGuide = () => {
               className={`relative rounded-xl px-4 py-2.5 text-sm font-semibold transition-colors sm:px-6 ${
                 active === i
                   ? "text-white"
-                  : "text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white"
+                  : "text-muted-foreground hover:text-foreground dark:text-muted-foreground dark:hover:text-white"
               }`}
             >
               {active === i && (
                 <motion.span
                   layoutId="travelGuideTab"
-                  className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 shadow"
+                  className="absolute inset-0 rounded-xl bg-brand shadow"
                   transition={{ type: "spring", stiffness: 350, damping: 30 }}
                 />
               )}

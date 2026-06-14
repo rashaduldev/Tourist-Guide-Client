@@ -28,12 +28,12 @@ const OurPopularPackages = () => {
           {Array.from({ length: 4 }).map((_, i) => (
             <div
               key={i}
-              className="h-80 animate-pulse rounded-2xl border border-slate-200 bg-slate-100 dark:border-slate-800 dark:bg-slate-800"
+              className="h-80 animate-pulse rounded-2xl border border-border bg-muted dark:border-border dark:bg-muted"
             />
           ))}
         </div>
       ) : popular.length === 0 ? (
-        <div className="mt-12 text-center text-slate-500">
+        <div className="mt-12 text-center text-muted-foreground">
           কোনো স্পোর্টস প্যাকেজ পাওয়া যায়নি।
         </div>
       ) : (
@@ -49,7 +49,7 @@ const OurPopularPackages = () => {
       <div className="mt-12 text-center">
         <Link
           href="/allpackage"
-          className="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-600/40"
+          className="group inline-flex items-center gap-2 rounded-xl bg-brand px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/40"
         >
           সকল প্যাকেজ দেখুন
           <FaArrowRightLong className="transition-transform duration-300 group-hover:translate-x-1" />

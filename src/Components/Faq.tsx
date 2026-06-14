@@ -73,17 +73,17 @@ const Faq = () => {
       <div className="grid gap-12 lg:grid-cols-[0.9fr_1.4fr] lg:gap-16">
         {/* Left */}
         <Reveal className="lg:sticky lg:top-24 lg:self-start">
-          <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-700 dark:border-blue-900/60 dark:bg-blue-950/40 dark:text-blue-300">
+          <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-accent bg-accent px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary dark:border-accent/60 dark:bg-accent/40 dark:text-primary">
             সহায়তা কেন্দ্র
           </span>
           <h2 className="bg-gradient-to-br from-slate-900 to-slate-600 bg-clip-text text-3xl font-extrabold tracking-tight text-transparent sm:text-4xl dark:from-white dark:to-slate-400">
             সাধারণ জিজ্ঞাসা
           </h2>
-          <p className="mt-5 max-w-md text-base leading-relaxed text-slate-600 dark:text-slate-400">
+          <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground dark:text-muted-foreground">
             আমাদের প্ল্যাটফর্ম সম্পর্কিত সবচেয়ে সাধারণ প্রশ্নের উত্তর খুঁজে নিন, আপনার
             ভ্রমণ যাত্রা সহজ করতে।
           </p>
-          <span className="mt-5 block h-1 w-20 rounded-full bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-600" />
+          <span className="mt-5 block h-1 w-20 rounded-full bg-brand" />
         </Reveal>
 
         {/* Right — accordion */}
@@ -95,16 +95,16 @@ const Faq = () => {
                 <div
                   className={`overflow-hidden rounded-2xl border transition-colors duration-300 ${
                     isOpen
-                      ? "border-blue-300 bg-blue-50/40 shadow-md dark:border-blue-800 dark:bg-blue-950/20"
-                      : "border-slate-200 bg-white hover:border-slate-300 dark:border-slate-800 dark:bg-slate-900"
+                      ? "border-primary bg-accent/40 shadow-md dark:border-blue-800 dark:bg-accent/20"
+                      : "border-border bg-card hover:border-slate-300 dark:border-border dark:bg-card"
                   }`}
                 >
                   <button
                     onClick={() => toggle(index)}
                     className="flex w-full items-center justify-between gap-4 p-5 text-left"
                   >
-                    <span className="flex items-center gap-3 text-base font-semibold text-slate-900 dark:text-white">
-                      <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 text-xs font-bold text-white">
+                    <span className="flex items-center gap-3 text-base font-semibold text-foreground dark:text-white">
+                      <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg bg-brand text-xs font-bold text-white">
                         {item.id}
                       </span>
                       {item.question}
@@ -114,8 +114,8 @@ const Faq = () => {
                       transition={{ duration: 0.3 }}
                       className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full transition-colors ${
                         isOpen
-                          ? "bg-blue-600 text-white"
-                          : "bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300"
+                          ? "bg-primary text-white"
+                          : "bg-muted text-muted-foreground dark:bg-muted dark:text-muted-foreground"
                       }`}
                     >
                       <FaPlus className="text-xs" />
@@ -131,7 +131,7 @@ const Faq = () => {
                         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                         className="overflow-hidden"
                       >
-                        <p className="px-5 pb-5 pl-[3.75rem] text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                        <p className="px-5 pb-5 pl-[3.75rem] text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground">
                           {item.answer}
                         </p>
                       </motion.div>

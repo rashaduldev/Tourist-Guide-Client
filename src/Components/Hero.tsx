@@ -43,11 +43,11 @@ const Hero = () => {
                 hidden: { opacity: 0, y: 20 },
                 show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
               }}
-              className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50/80 px-4 py-1.5 text-sm font-medium text-blue-700 backdrop-blur dark:border-blue-900/60 dark:bg-blue-950/40 dark:text-blue-300"
+              className="inline-flex items-center gap-2 rounded-full border border-accent bg-accent/80 px-4 py-1.5 text-sm font-medium text-accent-foreground backdrop-blur"
             >
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-500 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-600" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
               </span>
               বাংলাদেশের সেরা ট্যুর প্ল্যাটফর্ম
             </motion.span>
@@ -57,13 +57,11 @@ const Hero = () => {
                 hidden: { opacity: 0, y: 24 },
                 show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
               }}
-              className="mt-6 text-4xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-6xl dark:text-white"
+              className="mt-6 text-4xl font-extrabold leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl"
             >
               শুরু করুন আপনার যাত্রা
               <br />
-              <span className="bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                {text}
-              </span>
+              <span className="text-brand-gradient">{text}</span>
               <Cursor cursorColor="#2563eb" />
             </motion.h1>
 
@@ -72,7 +70,7 @@ const Hero = () => {
                 hidden: { opacity: 0, y: 24 },
                 show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
               }}
-              className="mt-5 max-w-xl text-lg leading-relaxed text-slate-600 dark:text-slate-300"
+              className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground"
             >
               পর্যটন মানে হলো বিনোদন, অভিযাত্রা, সংস্কৃতি ও ব্যবসার জন্য ভ্রমণ। ভ্রমণ
               মানুষের মধ্যে ব্যক্তিগত উন্নতি এবং বিশ্বজনীন বোঝাপড়া গড়ে তোলে।
@@ -87,7 +85,7 @@ const Hero = () => {
             >
               <Link
                 href="/allpackage"
-                className="group inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-600/40 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900"
+                className="group inline-flex items-center justify-center gap-2 rounded-xl bg-brand px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/40 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
               >
                 শুরু করুন
                 <AiOutlineBlock className="h-4 w-4 transition-transform duration-300 group-hover:rotate-90" />
@@ -96,7 +94,7 @@ const Hero = () => {
                 href="https://maps.app.goo.gl/s2bhhzKgE5Z7Mbbd9"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white/70 px-6 py-3.5 text-sm font-semibold text-slate-800 backdrop-blur transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-400 hover:text-blue-700 hover:shadow-md dark:border-slate-700 dark:bg-slate-800/70 dark:text-white dark:hover:border-blue-500 dark:hover:text-blue-300"
+                className="group inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-card/70 px-6 py-3.5 text-sm font-semibold text-foreground backdrop-blur transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:text-primary hover:shadow-md"
               >
                 <LuMapPin className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5" />
                 ম্যাপ দেখুন
@@ -127,10 +125,8 @@ const Hero = () => {
                     <FaStar key={i} className="h-4 w-4" />
                   ))}
                 </div>
-                <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
-                  <span className="font-semibold text-slate-900 dark:text-white">
-                    ৪.৯/৫
-                  </span>{" "}
+                <p className="mt-1 text-sm text-muted-foreground">
+                  <span className="font-semibold text-foreground">৪.৯/৫</span>{" "}
                   — ১২,০০০+ সন্তুষ্ট ভ্রমণকারী
                 </p>
               </div>
@@ -158,19 +154,17 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: EASE, delay: 0.6 }}
-              className="absolute -bottom-6 -left-4 rounded-2xl border border-white/60 bg-white/90 p-4 shadow-xl backdrop-blur-md sm:-left-6 dark:border-white/10 dark:bg-slate-800/90"
+              className="absolute -bottom-6 -left-4 rounded-2xl border border-border bg-card/90 p-4 shadow-xl backdrop-blur-md sm:-left-6"
             >
-              <p className="text-2xl font-extrabold text-slate-900 dark:text-white">
-                ৫০+
-              </p>
-              <p className="text-sm text-slate-500 dark:text-slate-400">গন্তব্য</p>
+              <p className="text-2xl font-extrabold text-foreground">৫০+</p>
+              <p className="text-sm text-muted-foreground">গন্তব্য</p>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: EASE, delay: 0.75 }}
-              className="absolute -right-3 -top-5 rounded-2xl border border-white/60 bg-gradient-to-br from-blue-600 to-indigo-600 px-4 py-3 text-white shadow-xl sm:-right-6"
+              className="absolute -right-3 -top-5 rounded-2xl border border-white/60 bg-brand px-4 py-3 text-white shadow-xl sm:-right-6"
             >
               <p className="text-lg font-bold">ট্যুর গাইড</p>
               <p className="text-xs text-blue-100">বিশেষজ্ঞ টিম</p>

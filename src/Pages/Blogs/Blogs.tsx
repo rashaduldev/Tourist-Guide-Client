@@ -37,15 +37,15 @@ const Blogs = () => {
             Array.from({ length: 3 }).map((_, i) => (
               <div
                 key={i}
-                className="h-96 animate-pulse rounded-2xl border border-slate-200 bg-slate-100 dark:border-slate-800 dark:bg-slate-800"
+                className="h-96 animate-pulse rounded-2xl border border-border bg-muted dark:border-border dark:bg-muted"
               />
             ))
           ) : blogs.length === 0 ? (
-            <div className="rounded-2xl border border-slate-200 bg-white p-16 text-center dark:border-slate-800 dark:bg-slate-900">
-              <p className="text-lg font-semibold text-slate-900 dark:text-white">
+            <div className="rounded-2xl border border-border bg-card p-16 text-center dark:border-border dark:bg-card">
+              <p className="text-lg font-semibold text-foreground dark:text-white">
                 এখনও কোনো ব্লগ নেই
               </p>
-              <p className="mt-1 text-sm text-slate-500">শীঘ্রই নতুন গল্প আসছে।</p>
+              <p className="mt-1 text-sm text-muted-foreground">শীঘ্রই নতুন গল্প আসছে।</p>
             </div>
           ) : (
             <StaggerGroup className="space-y-8">
@@ -53,7 +53,7 @@ const Blogs = () => {
                 <motion.article
                   key={blog._id}
                   variants={fadeUp}
-                  className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900"
+                  className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:shadow-xl dark:border-border dark:bg-card"
                 >
                   {blog.image && (
                     <div className="relative h-64 overflow-hidden">
@@ -62,24 +62,24 @@ const Blogs = () => {
                         alt="ব্লগ ছবি"
                         className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                       />
-                      <span className="absolute left-4 top-4 rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold text-white">
+                      <span className="absolute left-4 top-4 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-white">
                         ব্লগ
                       </span>
                     </div>
                   )}
                   <div className="p-6 md:p-8">
-                    <div className="mb-3 flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
+                    <div className="mb-3 flex items-center gap-4 text-xs text-muted-foreground dark:text-muted-foreground">
                       <span className="inline-flex items-center gap-1.5">
                         <FaRegCalendar /> {blog.date ?? "৩ দিন আগে"}
                       </span>
                     </div>
-                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+                    <h2 className="text-2xl font-bold text-foreground dark:text-white">
                       {blog.content_head}
                     </h2>
-                    <p className="mt-3 line-clamp-3 leading-relaxed text-slate-600 dark:text-slate-400">
+                    <p className="mt-3 line-clamp-3 leading-relaxed text-muted-foreground dark:text-muted-foreground">
                       {blog.description} {blog.content}
                     </p>
-                    <button className="group/btn mt-5 inline-flex items-center gap-2 text-sm font-semibold text-blue-600 transition-colors hover:text-indigo-600 dark:text-blue-400">
+                    <button className="group/btn mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-indigo-600 dark:text-primary">
                       বিস্তারিত দেখুন
                       <FaArrowRightLong className="transition-transform duration-300 group-hover/btn:translate-x-1" />
                     </button>
@@ -92,15 +92,15 @@ const Blogs = () => {
 
         {/* Sidebar */}
         <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
-          <Reveal className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
-            <h3 className="mb-4 text-lg font-bold text-slate-900 dark:text-white">
+          <Reveal className="rounded-2xl border border-border bg-card p-6 shadow-sm dark:border-border dark:bg-card">
+            <h3 className="mb-4 text-lg font-bold text-foreground dark:text-white">
               ট্যাগসমূহ
             </h3>
             <div className="flex flex-wrap gap-2">
               {tags.map((tag) => (
                 <button
                   key={tag}
-                  className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-slate-600 transition-colors hover:border-blue-300 hover:bg-blue-50 hover:text-blue-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
+                  className="rounded-full border border-border bg-muted px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:border-primary hover:bg-accent hover:text-primary dark:border-border dark:bg-muted dark:text-muted-foreground"
                 >
                   {tag}
                 </button>

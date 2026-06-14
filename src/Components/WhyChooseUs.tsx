@@ -47,18 +47,18 @@ export default function WhyChooseUs() {
             variants={fadeUp}
             whileHover={{ y: -8 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition-shadow duration-300 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900"
+            className="group relative overflow-hidden rounded-2xl border border-border bg-card p-7 shadow-sm transition-shadow duration-300 hover:shadow-xl dark:border-border dark:bg-card"
           >
             {/* hover glow */}
-            <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-blue-600 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-10" />
-            <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-600/20 transition-transform duration-300 group-hover:scale-110">
+            <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-primary opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-10" />
+            <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-white shadow-lg shadow-primary/20 transition-transform duration-300 group-hover:scale-110">
 
               {feature.icon}
             </div>
-            <h3 className="mb-2 text-lg font-bold text-slate-900 dark:text-white">
+            <h3 className="mb-2 text-lg font-bold text-foreground dark:text-white">
               {feature.title}
             </h3>
-            <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+            <p className="text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground">
               {feature.description}
             </p>
           </motion.div>

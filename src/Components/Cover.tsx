@@ -41,7 +41,7 @@ const Cover = ({ img, title, subtitle, eyebrow }: CoverProps) => {
             <p className="mx-auto mt-4 max-w-2xl text-base text-slate-200 md:text-xl">
               {subtitle}
             </p>
-            <span className="mx-auto mt-6 block h-1 w-24 rounded-full bg-gradient-to-r from-sky-400 via-blue-500 to-indigo-500" />
+            <span className="mx-auto mt-6 block h-1 w-24 rounded-full bg-brand" />
           </motion.div>
         </div>
       </Parallax>

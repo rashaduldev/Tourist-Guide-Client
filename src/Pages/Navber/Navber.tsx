@@ -61,8 +61,8 @@ const Navber = () => {
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "border-b border-slate-200/70 bg-white/80 shadow-sm backdrop-blur-lg dark:border-slate-800/70 dark:bg-slate-900/80"
-          : "border-b border-transparent bg-white dark:bg-slate-900"
+          ? "border-b border-border/70 bg-card/80 shadow-sm backdrop-blur-lg dark:border-border/70 dark:bg-card/80"
+          : "border-b border-transparent bg-card dark:bg-card"
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
@@ -71,10 +71,10 @@ const Navber = () => {
           <img
             src="https://i.ibb.co/YWWPShY/travel-tourism.jpg"
             alt="Logo"
-            className="h-11 w-11 rounded-xl object-cover ring-2 ring-blue-100 dark:ring-slate-700"
+            className="h-11 w-11 rounded-xl object-cover ring-2 ring-accent dark:ring-border"
           />
-          <span className="hidden text-lg font-extrabold tracking-tight text-slate-900 sm:block dark:text-white">
-            ট্রাভেল<span className="text-blue-600"> কো.</span>
+          <span className="hidden text-lg font-extrabold tracking-tight text-foreground sm:block dark:text-white">
+            ট্রাভেল<span className="text-primary"> কো.</span>
           </span>
         </Link>
 
@@ -88,15 +88,15 @@ const Navber = () => {
                 href={link.path}
                 className={`relative rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
                   active
-                    ? "text-blue-600 dark:text-blue-400"
-                    : "text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white"
+                    ? "text-primary dark:text-primary"
+                    : "text-muted-foreground hover:text-foreground dark:text-muted-foreground dark:hover:text-white"
                 }`}
               >
                 {link.name}
                 {active && (
                   <motion.span
                     layoutId="navUnderline"
-                    className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600"
+                    className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-brand"
                     transition={{ type: "spring", stiffness: 350, damping: 30 }}
                   />
                 )}
@@ -111,14 +111,14 @@ const Navber = () => {
             <div className="relative hidden lg:block">
               <button
                 onClick={() => setShowUserMenu((v) => !v)}
-                className="flex items-center gap-2 rounded-full border border-slate-200 py-1 pl-1 pr-3 transition-colors hover:border-blue-300 dark:border-slate-700"
+                className="flex items-center gap-2 rounded-full border border-border py-1 pl-1 pr-3 transition-colors hover:border-primary dark:border-border"
               >
                 <img
                   src={user?.photoURL || "https://i.ibb.co/5GzXkwq/user.png"}
                   alt="Profile"
                   className="h-9 w-9 rounded-full object-cover"
                 />
-                <span className="max-w-[8rem] truncate text-sm font-medium text-slate-700 dark:text-slate-200">
+                <span className="max-w-[8rem] truncate text-sm font-medium text-foreground dark:text-slate-200">
                   {user?.displayName || "ব্যবহারকারী"}
                 </span>
               </button>
@@ -135,13 +135,13 @@ const Navber = () => {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 8, scale: 0.96 }}
                       transition={{ duration: 0.18 }}
-                      className="absolute right-0 z-20 mt-2 w-56 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl dark:border-slate-700 dark:bg-slate-800"
+                      className="absolute right-0 z-20 mt-2 w-56 overflow-hidden rounded-2xl border border-border bg-card shadow-xl dark:border-border dark:bg-muted"
                     >
-                      <div className="border-b border-slate-100 px-4 py-3 dark:border-slate-700">
-                        <p className="truncate text-sm font-semibold text-slate-900 dark:text-white">
+                      <div className="border-b border-border px-4 py-3 dark:border-border">
+                        <p className="truncate text-sm font-semibold text-foreground dark:text-white">
                           {user?.displayName}
                         </p>
-                        <p className="truncate text-xs text-slate-500">
+                        <p className="truncate text-xs text-muted-foreground">
                           {user?.email}
                         </p>
                       </div>
@@ -149,15 +149,15 @@ const Navber = () => {
                         <Link
                           key={l.path}
                           href={l.path}
-                          className="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-700 transition-colors hover:bg-blue-50 hover:text-blue-700 dark:text-slate-200 dark:hover:bg-slate-700"
+                          className="flex items-center gap-3 px-4 py-2.5 text-sm text-foreground transition-colors hover:bg-accent hover:text-primary dark:text-slate-200 dark:hover:bg-slate-700"
                         >
-                          <span className="text-slate-400">{l.icon}</span>
+                          <span className="text-muted-foreground">{l.icon}</span>
                           {l.name}
                         </Link>
                       ))}
                       <button
                         onClick={handleLogout}
-                        className="flex w-full items-center gap-3 border-t border-slate-100 px-4 py-2.5 text-sm text-rose-600 transition-colors hover:bg-rose-50 dark:border-slate-700 dark:hover:bg-slate-700"
+                        className="flex w-full items-center gap-3 border-t border-border px-4 py-2.5 text-sm text-rose-600 transition-colors hover:bg-rose-50 dark:border-border dark:hover:bg-slate-700"
                       >
                         <FiLogOut />
                         লগআউট
@@ -170,7 +170,7 @@ const Navber = () => {
           ) : (
             <Link
               href="/login"
-              className="hidden rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-600/40 lg:block"
+              className="hidden rounded-xl bg-brand px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/40 lg:block"
             >
               লগইন
             </Link>
@@ -179,7 +179,7 @@ const Navber = () => {
           {/* Mobile toggle */}
           <button
             onClick={() => setDrawerOpen(true)}
-            className="rounded-lg p-2 text-slate-700 transition-colors hover:bg-slate-100 lg:hidden dark:text-slate-200 dark:hover:bg-slate-800"
+            className="rounded-lg p-2 text-foreground transition-colors hover:bg-muted lg:hidden dark:text-slate-200 dark:hover:bg-muted"
             aria-label="মেনু খুলুন"
           >
             <AiOutlineMenu size={24} />
@@ -196,29 +196,29 @@ const Navber = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setDrawerOpen(false)}
-              className="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 z-50 bg-card/50 backdrop-blur-sm lg:hidden"
             />
             <motion.aside
               initial={{ x: "-100%" }}
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 32 }}
-              className="fixed inset-y-0 left-0 z-50 flex w-80 max-w-[85%] flex-col bg-white shadow-2xl lg:hidden dark:bg-slate-900"
+              className="fixed inset-y-0 left-0 z-50 flex w-80 max-w-[85%] flex-col bg-card shadow-2xl lg:hidden dark:bg-card"
             >
-              <div className="flex items-center justify-between border-b border-slate-200 p-4 dark:border-slate-800">
+              <div className="flex items-center justify-between border-b border-border p-4 dark:border-border">
                 <div className="flex items-center gap-2.5">
                   <img
                     src="https://i.ibb.co/YWWPShY/travel-tourism.jpg"
                     alt="Logo"
                     className="h-10 w-10 rounded-xl object-cover"
                   />
-                  <span className="font-extrabold text-slate-900 dark:text-white">
+                  <span className="font-extrabold text-foreground dark:text-white">
                     ট্রাভেল কো.
                   </span>
                 </div>
                 <button
                   onClick={() => setDrawerOpen(false)}
-                  className="rounded-lg p-2 text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
+                  className="rounded-lg p-2 text-muted-foreground hover:bg-muted dark:text-muted-foreground dark:hover:bg-muted"
                   aria-label="মেনু বন্ধ করুন"
                 >
                   <AiOutlineClose size={22} />
@@ -226,17 +226,17 @@ const Navber = () => {
               </div>
 
               {user?.email && (
-                <div className="flex items-center gap-3 border-b border-slate-200 p-4 dark:border-slate-800">
+                <div className="flex items-center gap-3 border-b border-border p-4 dark:border-border">
                   <img
                     src={user?.photoURL || "https://i.ibb.co/5GzXkwq/user.png"}
                     alt="Profile"
                     className="h-11 w-11 rounded-full object-cover"
                   />
                   <div className="min-w-0">
-                    <p className="truncate font-semibold text-slate-900 dark:text-white">
+                    <p className="truncate font-semibold text-foreground dark:text-white">
                       {user?.displayName}
                     </p>
-                    <p className="truncate text-xs text-slate-500">{user?.email}</p>
+                    <p className="truncate text-xs text-muted-foreground">{user?.email}</p>
                   </div>
                 </div>
               )}
@@ -248,8 +248,8 @@ const Navber = () => {
                     href={link.path}
                     className={`rounded-lg px-4 py-3 text-base font-medium transition-colors ${
                       pathname === link.path
-                        ? "bg-blue-50 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300"
-                        : "text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"
+                        ? "bg-accent text-primary dark:bg-accent/40 dark:text-primary"
+                        : "text-foreground hover:bg-muted dark:text-slate-200 dark:hover:bg-muted"
                     }`}
                   >
                     {link.name}
@@ -260,7 +260,7 @@ const Navber = () => {
                     <Link
                       key={l.path}
                       href={l.path}
-                      className="flex items-center gap-3 rounded-lg px-4 py-3 text-base font-medium text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"
+                      className="flex items-center gap-3 rounded-lg px-4 py-3 text-base font-medium text-foreground hover:bg-muted dark:text-slate-200 dark:hover:bg-muted"
                     >
                       {l.icon}
                       {l.name}
@@ -268,7 +268,7 @@ const Navber = () => {
                   ))}
               </nav>
 
-              <div className="border-t border-slate-200 p-4 dark:border-slate-800">
+              <div className="border-t border-border p-4 dark:border-border">
                 {user?.email ? (
                   <button
                     onClick={handleLogout}
@@ -279,7 +279,7 @@ const Navber = () => {
                 ) : (
                   <Link
                     href="/login"
-                    className="block rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-3 text-center font-semibold text-white shadow-lg"
+                    className="block rounded-xl bg-brand px-4 py-3 text-center font-semibold text-white shadow-lg"
                   >
                     লগইন
                   </Link>

@@ -25,7 +25,7 @@ const Stories = () => {
             variants={fadeUp}
             whileHover={{ y: -8 }}
             transition={{ type: "spring", stiffness: 300, damping: 22 }}
-            className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-shadow duration-300 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900"
+            className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-shadow duration-300 hover:shadow-xl dark:border-border dark:bg-card"
           >
             <div className="relative h-56 overflow-hidden">
               <img
@@ -36,23 +36,23 @@ const Stories = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             </div>
             <div className="flex flex-grow flex-col p-6">
-              <h3 className="mb-2 line-clamp-2 text-xl font-bold text-slate-900 dark:text-white">
+              <h3 className="mb-2 line-clamp-2 text-xl font-bold text-foreground dark:text-white">
                 {story.title || "অজানা গল্প"}
               </h3>
-              <p className="line-clamp-3 flex-grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+              <p className="line-clamp-3 flex-grow text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground">
                 {story.description ||
                   "এটি একটি সুন্দর ভ্রমণ অভিজ্ঞতা যা আমাদের মনে দাগ কেটে গেছে।"}
               </p>
-              <div className="mt-5 flex items-center justify-between border-t border-slate-100 pt-4 dark:border-slate-800">
+              <div className="mt-5 flex items-center justify-between border-t border-border pt-4 dark:border-border">
                 <Link
                   href={`/blogs`}
-                  className="inline-flex items-center gap-1 text-sm font-semibold text-blue-600 transition-colors hover:text-indigo-600 dark:text-blue-400"
+                  className="inline-flex items-center gap-1 text-sm font-semibold text-primary transition-colors hover:text-indigo-600 dark:text-primary"
                 >
                   বিস্তারিত দেখুন
                   <FaArrowRightLong className="transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
                 <button
-                  className="text-xl text-slate-400 transition-colors hover:text-rose-500"
+                  className="text-xl text-muted-foreground transition-colors hover:text-rose-500"
                   aria-label="প্রিয় চিহ্ন"
                 >
                   <MdOutlineFavoriteBorder />
@@ -66,7 +66,7 @@ const Stories = () => {
       <div className="mt-14 flex justify-center">
         <Link
           href="/blogs"
-          className="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-600/40"
+          className="group inline-flex items-center gap-2 rounded-xl bg-brand px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/40"
         >
           সব গল্প দেখুন
           <FaArrowRightLong className="transition-transform duration-300 group-hover:translate-x-1" />

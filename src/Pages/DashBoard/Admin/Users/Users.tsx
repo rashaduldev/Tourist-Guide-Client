@@ -87,29 +87,29 @@ const Users = () => {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+          <h1 className="text-2xl font-extrabold tracking-tight text-foreground dark:text-white">
             ম্যানেজ ইউজার
           </h1>
-          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+          <p className="mt-1 text-sm text-muted-foreground dark:text-muted-foreground">
             মোট {filteredUsers.length} জন ব্যবহারকারী
           </p>
         </div>
         <div className="relative w-full sm:w-72">
-          <FiSearch className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+          <FiSearch className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <input
             type="text"
             placeholder="ইউজার খুঁজুন..."
             value={searchTerm}
             onChange={handleSearch}
-            className="h-11 w-full rounded-xl border border-slate-200 bg-white pl-11 pr-4 text-sm outline-none transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
+            className="h-11 w-full rounded-xl border border-border bg-card pl-11 pr-4 text-sm outline-none transition-colors focus:border-ring focus:ring-2 focus:ring-ring/20 dark:border-border dark:bg-card dark:text-white"
           />
         </div>
       </div>
 
-      <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
+      <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm dark:border-border dark:bg-card">
         <div className="overflow-x-auto">
           <table className="min-w-full text-sm">
-            <thead className="bg-slate-50 text-left text-xs font-semibold uppercase tracking-wider text-slate-500 dark:bg-slate-800/60 dark:text-slate-400">
+            <thead className="bg-muted text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground dark:bg-muted/60 dark:text-muted-foreground">
               <tr>
                 <th className="px-6 py-4">নাম</th>
                 <th className="px-6 py-4">ইমেইল</th>
@@ -117,27 +117,27 @@ const Users = () => {
                 <th className="px-6 py-4 text-right">অ্যাকশন</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+            <tbody className="divide-y divide-border dark:divide-border">
               {filteredUsers.map((user: any) => (
                 <tr
                   key={user._id}
-                  className="transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/40"
+                  className="transition-colors hover:bg-muted dark:hover:bg-muted/40"
                 >
-                  <td className="px-6 py-4 font-medium text-slate-900 dark:text-white">
+                  <td className="px-6 py-4 font-medium text-foreground dark:text-white">
                     {user.name}
                   </td>
-                  <td className="px-6 py-4 text-slate-600 dark:text-slate-400">
+                  <td className="px-6 py-4 text-muted-foreground dark:text-muted-foreground">
                     {user.email}
                   </td>
                   <td className="px-6 py-4">
                     {user.role === "admin" ? (
-                      <span className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:bg-blue-950/40 dark:text-blue-300">
+                      <span className="inline-flex items-center rounded-full bg-accent px-2.5 py-1 text-xs font-semibold text-primary dark:bg-accent/40 dark:text-primary">
                         Admin
                       </span>
                     ) : (
                       <button
                         onClick={() => handleMakeAdmin(user)}
-                        className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-700 transition-colors hover:border-blue-400 hover:text-blue-600 dark:border-slate-700 dark:text-slate-300"
+                        className="inline-flex items-center gap-2 rounded-lg border border-border px-3 py-1.5 text-xs font-semibold text-foreground transition-colors hover:border-primary hover:text-primary dark:border-border dark:text-muted-foreground"
                       >
                         <FaUsers /> অ্যাডমিন করুন
                       </button>
@@ -146,7 +146,7 @@ const Users = () => {
                   <td className="px-6 py-4 text-right">
                     <button
                       onClick={() => handleDeleteUser(user)}
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-rose-50 hover:text-rose-600 dark:hover:bg-rose-950/30"
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-rose-50 hover:text-rose-600 dark:hover:bg-rose-950/30"
                       aria-label="মুছে ফেলুন"
                     >
                       <FaTrash />

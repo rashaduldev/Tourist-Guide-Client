@@ -45,7 +45,7 @@ const EditProfile = () => {
       <h1 className='text-2xl md:text-4xl lg:text-5xl mx-4 my-6 lg:m-10 font-bold'>Edit Profile</h1>
       <div className='m-4 lg:m-10 flex flex-col lg:flex-row gap-4'>
         <div className='lg:w-[70%]'>
-          <div className='bg-white p-5 rounded-md'>
+          <div className='bg-card p-5 rounded-md'>
             <div className='flex gap-5 items-center'>
               <div className="bg-[#B5E4CA] w-3 h-8 rounded-lg"></div>
               <div>
@@ -192,13 +192,13 @@ const EditProfile = () => {
                   <FaCircleInfo title="Upload a cover image" />
                 </div>
                 <button className="w-full h-60 relative cursor-pointer py-2 bg-[#F4F4F4] text-black">
-                  <p className='bg-white lg:w-60 mx-5 md:mx-28 lg:mx-auto p-5 rounded-lg'>Click or drop image</p>
+                  <p className='bg-card lg:w-60 mx-5 md:mx-28 lg:mx-auto p-5 rounded-lg'>Click or drop image</p>
                   <input type="file" className="w-full cursor-pointer z-0 absolute top-0 left-0 h-full opacity-0" />
                 </button>
               </div>
             </form>
           </div>
-          <div className='flex flex-col lg:flex-row items-center justify-between bg-white p-5 rounded-md mt-5'>
+          <div className='flex flex-col lg:flex-row items-center justify-between bg-card p-5 rounded-md mt-5'>
             <div className='flex gap-5 items-center'>
               <div className='flex items-center'>
                 <p className=" lg:text-2xl md:text-xl">Share with public</p>
@@ -214,7 +214,7 @@ const EditProfile = () => {
           </div>
         </div>
         <div className='lg:w-[30%]'>
-          <div className='flex flex-col justify-start items-start bg-white p-5 rounded-md'>
+          <div className='flex flex-col justify-start items-start bg-card p-5 rounded-md'>
             <div className='flex gap-5 items-center'>
               <div className="bg-[#F9BC7D] w-3 h-8 rounded-lg"></div>
               <div>
@@ -233,7 +233,7 @@ const EditProfile = () => {
               <p className="text-lg">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim.</p>
             </div>
           </div>
-          <div className='flex flex-col justify-start items-start bg-white p-5 rounded-md mt-5'>
+          <div className='flex flex-col justify-start items-start bg-card p-5 rounded-md mt-5'>
             <div className='flex gap-5 items-center'>
               <div className="bg-[#F9BC7D] w-3 h-8 rounded-lg"></div>
               <div>

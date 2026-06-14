@@ -54,8 +54,8 @@ const DashBoard = ({ children }: { children: ReactNode }) => {
         href={path}
         className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all ${
           active
-            ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-600/25"
-            : "text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
+            ? "bg-brand text-white shadow-lg shadow-primary/25"
+            : "text-muted-foreground hover:bg-muted hover:text-foreground dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white"
         }`}
       >
         <span className="text-lg">{icon}</span>
@@ -65,9 +65,9 @@ const DashBoard = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <div className="flex min-h-screen flex-col bg-slate-50 md:flex-row dark:bg-slate-950">
+    <div className="flex min-h-screen flex-col bg-muted md:flex-row dark:bg-background">
       {/* Sidebar */}
-      <aside className="w-full border-r border-slate-200 bg-white md:fixed md:h-screen md:w-72 dark:border-slate-800 dark:bg-slate-900">
+      <aside className="w-full border-r border-border bg-card md:fixed md:h-screen md:w-72 dark:border-border dark:bg-card">
         <div className="flex h-full flex-col p-5">
           <Link href="/" className="mb-8 flex items-center gap-2.5">
             <img
@@ -75,12 +75,12 @@ const DashBoard = ({ children }: { children: ReactNode }) => {
               alt="Logo"
               className="h-10 w-10 rounded-xl object-cover"
             />
-            <span className="font-extrabold text-slate-900 dark:text-white">
-              ট্রাভেল<span className="text-blue-600"> কো.</span>
+            <span className="font-extrabold text-foreground dark:text-white">
+              ট্রাভেল<span className="text-primary"> কো.</span>
             </span>
           </Link>
 
-          <span className="mb-3 px-4 text-xs font-semibold uppercase tracking-wider text-slate-400">
+          <span className="mb-3 px-4 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
             {isAdmin ? "অ্যাডমিন প্যানেল" : "আমার অ্যাকাউন্ট"}
           </span>
 
@@ -89,17 +89,17 @@ const DashBoard = ({ children }: { children: ReactNode }) => {
               <NavItem key={l.name} {...l} />
             ))}
 
-            <hr className="my-4 border-slate-200 dark:border-slate-800" />
+            <hr className="my-4 border-border dark:border-border" />
 
             <Link
               href="/"
-              className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+              className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground dark:text-muted-foreground dark:hover:bg-muted"
             >
               <FiHome className="text-lg" /> হোম
             </Link>
             <Link
               href="/allpackage"
-              className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+              className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground dark:text-muted-foreground dark:hover:bg-muted"
             >
               <FiSearch className="text-lg" /> প্যাকেজসমূহ
             </Link>

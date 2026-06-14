@@ -28,7 +28,7 @@ const SingleType = () => {
           {Array.from({ length: 4 }).map((_, i) => (
             <div
               key={i}
-              className="h-80 animate-pulse rounded-2xl border border-slate-200 bg-slate-100 dark:border-slate-800 dark:bg-slate-800"
+              className="h-80 animate-pulse rounded-2xl border border-border bg-muted dark:border-border dark:bg-muted"
             />
           ))}
         </div>
@@ -42,10 +42,10 @@ const SingleType = () => {
         </StaggerGroup>
       ) : (
         <div className="my-24 text-center">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-slate-100 text-3xl dark:bg-slate-800">
+          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-muted text-3xl dark:bg-muted">
             🧭
           </div>
-          <p className="text-lg font-semibold text-slate-900 dark:text-white">
+          <p className="text-lg font-semibold text-foreground dark:text-white">
             এই ধরনে কোনো প্যাকেজ পাওয়া যায়নি
           </p>
         </div>

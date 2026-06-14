@@ -54,7 +54,7 @@ const TourType = () => {
             {Array.from({ length: 4 }).map((_, i) => (
               <div
                 key={i}
-                className="h-28 w-28 animate-pulse rounded-full bg-slate-200 lg:h-40 lg:w-40 dark:bg-slate-800"
+                className="h-28 w-28 animate-pulse rounded-full bg-slate-200 lg:h-40 lg:w-40 dark:bg-muted"
               />
             ))}
           </div>

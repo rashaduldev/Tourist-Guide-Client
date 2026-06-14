@@ -39,19 +39,19 @@ const List = () => {
   return (
     <div className="mt-10">
       <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
-        <h1 className="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+        <h1 className="text-2xl font-extrabold tracking-tight text-foreground dark:text-white">
           আমার উইশলিস্ট
         </h1>
         <div className="flex items-center gap-3">
-          <span className="rounded-full bg-blue-50 px-4 py-1.5 text-sm font-semibold text-blue-700 dark:bg-blue-950/40 dark:text-blue-300">
+          <span className="rounded-full bg-accent px-4 py-1.5 text-sm font-semibold text-primary dark:bg-accent/40 dark:text-primary">
             মোট: {list.length} · ৳{totatPrice}
           </span>
           <Link
             href="/dashboard/payment"
             aria-disabled={!list.length}
-            className={`rounded-xl px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/25 transition-all ${
+            className={`rounded-xl px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all ${
               list.length
-                ? "bg-gradient-to-r from-blue-600 to-indigo-600 hover:-translate-y-0.5"
+                ? "bg-brand hover:-translate-y-0.5"
                 : "pointer-events-none bg-slate-300 dark:bg-slate-700"
             }`}
           >
@@ -60,10 +60,10 @@ const List = () => {
         </div>
       </div>
 
-      <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
+      <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm dark:border-border dark:bg-card">
         <div className="overflow-x-auto">
           <table className="min-w-full text-sm">
-            <thead className="bg-slate-50 text-left text-xs font-semibold uppercase tracking-wider text-slate-500 dark:bg-slate-800/60 dark:text-slate-400">
+            <thead className="bg-muted text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground dark:bg-muted/60 dark:text-muted-foreground">
               <tr>
                 <th className="px-6 py-4">#</th>
                 <th className="px-6 py-4">ছবি</th>
@@ -73,10 +73,10 @@ const List = () => {
                 <th className="px-6 py-4 text-right">অ্যাকশন</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+            <tbody className="divide-y divide-border dark:divide-border">
               {list.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="px-6 py-16 text-center text-slate-500">
+                  <td colSpan={6} className="px-6 py-16 text-center text-muted-foreground">
                     উইশলিস্ট খালি।
                   </td>
                 </tr>
@@ -84,9 +84,9 @@ const List = () => {
                 list.map((item: any, index: number) => (
                   <tr
                     key={item._id}
-                    className="transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/40"
+                    className="transition-colors hover:bg-muted dark:hover:bg-muted/40"
                   >
-                    <td className="px-6 py-4 font-medium text-slate-400">
+                    <td className="px-6 py-4 font-medium text-muted-foreground">
                       {index + 1}
                     </td>
                     <td className="px-6 py-4">
@@ -96,16 +96,16 @@ const List = () => {
                         className="h-12 w-12 rounded-xl object-cover"
                       />
                     </td>
-                    <td className="px-6 py-4 capitalize text-slate-600 dark:text-slate-400">
+                    <td className="px-6 py-4 capitalize text-muted-foreground dark:text-muted-foreground">
                       {item.tour_type}
                     </td>
-                    <td className="px-6 py-4 font-semibold text-blue-600">
+                    <td className="px-6 py-4 font-semibold text-primary">
                       ৳{item.price}
                     </td>
                     <td className="px-6 py-4">
                       <Link
                         href={`/details/${item.id ?? item.menuId}`}
-                        className="inline-flex items-center rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-700 transition-colors hover:border-blue-400 hover:text-blue-600 dark:border-slate-700 dark:text-slate-300"
+                        className="inline-flex items-center rounded-lg border border-border px-3 py-1.5 text-xs font-semibold text-foreground transition-colors hover:border-primary hover:text-primary dark:border-border dark:text-muted-foreground"
                       >
                         ডিটেইলস
                       </Link>
@@ -113,7 +113,7 @@ const List = () => {
                     <td className="px-6 py-4 text-right">
                       <button
                         onClick={() => handleDeleteCart(item._id)}
-                        className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-rose-50 hover:text-rose-600 dark:hover:bg-rose-950/30"
+                        className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-rose-50 hover:text-rose-600 dark:hover:bg-rose-950/30"
                         aria-label="মুছে ফেলুন"
                       >
                         <FaTrash />

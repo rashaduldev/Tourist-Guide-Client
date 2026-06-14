@@ -34,10 +34,10 @@ const AdminDashboard = () => {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+        <h1 className="text-3xl font-extrabold tracking-tight text-foreground dark:text-white">
           অ্যাডমিন ড্যাশবোর্ড
         </h1>
-        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+        <p className="mt-1 text-sm text-muted-foreground dark:text-muted-foreground">
           আপনার ব্যবসার একনজরে পরিসংখ্যান।
         </p>
       </div>
@@ -48,10 +48,10 @@ const AdminDashboard = () => {
           <motion.div
             key={s.label}
             variants={fadeUp}
-            className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md dark:border-slate-800 dark:bg-slate-900"
+            className="rounded-2xl border border-border bg-card p-6 shadow-sm transition-shadow hover:shadow-md dark:border-border dark:bg-card"
           >
             <div className="flex items-center justify-between">
-              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-xl text-blue-600 dark:bg-blue-950/40 dark:text-blue-400">
+              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent text-xl text-primary dark:bg-accent/40 dark:text-primary">
                 {s.icon}
               </span>
               <span
@@ -65,10 +65,10 @@ const AdminDashboard = () => {
                 {s.trend}
               </span>
             </div>
-            <p className="mt-4 text-3xl font-extrabold text-slate-900 dark:text-white">
+            <p className="mt-4 text-3xl font-extrabold text-foreground dark:text-white">
               {s.value}
             </p>
-            <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+            <p className="mt-1 text-sm text-muted-foreground dark:text-muted-foreground">
               {s.label}
             </p>
           </motion.div>
@@ -76,15 +76,15 @@ const AdminDashboard = () => {
       </StaggerGroup>
 
       {/* Chart */}
-      <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+      <div className="rounded-2xl border border-border bg-card p-6 shadow-sm dark:border-border dark:bg-card">
         <div className="mb-6 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <span className="h-8 w-1.5 rounded-full bg-gradient-to-b from-blue-600 to-indigo-600" />
-            <h2 className="text-lg font-bold text-slate-900 dark:text-white">
+            <span className="h-8 w-1.5 rounded-full bg-brand" />
+            <h2 className="text-lg font-bold text-foreground dark:text-white">
               মোট বিনিয়োগ
             </h2>
           </div>
-          <select className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm outline-none focus:border-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white">
+          <select className="rounded-lg border border-border bg-muted px-3 py-2 text-sm outline-none focus:border-ring dark:border-border dark:bg-muted dark:text-white">
             <option>গত ৭ দিন</option>
             <option>গত ১৫ দিন</option>
             <option>গত ১ মাস</option>

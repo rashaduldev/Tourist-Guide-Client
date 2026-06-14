@@ -25,7 +25,7 @@ export default function AuthShell({
   return (
     <div className="mx-auto grid max-w-6xl gap-0 px-4 py-10 lg:grid-cols-2 lg:py-16">
       {/* Branded panel */}
-      <div className="relative hidden overflow-hidden rounded-l-3xl bg-gradient-to-br from-blue-600 to-indigo-700 p-10 text-white lg:flex lg:flex-col lg:justify-between">
+      <div className="relative hidden overflow-hidden rounded-l-3xl bg-brand p-10 text-white lg:flex lg:flex-col lg:justify-between">
         <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-white/10 blur-2xl" />
         <div className="pointer-events-none absolute -bottom-20 -left-10 h-72 w-72 rounded-full bg-indigo-400/20 blur-3xl" />
 

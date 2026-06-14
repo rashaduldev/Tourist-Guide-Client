@@ -25,7 +25,7 @@ const TourGuideuser = () => {
           {/* <!-- Grid --> */}
           <div className="">
             {/* <!-- Card --> */}
-            <div className="group flex flex-col h-full  border border-gray-200 shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7]">
+            <div className="group flex flex-col h-full  border border-gray-200 shadow-sm rounded-xl dark:bg-card dark:border-gray-700 dark:shadow-slate-700/[.7]">
               <img className="h-60" src={findedData.image} alt="" />
               <div className="p-4 md:p-6">
                 <h3 className="text-xl font-semibold text-black dark:text-gray-300 dark:hover:text-white">
@@ -94,7 +94,7 @@ const TourGuideuser = () => {
             />
             <button
               type="button"
-              className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 my-5 justify-center"
+              className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primary text-white hover:bg-primary disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 my-5 justify-center"
             >
               SEND
             </button>

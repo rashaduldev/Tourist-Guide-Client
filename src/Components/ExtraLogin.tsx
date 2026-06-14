@@ -27,7 +27,7 @@ const ExtraLogin = () => {
           type="button"
           onClick={p.onClick}
           aria-label={`${p.label} দিয়ে চালিয়ে যান`}
-          className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white py-3 text-slate-600 transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-400 hover:text-blue-600 hover:shadow-md dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
+          className="inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-card py-3 text-muted-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:text-primary hover:shadow-md dark:border-border dark:bg-muted dark:text-muted-foreground"
         >
           <span className="text-lg">{p.icon}</span>
           <span className="hidden text-sm font-medium sm:inline">{p.label}</span>

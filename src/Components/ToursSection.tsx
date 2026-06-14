@@ -73,7 +73,7 @@ const ToursSection = () => {
       <SectionHeading eyebrow="ট্যুর স্ট্যাটাস" title="ট্যুরের অবস্থা" />
 
       {/* Segmented filter */}
-      <div className="mx-auto mt-10 flex w-fit gap-1 rounded-full border border-slate-200 bg-slate-100 p-1 dark:border-slate-700 dark:bg-slate-800">
+      <div className="mx-auto mt-10 flex w-fit gap-1 rounded-full border border-border bg-muted p-1 dark:border-border dark:bg-muted">
         {tabs.map((tab) => (
           <button
             key={tab.key}
@@ -81,13 +81,13 @@ const ToursSection = () => {
             className={`relative rounded-full px-6 py-2.5 text-sm font-semibold transition-colors ${
               activeTab === tab.key
                 ? "text-white"
-                : "text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white"
+                : "text-muted-foreground hover:text-foreground dark:text-muted-foreground dark:hover:text-white"
             }`}
           >
             {activeTab === tab.key && (
               <motion.span
                 layoutId="tourTab"
-                className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 shadow"
+                className="absolute inset-0 rounded-full bg-brand shadow"
                 transition={{ type: "spring", stiffness: 350, damping: 30 }}
               />
             )}
@@ -108,7 +108,7 @@ const ToursSection = () => {
               exit={{ opacity: 0, scale: 0.96 }}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               whileHover={{ y: -8 }}
-              className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-shadow duration-300 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900"
+              className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-shadow duration-300 hover:shadow-xl dark:border-border dark:bg-card"
             >
               <div className="relative h-48 overflow-hidden">
                 <img
@@ -128,27 +128,27 @@ const ToursSection = () => {
               </div>
 
               <div className="flex flex-grow flex-col p-6">
-                <h3 className="mb-2 line-clamp-2 text-xl font-bold text-slate-900 dark:text-white">
+                <h3 className="mb-2 line-clamp-2 text-xl font-bold text-foreground dark:text-white">
                   {tour.title}
                 </h3>
-                <p className="mb-6 line-clamp-3 flex-grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                <p className="mb-6 line-clamp-3 flex-grow text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground">
                   {tour.description}
                 </p>
 
-                <div className="flex items-center justify-between border-t border-slate-100 pt-4 dark:border-slate-800">
+                <div className="flex items-center justify-between border-t border-border pt-4 dark:border-border">
                   <div className="flex items-center gap-3">
                     <img
                       src={tour.author.img}
                       alt={tour.author.name}
-                      className="h-9 w-9 rounded-full object-cover ring-2 ring-white dark:ring-slate-800"
+                      className="h-9 w-9 rounded-full object-cover ring-2 ring-white dark:ring-border"
                     />
-                    <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                    <span className="text-sm font-medium text-foreground dark:text-muted-foreground">
                       {tour.author.name}
                     </span>
                   </div>
                   <Link
                     href={`/tour/${tour.id}`}
-                    className="inline-flex items-center gap-1 text-sm font-semibold text-blue-600 transition-colors hover:text-indigo-600 dark:text-blue-400"
+                    className="inline-flex items-center gap-1 text-sm font-semibold text-primary transition-colors hover:text-indigo-600 dark:text-primary"
                     aria-label={`${tour.title} এর বিস্তারিত দেখুন`}
                   >
                     বিস্তারিত

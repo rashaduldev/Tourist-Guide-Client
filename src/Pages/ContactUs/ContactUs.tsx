@@ -16,7 +16,7 @@ const infos = [
 ];
 
 const inputClass =
-  "w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition-colors placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-white";
+  "w-full rounded-xl border border-border bg-muted px-4 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-ring focus:bg-card focus:ring-2 focus:ring-ring/20 dark:border-border dark:bg-muted dark:text-white";
 
 const ContactUs = () => {
   return (
@@ -36,7 +36,7 @@ const ContactUs = () => {
             title="যোগাযোগের ঠিকানা"
             align="left"
           />
-          <p className="mt-6 max-w-md text-slate-600 dark:text-slate-400">
+          <p className="mt-6 max-w-md text-muted-foreground dark:text-muted-foreground">
             আপনার কোনো প্রশ্ন বা পরামর্শ থাকলে নিচের মাধ্যমগুলোতে যোগাযোগ করুন, অথবা
             পাশের ফর্মটি পূরণ করুন।
           </p>
@@ -48,16 +48,16 @@ const ContactUs = () => {
                 variants={fadeUp}
                 whileHover={{ y: -4 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md dark:border-slate-800 dark:bg-slate-900"
+                className="flex items-start gap-4 rounded-2xl border border-border bg-card p-5 shadow-sm transition-shadow hover:shadow-md dark:border-border dark:bg-card"
               >
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600 dark:bg-blue-950/40 dark:text-blue-400">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent text-primary dark:bg-accent/40 dark:text-primary">
                   {info.icon}
                 </span>
                 <div className="min-w-0">
-                  <p className="text-sm font-semibold text-slate-900 dark:text-white">
+                  <p className="text-sm font-semibold text-foreground dark:text-white">
                     {info.title}
                   </p>
-                  <p className="mt-0.5 break-words text-sm text-slate-600 dark:text-slate-400">
+                  <p className="mt-0.5 break-words text-sm text-muted-foreground dark:text-muted-foreground">
                     {info.value}
                   </p>
                 </div>
@@ -68,20 +68,20 @@ const ContactUs = () => {
 
         {/* Right: form */}
         <Reveal>
-          <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-lg dark:border-slate-800 dark:bg-slate-900">
-            <h3 className="mb-6 text-xl font-bold text-slate-900 dark:text-white">
+          <div className="rounded-2xl border border-border bg-card p-8 shadow-lg dark:border-border dark:bg-card">
+            <h3 className="mb-6 text-xl font-bold text-foreground dark:text-white">
               বার্তা পাঠান
             </h3>
             <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                  <label className="mb-2 block text-sm font-medium text-foreground dark:text-muted-foreground">
                     নাম
                   </label>
                   <input type="text" placeholder="পুরো নাম" className={inputClass} />
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                  <label className="mb-2 block text-sm font-medium text-foreground dark:text-muted-foreground">
                     ইমেইল
                   </label>
                   <input
@@ -92,7 +92,7 @@ const ContactUs = () => {
                 </div>
               </div>
               <div>
-                <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                <label className="mb-2 block text-sm font-medium text-foreground dark:text-muted-foreground">
                   বিষয়
                 </label>
                 <input
@@ -102,7 +102,7 @@ const ContactUs = () => {
                 />
               </div>
               <div>
-                <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                <label className="mb-2 block text-sm font-medium text-foreground dark:text-muted-foreground">
                   বার্তা
                 </label>
                 <textarea
@@ -113,7 +113,7 @@ const ContactUs = () => {
               </div>
               <button
                 type="submit"
-                className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-600/40"
+                className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/40"
               >
                 পাঠান
                 <FaPaperPlane className="transition-transform duration-300 group-hover:translate-x-1" />

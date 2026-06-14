@@ -35,7 +35,7 @@ const Needhelp = () => {
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur transition-colors hover:bg-white/10"
                 >
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-600 text-white shadow-lg shadow-blue-600/30">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary text-white shadow-lg shadow-blue-600/30">
                     {c.icon}
                   </div>
                   <div>

@@ -51,23 +51,23 @@ const AddPackageForm = () => {
   };
 
   const inputClass =
-    "mt-2 h-12 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 text-sm text-slate-900 outline-none transition-colors placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-white";
+    "mt-2 h-12 w-full rounded-xl border border-border bg-muted px-4 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-ring focus:bg-card focus:ring-2 focus:ring-ring/20 dark:border-border dark:bg-muted dark:text-white";
 
   return (
     <div className="mx-auto max-w-2xl">
-      <h1 className="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+      <h1 className="text-2xl font-extrabold tracking-tight text-foreground dark:text-white">
         নতুন প্যাকেজ যোগ করুন
       </h1>
-      <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+      <p className="mt-1 text-sm text-muted-foreground dark:text-muted-foreground">
         একটি নতুন ট্যুর প্যাকেজের বিবরণ পূরণ করুন।
       </p>
 
       <form
         onSubmit={handleSubmit}
-        className="mt-6 space-y-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 dark:border-slate-800 dark:bg-slate-900"
+        className="mt-6 space-y-5 rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8 dark:border-border dark:bg-card"
       >
         <div>
-          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">
+          <label className="block text-sm font-medium text-foreground dark:text-muted-foreground">
             ছবি আপলোড
           </label>
           <input
@@ -75,12 +75,12 @@ const AddPackageForm = () => {
             name="image"
             accept="image/*"
             onChange={handleImageChange}
-            className="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm text-slate-600 file:mr-3 file:rounded-lg file:border-0 file:bg-blue-600 file:px-4 file:py-1.5 file:text-white dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
+            className="mt-2 w-full rounded-xl border border-border bg-muted p-3 text-sm text-muted-foreground file:mr-3 file:rounded-lg file:border-0 file:bg-primary file:px-4 file:py-1.5 file:text-white dark:border-border dark:bg-muted dark:text-muted-foreground"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">
+          <label className="block text-sm font-medium text-foreground dark:text-muted-foreground">
             শিরোনাম
           </label>
           <input
@@ -95,7 +95,7 @@ const AddPackageForm = () => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">
+          <label className="block text-sm font-medium text-foreground dark:text-muted-foreground">
             ট্যুরের ধরন
           </label>
           <select
@@ -119,7 +119,7 @@ const AddPackageForm = () => {
 
         <button
           type="submit"
-          className="inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/25 transition-all hover:-translate-y-0.5"
+          className="inline-flex w-full items-center justify-center rounded-xl bg-brand px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:-translate-y-0.5"
         >
           প্যাকেজ যোগ করুন
         </button>

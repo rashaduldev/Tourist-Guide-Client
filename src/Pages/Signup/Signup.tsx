@@ -13,7 +13,7 @@ import { registerUser } from "@/app/actions/auth";
 import AuthShell from "@/components/shared/AuthShell";
 
 const inputClass =
-  "h-12 w-full rounded-xl border border-slate-200 bg-slate-50 pl-11 pr-4 text-sm text-slate-900 outline-none transition-colors placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-white";
+  "h-12 w-full rounded-xl border border-border bg-muted pl-11 pr-4 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-ring focus:bg-card focus:ring-2 focus:ring-ring/20 dark:border-border dark:bg-muted dark:text-white";
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -71,11 +71,11 @@ const Signup = () => {
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           <div>
-            <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+            <label className="mb-2 block text-sm font-medium text-foreground dark:text-muted-foreground">
               নাম
             </label>
             <div className="relative">
-              <FiUser className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+              <FiUser className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
               <input
                 type="text"
                 placeholder="পুরো নাম"
@@ -91,26 +91,26 @@ const Signup = () => {
           </div>
 
           <div>
-            <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+            <label className="mb-2 block text-sm font-medium text-foreground dark:text-muted-foreground">
               ছবি
             </label>
             <div className="relative">
-              <FiImage className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+              <FiImage className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
               <input
                 type="file"
                 {...register("photourl")}
-                className="h-12 w-full rounded-xl border border-slate-200 bg-slate-50 pl-11 pr-4 pt-2.5 text-sm text-slate-600 outline-none transition-colors file:hidden focus:border-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
+                className="h-12 w-full rounded-xl border border-border bg-muted pl-11 pr-4 pt-2.5 text-sm text-muted-foreground outline-none transition-colors file:hidden focus:border-ring dark:border-border dark:bg-muted dark:text-muted-foreground"
               />
             </div>
           </div>
         </div>
 
         <div>
-          <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+          <label className="mb-2 block text-sm font-medium text-foreground dark:text-muted-foreground">
             ইমেইল
           </label>
           <div className="relative">
-            <FiMail className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+            <FiMail className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
             <input
               type="email"
               placeholder="you@example.com"
@@ -126,11 +126,11 @@ const Signup = () => {
         </div>
 
         <div>
-          <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+          <label className="mb-2 block text-sm font-medium text-foreground dark:text-muted-foreground">
             পাসওয়ার্ড
           </label>
           <div className="relative">
-            <FiLock className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+            <FiLock className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
             <input
               type={showPassword ? "text" : "password"}
               placeholder="••••••••"
@@ -145,7 +145,7 @@ const Signup = () => {
             <button
               type="button"
               onClick={() => setShowPassword((v) => !v)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-muted-foreground dark:hover:text-slate-200"
               aria-label="পাসওয়ার্ড দেখান"
             >
               {showPassword ? <FaEye /> : <FaEyeSlash />}
@@ -169,7 +169,7 @@ const Signup = () => {
         <button
           type="submit"
           disabled={loading}
-          className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-600/40 disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/40 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {loading ? "তৈরি হচ্ছে..." : "সাইন আপ"}
         </button>
@@ -177,7 +177,7 @@ const Signup = () => {
 
       <div className="my-6 flex items-center gap-4">
         <span className="h-px flex-1 bg-slate-200 dark:bg-slate-700" />
-        <span className="text-xs uppercase tracking-wider text-slate-400">
+        <span className="text-xs uppercase tracking-wider text-muted-foreground">
           অথবা
         </span>
         <span className="h-px flex-1 bg-slate-200 dark:bg-slate-700" />
@@ -185,9 +185,9 @@ const Signup = () => {
 
       <ExtraLogin />
 
-      <p className="mt-7 text-center text-sm text-slate-500 dark:text-slate-400">
+      <p className="mt-7 text-center text-sm text-muted-foreground dark:text-muted-foreground">
         আগে থেকেই অ্যাকাউন্ট আছে?{" "}
-        <Link href="/login" className="font-semibold text-blue-600 hover:underline">
+        <Link href="/login" className="font-semibold text-primary hover:underline">
           লগ ইন করুন
         </Link>
       </p>

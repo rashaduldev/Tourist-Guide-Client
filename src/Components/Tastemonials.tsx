@@ -67,14 +67,14 @@ export default function Tastemonials() {
           <div className="flex gap-3">
             <button
               onClick={() => scroll("left")}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition-all hover:-translate-y-0.5 hover:border-blue-400 hover:text-blue-600 hover:shadow-md dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card text-foreground shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary hover:text-primary hover:shadow-md dark:border-border dark:bg-muted dark:text-slate-200"
               aria-label="বামে স্ক্রল করুন"
             >
               <FaArrowLeft />
             </button>
             <button
               onClick={() => scroll("right")}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition-all hover:-translate-y-0.5 hover:border-blue-400 hover:text-blue-600 hover:shadow-md dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card text-foreground shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary hover:text-primary hover:shadow-md dark:border-border dark:bg-muted dark:text-slate-200"
               aria-label="ডানে স্ক্রল করুন"
             >
               <FaArrowRight />
@@ -93,20 +93,20 @@ export default function Tastemonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-              className="relative w-[320px] flex-shrink-0 snap-start rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition-shadow duration-300 hover:shadow-xl md:w-[380px] dark:border-slate-800 dark:bg-slate-900"
+              className="relative w-[320px] flex-shrink-0 snap-start rounded-2xl border border-border bg-card p-7 shadow-sm transition-shadow duration-300 hover:shadow-xl md:w-[380px] dark:border-border dark:bg-card"
             >
-              <FaQuoteRight className="absolute right-6 top-6 text-4xl text-blue-100 dark:text-slate-800" />
+              <FaQuoteRight className="absolute right-6 top-6 text-4xl text-blue-100 dark:text-foreground" />
               <div className="mb-4 flex items-center gap-4">
                 <img
                   src={review.img}
                   alt={review.name}
-                  className="h-14 w-14 rounded-full object-cover ring-2 ring-blue-100 dark:ring-slate-700"
+                  className="h-14 w-14 rounded-full object-cover ring-2 ring-accent dark:ring-border"
                 />
                 <div>
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white">
+                  <h3 className="text-lg font-bold text-foreground dark:text-white">
                     {review.name}
                   </h3>
-                  <p className="text-sm text-blue-600 dark:text-blue-400">
+                  <p className="text-sm text-primary dark:text-primary">
                     {review.role}
                   </p>
                 </div>
@@ -116,7 +116,7 @@ export default function Tastemonials() {
                   <FaStar key={i} />
                 ))}
               </div>
-              <p className="relative text-slate-600 dark:text-slate-300">
+              <p className="relative text-muted-foreground dark:text-muted-foreground">
                 &ldquo;{review.text}&rdquo;
               </p>
             </motion.div>
