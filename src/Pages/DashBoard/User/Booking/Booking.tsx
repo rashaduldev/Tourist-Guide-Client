@@ -1,6 +1,6 @@
 "use client";
 
-import { FaNutritionix, FaTrash } from "react-icons/fa6";
+import { FaTrash } from "react-icons/fa6";
 import Swal from "sweetalert2";
 import useBooking from "../../../../Hooks/useBooking";
 import { deleteBooking } from "@/app/actions/secure";
@@ -32,72 +32,75 @@ const Booking = () => {
   };
 
   return (
-    <div>
-      <div className="flex gap-3 justify-evenly bg-orange-200 py-2 mx-2 rounded mb-6">
-        <h2 className="uppercase lg:text-3xl text-center">Total Booking: {booking.length}</h2>
-        {/* <h2 className="uppercase lg:text-3xl text-center">Total Price: {totatPrice}</h2>
-       {booking.length? <Link href={'/dashboard/payment'}>
-        <button className="btn btn-primary">Pay</button>
-        </Link>:
-         <button disabled className="btn btn-primary">Pay</button>
-      } */}
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+          আমার বুকিং
+        </h1>
+        <span className="rounded-full bg-blue-50 px-4 py-1.5 text-sm font-semibold text-blue-700 dark:bg-blue-950/40 dark:text-blue-300">
+          মোট: {booking.length}
+        </span>
       </div>
-      <div className="flex flex-col">
-        <div className="-m-1.5 overflow-x-auto">
-          <div className="p-1.5 min-w-full inline-block align-middle">
-            <div className="overflow-hidden">
-              <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                <thead>
-                  <tr>
-                    <th scope="col" className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">
-                      <FaNutritionix></FaNutritionix>
-                    </th>
-                    <th scope="col" className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">ITEM IMAGE</th>
-                    <th scope="col" className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">tourGuide</th>
-                    <th scope="col" className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Date</th>
-                    <th scope="col" className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">PRICE</th>
-                    <th scope="col" className="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">ACTION</th>
+
+      <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
+        <div className="overflow-x-auto">
+          <table className="min-w-full text-sm">
+            <thead className="bg-slate-50 text-left text-xs font-semibold uppercase tracking-wider text-slate-500 dark:bg-slate-800/60 dark:text-slate-400">
+              <tr>
+                <th className="px-6 py-4">#</th>
+                <th className="px-6 py-4">ছবি</th>
+                <th className="px-6 py-4">গাইড</th>
+                <th className="px-6 py-4">তারিখ</th>
+                <th className="px-6 py-4">মূল্য</th>
+                <th className="px-6 py-4 text-right">অ্যাকশন</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+              {booking.length === 0 ? (
+                <tr>
+                  <td colSpan={6} className="px-6 py-16 text-center text-slate-500">
+                    কোনো বুকিং নেই।
+                  </td>
+                </tr>
+              ) : (
+                booking.map((item: any, index: number) => (
+                  <tr
+                    key={item._id}
+                    className="transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/40"
+                  >
+                    <td className="px-6 py-4 font-medium text-slate-400">
+                      {index + 1}
+                    </td>
+                    <td className="px-6 py-4">
+                      <img
+                        className="h-12 w-12 rounded-xl object-cover"
+                        src={item?.touristImage}
+                        alt=""
+                      />
+                    </td>
+                    <td className="px-6 py-4 font-medium text-slate-900 dark:text-white">
+                      {item.tourGuide}
+                    </td>
+                    <td className="px-6 py-4 text-slate-600 dark:text-slate-400">
+                      {item.tourDate}
+                    </td>
+                    <td className="px-6 py-4 font-semibold text-blue-600">
+                      ৳{item.prices}
+                    </td>
+                    <td className="px-6 py-4 text-right">
+                      <button
+                        onClick={() => handleDeleteCart(item._id)}
+                        className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-rose-50 hover:text-rose-600 dark:hover:bg-rose-950/30"
+                        aria-label="মুছে ফেলুন"
+                      >
+                        <FaTrash />
+                      </button>
+                    </td>
                   </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                  {
-                    booking.map((item: any, index: number) => <tr
-                      key={item._id}
-                    >
-                      <th>
-                        {index + 1}
-                      </th>
-                      <td>
-                        <div className="flex items-center gap-3">
-                          <div className="avatar">
-                            <div className="mask mask-squircle w-12 h-12">
-                              <img
-                                className="rounded-full h-12"
-                                src={item?.touristImage}
-                                alt="Avatar Tailwind CSS Component"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        {item.tourGuide}
-                      </td>
-                      <td>{item.tourDate}</td>
-                      <td>${item.prices}</td>
-                      <th>
-                        <button
-                          onClick={() => handleDeleteCart(item._id)}
-                          className="btn btn-ghost btn-xs text-lg">
-                          <FaTrash></FaTrash>
-                        </button>
-                      </th>
-                    </tr>)
-                  }
-                </tbody>
-              </table>
-            </div>
-          </div>
+                ))
+              )}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
